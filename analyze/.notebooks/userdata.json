@@ -1,0 +1,107 @@
+[
+{
+  "id" : "varun-vostro3401",
+  "class" : "system",
+  "claimed" : true,
+  "handle" : "DMI:0100",
+  "description" : "Notebook",
+  "product" : "Vostro 3401 (0A29)",
+  "vendor" : "Dell Inc.",
+  "serial" : "41HZN63",
+  "width" : 64,
+  "configuration" : {
+    "boot" : "normal",
+    "chassis" : "notebook",
+    "family" : "Vostro",
+    "sku" : "0A29",
+    "uuid" : "44454C4C-3100-1048-805A-B4C04F4E3633"
+  },
+  "capabilities" : {
+    "smbios-3.1.0" : "SMBIOS version 3.1.0",
+    "dmi-3.1.0" : "DMI version 3.1.0",
+    "smp" : "Symmetric Multi-Processing",
+    "vsyscall32" : "32-bit processes"
+  },
+  "children" : [
+  {
+    "id" : "pnp00:00",
+    "class" : "system",
+    "claimed" : true,
+    "product" : "Motherboard registers",
+    "physid" : "0",
+    "configuration" : {
+      "driver" : "system"
+    },
+    "capabilities" : {
+      "pnp" : true
+    }
+  },
+  {
+    "id" : "pnp00:01",
+    "class" : "system",
+    "claimed" : true,
+    "product" : "AT Real-Time Clock",
+    "physid" : "2",
+    "configuration" : {
+      "driver" : "rtc_cmos"
+    },
+    "capabilities" : {
+      "pnp" : true
+    }
+  },
+  {
+    "id" : "pnp00:05",
+    "class" : "system",
+    "claimed" : true,
+    "product" : "Motherboard registers",
+    "physid" : "6",
+    "configuration" : {
+      "driver" : "system"
+    },
+    "capabilities" : {
+      "pnp" : true
+    }
+  },
+  {
+    "id" : "pnp00:06",
+    "class" : "system",
+    "claimed" : true,
+    "product" : "Motherboard registers",
+    "physid" : "7",
+    "configuration" : {
+      "driver" : "system"
+    },
+    "capabilities" : {
+      "pnp" : true
+    }
+  },
+  {
+    "id" : "pnp00:07",
+    "class" : "system",
+    "claimed" : true,
+    "product" : "Motherboard registers",
+    "physid" : "8",
+    "configuration" : {
+      "driver" : "system"
+    },
+    "capabilities" : {
+      "pnp" : true
+    }
+  },
+  {
+    "id" : "pnp00:08",
+    "class" : "system",
+    "claimed" : true,
+    "product" : "Motherboard registers",
+    "physid" : "9",
+    "configuration" : {
+      "driver" : "system"
+    },
+    "capabilities" : {
+      "pnp" : true
+    }
+  }
+  ]
+}
+]
+

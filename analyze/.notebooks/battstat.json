@@ -1,0 +1,27 @@
+[
+  {
+    "id" : "battery",
+    "class" : "power",
+    "claimed" : true,
+    "handle" : "DMI:1600",
+    "product" : "DELL FDRHM08",
+    "vendor" : "LG",
+    "physid" : "1",
+    "version" : "07/25/2020",
+    "serial" : "8816",
+    "slot" : "Sys. Battery Bay",
+    "units" : "mWh",
+    "capacity" : 41990,
+    "configuration" : {
+      "voltage" : "11.4V"
+    }
+  },
+  {
+    "id" : "power",
+    "class" : "power",
+    "physid" : "2",
+    "units" : "mWh",
+    "capacity" : 32768
+  }
+]
+
