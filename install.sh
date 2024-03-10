@@ -16,7 +16,7 @@ sudo chown -R $USER:$USER /opt/mybatop/
 
 echo 'export PATH="$PATH:/opt/mybatop"' >>~/.bashrc
 
-echo 'alias mybatop=/opt/mybatop/mainscript/mybatop' >> ~/.bashrc
+echo 'alias mybatop="sudo /opt/mybatop/mainscript/mybatop"' >> ~/.bashrc
 
 sudo systemctl daemon-reload
 
