@@ -14,23 +14,17 @@ sudo chmod -R +rwx *
 
 sudo chown -R $USER:$USER /opt/mybatop/
 
-echo 'export PATH="$PATH:/opt/mybatop"' >>~/.bashrc
+echo 'export PATH="$PATH:/opt/mybatop:/opt/mybatop/mainscript/"' >>~/.bashrc
 
-echo 'alias mybatop="sudo /opt/mybatop/mainscript/mybatop"' >> ~/.bashrc
+# echo 'alias mybatop="sudo /opt/mybatop/mainscript/mybatop"' >> ~/.bashrc
 
 sudo systemctl daemon-reload
 
-sudo systemctl enable mybatop-shutdown.service
+sudo systemctl enable --now mybatop-shutdown.service
 
-sudo systemctl enable mybatop-startup.service
+sudo systemctl enable --now mybatop-startup.service
 
-sudo systemctl enable mybatop-status.service
-
-sudo systemctl start mybatop-startup.service
-
-sudo systemctl start mybatop-status.service
-
-sudo systemctl start mybatop-shutdown.service
+sudo systemctl enable --now mybatop-status.service
 
 sudo pip install pandas --break-system-packages
 
