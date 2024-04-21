@@ -5,7 +5,7 @@
   <img src="https://cdn-icons-png.flaticon.com/512/3582/3582038.png" alt="mybatop custom image" />
 </p>
 
-The Battery Usage Analysis Tool is a command-line utility designed for Linux systems, aimed at providing insightful analytics regarding battery performance and usage patterns. This tool caters to users who seek a deeper understanding of their device's battery behavior over time, enabling them to optimize power management and prolong battery lifespan effectively.
+mybatop is a command-line utility designed for Linux systems, inspired from powercfg for windows and lshw utility. Which aims at providing insightful analytics regarding battery performance and usage patterns. This tool caters to users who seek a deeper understanding of their device's battery behavior over time, enabling them to optimize power management and prolong battery lifespan effectively.
 
 ## Installation
 
