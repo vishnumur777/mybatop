@@ -1,5 +1,5 @@
 
-<h1 align="center"><b>mybatop: Linux battery tracker</b></h1>
+# mybatop: Linux battery tracker
 
 <p align="center">
   <img src="https://cdn-icons-png.flaticon.com/512/3582/3582038.png" alt="mybatop custom image" />
