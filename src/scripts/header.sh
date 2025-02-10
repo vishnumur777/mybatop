@@ -2,20 +2,14 @@
 
 cd /opt/mybatop
 
-cp /sys/class/power_supply/BAT0/uevent /opt/mybatop/uevent
+sed -e "s/POWER_SUPPLY_//" -e "s/=.*//" < /sys/class/power_supply/BAT0/uevent > x.txt
 
-while read l; do echo $l | sed "s/POWER_SUPPLY_//"; done </opt/mybatop/uevent >/opt/mybatop/total.txt
+mapfile -t header < x.txt
 
-while read m; do echo $m | sed "s/=.*//"; done </opt/mybatop/total.txt >/opt/mybatop/x.txt
-
-t+=("DATE" "TIME" "STATE")
-
-while read o; do t+=("$o"); done </opt/mybatop/x.txt
-
+t=()
+t+=("DATE" "TIME" "STATE" "${header[@]}")
 t[5]="SOURCE"
 
-echo ${t[@]} >/opt/mybatop/x1.txt
+echo "${t[@]}" | tr -s '[:blank:]' ',' > headerfile
 
-tr -s '[:blank:]' ',' </opt/mybatop/x1.txt >/opt/mybatop/headerfile
-
-rm -rf uevent total.txt x.txt x1.txt
+rm -rf x.txt
