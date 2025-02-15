@@ -1,4 +1,6 @@
 import pandas as pd
+import argparse
+import json
 
 #getting recent 3 days format
 def analyse():
@@ -29,40 +31,74 @@ def analyse():
 
     filtered_yt = filtered_yt.reset_index(drop=True)
 
-    filtered_yt.to_csv("recent_3_days.csv",index=False)
+    return filtered_yt
 
-    def conv_html(ip,output):
 
-        df = pd.read_csv(ip)
+def conv_html(output):
 
-        html_rows = []
+    df = analyse()
 
-        for i,rows in df.iterrows():
-            if i==0:
+    html_rows = []
 
-                html_rows.append("<tr>")
+    for i,rows in df.iterrows():
+        if i==0:
 
-                for h in df.columns:
+            html_rows.append("<tr>")
 
-                    html_rows.append(f"<th>{h}</th>")
-                    
-                html_rows.append("</tr>")
+            for h in df.columns:
 
-            status_class = 'recent-usage-status' if rows["STATE"] is not None else ''
+                html_rows.append(f"<th>{h}</th>")
+                
+            html_rows.append("</tr>")
 
-            status_class1 = 'recent-status' if rows["STATUS"] is not None else ''
+        status_class = 'recent-usage-status' if rows["STATE"] is not None else ''
 
-            html_row = f"<tr><td>{rows.DATE}</td><td>{rows.TIME}</td><td class={status_class}>{rows.STATE}</td><td class={status_class1}>{rows.STATUS}</td><td>{rows.CAPACITY}</td></tr>"
+        status_class1 = 'recent-status' if rows["STATUS"] is not None else ''
 
-            html_rows.append(html_row)
+        html_row = f"<tr><td>{rows.DATE}</td><td>{rows.TIME}</td><td class={status_class}>{rows.STATE}</td><td class={status_class1}>{rows.STATUS}</td><td>{rows.CAPACITY}</td></tr>"
 
-        html_table = '<div class="recent-usage-table"><table border="1">' + '\n'.join(html_rows) + '</table></div>'
+        html_rows.append(html_row)
 
-        with open(output,'w') as f:
+    html_table = '<div class="recent-usage-table"><table border="1">' + '\n'.join(html_rows) + '</table></div>'
 
-            f.write(html_table)
+    with open(output,'w') as f:
 
-    conv_html("recent_3_days.csv","a.html")
+        f.write(html_table)
 
-# if __name__ == "__main__":
-#     analyse()
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--html", action="store_true")
+
+    parser.add_argument("--csv", action="store_true")
+
+    parser.add_argument("--xml", action="store_true")
+
+    parser.add_argument("--json", action="store_true")
+
+    args = parser.parse_args()
+
+    activity = analyse()
+
+    activity["DATE"] = pd.to_datetime(activity["DATE"]).dt.strftime('%m/%d/%Y')
+
+    if args.html:
+
+        conv_html("a.html")
+
+    elif args.csv:
+
+        activity.to_csv("index.csv",index=False)
+
+    elif args.xml:
+
+        activity.to_xml("index.xml",index=False)
+
+    elif args.json:
+
+        records = activity.to_dict(orient='records')
+        pretty_json = json.dumps(records, indent=4)
+
+        with open('index.json', 'w') as f:
+            f.write(pretty_json)

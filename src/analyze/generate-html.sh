@@ -17,7 +17,7 @@ bash fetchuserdetails.sh
 
 rm -rf merge.html
 
-python3 combine.py
+./generate_classes.sh
 
 addDiv a.html "Recent Usage" "For last 3 days."
 
@@ -41,4 +41,4 @@ cat head.txt temp1.html tail.txt >merge.html
 
 # cp merge.html .
 
-rm -rf temp.html data.csv details.csv temp1.html y2 recent_3_days.csv a0.html a.html b.html c.html d.html e.html
+rm -rf temp.html data.csv temp1.html y2  a0.html a.html b.html c.html d.html e.html

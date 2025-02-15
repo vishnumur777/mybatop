@@ -9,6 +9,17 @@ elif [[ $value == "--html" || $value == "-html" ]]; then
 	bash /opt/mybatop/analyze/generate-html.sh
 	cp /opt/mybatop/analyze/merge.html $present_dir/battery-report.html
 	echo "The battery-report.html is generated and it is saved to $present_dir"
+elif [[ $value == "data" ]]; then
+	if [[ $3 == "--html" ]]; then
+		export present_dir=$(pwd)
+		bash /opt/mybatop/analyze/generate-html.sh
+		cp /opt/mybatop/analyze/merge.html $present_dir/battery-report.html
+		echo "The battery-report.html is generated and it is saved to $present_dir"
+	elif [[ $3 == "--csv" ]]; then
+		bash /opt/mybatop/analyze/generate-data.sh
+		echo "The battery-report.csv is generated and it is saved to /opt/mybatop/analyze"
+	elif [[ $3 == "--json" ]]; then
+	fi
 elif [[ $value == "--version" || $value == "-version" || $value == "-v" ]]; then
 	echo -e "mybatop\n version:1.0.0"
 else

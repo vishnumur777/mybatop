@@ -6,8 +6,6 @@ def dcharecter():
 
     dchar = pd.read_csv("data.csv")
 
-    dchar.head(5)
-
     dchar.dropna(subset=["SERIAL_NUMBER"],inplace=True)
 
     dchar = dchar[["DATE","CAPACITY"]]
@@ -26,11 +24,11 @@ def dcharecter():
 
     tw1["CAPACITY"] = tw1["CAPACITY"].round(2)
 
-    tw1.to_csv("graph-1.csv")
+    return tw1
 
 def generate_graph():
 
-    df = pd.read_csv("graph-1.csv")
+    df = dcharecter()
 
     figure = px.line(df,x="DATE",y="CAPACITY",markers=True,line_shape="spline",height=600)
 

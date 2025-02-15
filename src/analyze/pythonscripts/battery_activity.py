@@ -1,6 +1,6 @@
 import pandas as pd
-
-
+import argparse
+import json
 def activity():
 
     try:
@@ -101,10 +101,50 @@ def activity():
 
         fin_batact["TIME_USED"] = pd.Series(ch_l).apply(format_timedelta)
 
-        fin_batact.to_html("e.html", index=False)
+        return fin_batact
 
     except KeyError as e:
 
         if e == "0":
 
             print("No keys found")
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--html", action="store_true")
+
+    parser.add_argument("--csv", action="store_true")
+
+    parser.add_argument("--xml", action="store_true")
+
+    parser.add_argument("--json", action="store_true")
+
+    args = parser.parse_args()
+
+    activity = activity()
+
+    activity["START_DATE"] = pd.to_datetime(activity["START_DATE"]).dt.strftime('%m/%d/%Y')
+
+    activity["END_DATE"] = pd.to_datetime(activity["END_DATE"]).dt.strftime('%m/%d/%Y')
+
+    if args.html:
+
+        activity.to_html("e.html",index=False)
+
+    elif args.csv:
+
+        activity.to_csv("index.csv",index=False)
+
+    elif args.xml:
+
+        activity.to_xml("index.xml",index=False)
+
+    elif args.json:
+
+        records = activity.to_dict(orient='records')
+        pretty_json = json.dumps(records, indent=4)
+
+        with open('index.json', 'w') as f:
+            f.write(pretty_json)

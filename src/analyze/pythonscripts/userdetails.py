@@ -33,3 +33,7 @@ def get_details():
     with open("a0.html",'w') as f:
 
         f.write(user)
+
+if __name__ == "__main__":
+
+    get_details()

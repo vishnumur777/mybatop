@@ -1,4 +1,6 @@
 import pandas as pd
+import json
+import argparse
 
 def capacity():
 
@@ -50,7 +52,7 @@ def capacity():
 
         ch_l.append(caphis.loc[(caphis.index>=curr_date)&(caphis.index<=week_d)]["CHARGE_FULL"].mean().astype(int))
         
-    caphistory["START DATE"] = pd.Series(st_l)
+    caphistory["START_DATE"] = pd.Series(st_l)
 
     caphistory["END_DATE"] = pd.Series(en_l)
 
@@ -58,4 +60,46 @@ def capacity():
 
     caphistory["CHARGE_FULL_DESIGN (in mWh)"] = caphis["CHARGE_FULL_DESIGN"].iloc[0]
 
-    caphistory.to_html("d.html",index=False)
+    return caphistory
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--html", action="store_true")
+
+    parser.add_argument("--csv", action="store_true")
+
+    parser.add_argument("--xml", action="store_true")
+
+    parser.add_argument("--json", action="store_true")
+
+    args = parser.parse_args()
+
+    caphistory = capacity()
+
+    caphistory["START_DATE"] = pd.to_datetime(caphistory["START_DATE"]).dt.strftime('%m/%d/%Y')
+
+    caphistory["END_DATE"] = pd.to_datetime(caphistory["END_DATE"]).dt.strftime('%m/%d/%Y')
+
+    if args.html:
+
+        caphistory.to_html("d.html",index=False)
+
+    elif args.csv:
+
+        caphistory.to_csv("index.csv",index=False)
+
+    elif args.xml:
+
+        caphistory.columns = ["START_DATE","END_DATE","CHARGE_FULL","CHARGE_FULL_DESIGN"]
+
+        caphistory.to_xml("index.xml",index=False)
+
+    elif args.json:
+
+        records = caphistory.to_dict(orient='records')
+        pretty_json = json.dumps(records, indent=4)
+
+        with open('index.json', 'w') as f:
+            f.write(pretty_json)
