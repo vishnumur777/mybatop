@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sample</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    th, td {
+      padding: 5px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .no-horizontal-border {
+      border-top: none;
+      border-bottom: none;
+    }
+    .with-horizontal-border {
+      border: 1px solid black;
+    }
+    .left-border {
+      border-left: 1px solid black;
+    }
+    .right-border {
+      border-right: 1px solid black;
+    }
+    .right-double-border{
+      border-right: 5px double black;
+    }
+    .top-border {
+      border-top: 1px solid black;
+    }
+    .bottom-border {
+      border-bottom: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+<table>
+  <thead>
+    <tr>
+      <th class="no-horizontal-border top-border left-border right-double-border">Mid-term</th>
+      <th class="no-horizontal-border top-border left-border right-double-border">Quarterly</th>
+      <th colspan="2" class="with-horizontal-border right-double-border">Math</th>
+      <th colspan="2" class="with-horizontal-border right-double-border">Science</th>
+    </tr>
+    <tr>
+      <th class="no-horizontal-border left-border right-double-border"></th>
+      <th class="no-horizontal-border left-border right-double-border"></th>
+      <th class="with-horizontal-border">Score</th>
+      <th class="with-horizontal-border">Grade</th>
+      <th class="with-horizontal-border">Score</th>
+      <th class="with-horizontal-border">Grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="with-horizontal-border left-border right-double-border">abc</td>
+      <td class="with-horizontal-border left-border right-double-border">nsc</td>
+      <td class="with-horizontal-border">85</td>
+      <td class="with-horizontal-border">A</td>
+      <td class="with-horizontal-border">90</td>
+      <td class="with-horizontal-border">B</td>
+    </tr>
+    <tr>
+      <td class="with-horizontal-border left-border right-double-border bottom-border">bca</td>
+      <td class="with-horizontal-border left-border right-double-border bottom-border">osc</td>
+      <td class="with-horizontal-border">78</td>
+      <td class="with-horizontal-border">B</td>
+      <td class="with-horizontal-border">88</td>
+      <td class="with-horizontal-border">A</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
