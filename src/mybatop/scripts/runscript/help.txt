@@ -1,0 +1,11 @@
+mybatop
+Version: 1.0.0
+
+[ USAGE ]
+
+eg:-
+	mybatop --html
+
+--help: show the list of commands and parameters
+--html: generate html content of battery monitor
+--version: Prints the version of lsbatt software
