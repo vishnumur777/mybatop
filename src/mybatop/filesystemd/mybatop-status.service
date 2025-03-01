@@ -1,0 +1,9 @@
+[Unit]
+Description=Run mybatop when battery status was changed
+
+[Service]
+Type=simple
+ExecStart=/opt/mybatop/status-insert.sh
+
+[Install]
+WantedBy=multi-user.target
