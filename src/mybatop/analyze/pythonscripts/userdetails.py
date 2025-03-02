@@ -24,7 +24,7 @@ def get_details():
 
     user+='<div class="battery-details">'
 
-    for i in range(6,length):
+    for i in range(5,length):
 
         user+=f'<div class="battery-content"><h3>{df.columns[i]}</h3><p>{df.values[0][i]}</p></div>'
 
