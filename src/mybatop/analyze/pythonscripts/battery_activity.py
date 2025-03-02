@@ -1,113 +1,106 @@
 import pandas as pd
 import argparse
 import json
-def activity():
 
-    try:
+def calculate_datetimedf(batuse):
+    datetime_df = pd.DataFrame()
 
-        df = pd.read_csv("data.csv")
+    datetime_df["START_DATE"] = batuse.groupby("GROUP").agg({"DATETIME":"first"})
+    datetime_df["END_TIME"] = batuse.groupby("GROUP").agg({"DATETIME":"last"})
+    datetime_df.reset_index(drop=True,inplace=True)
 
-        batact = pd.DataFrame()
+    return datetime_df
 
-        fin_batact = pd.DataFrame()
+def battery_activity():
 
-        date_format = '%m/%d/%y %H:%M:%S'
+    batuse = pd.read_csv("batusageact.csv")
 
-        df["COMBINED_DT"] = pd.to_datetime(df["DATE"]+' '+df["TIME"], format=date_format)
+    batuse["DATETIME"] = pd.to_datetime(batuse["DATETIME"], format="%Y-%m-%d %H:%M:%S")
 
-        df["DATE"] = pd.to_datetime(df["DATE"], format="%m/%d/%y")
+    datetime_df = calculate_datetimedf(batuse)
 
-        curr_date = df["DATE"].iloc[-1]
+    batuse_ch = batuse[batuse["STATUS"]=="Charging"]
+    batuse_dc = batuse[batuse["STATUS"]!="Charging"]
 
-        rev_df = df[::-1].reset_index(drop=True)
+    batuse['DIFFERENCE'] = batuse["DATETIME"] - batuse.shift(-1)["DATETIME"]
+    batuse['DIFFERENCE'] = batuse['DIFFERENCE'].fillna(pd.Timedelta(seconds=0))
 
-        sus_loc = rev_df.loc[rev_df["STATE"] == "Suspended"]
+    batuse_ch = batuse[batuse["STATUS"]=="Charging"]
+    batuse_dc = batuse[batuse["STATUS"]!="Charging"]
 
-        act_ind = sus_loc.index+1
+    batuse_ch_act = batuse_ch[batuse_ch["STATE"]=="Active"]
+    batuse_ch_low = batuse_ch[batuse_ch["STATE"]=="Low Power"]
 
-        act_loc = rev_df.loc[act_ind]
+    batuse_dc_act = batuse_dc[batuse_dc["STATE"]=="Active"]
+    batuse_dc_low = batuse_dc[batuse_dc["STATE"]=="Low Power"]
 
-        sus_loc = sus_loc.reset_index(drop=True)
+    batuse_ch_act_gr = batuse_ch_act.groupby("GROUP")["DIFFERENCE"].sum().reset_index()
+    batuse_ch_low_gr = batuse_ch_low.groupby("GROUP")["DIFFERENCE"].sum().reset_index()
 
-        act_loc = act_loc.reset_index(drop=True)
+    batuse_dc_act_gr = batuse_dc_act.groupby("GROUP")["DIFFERENCE"].sum().reset_index()
+    batuse_dc_low_gr = batuse_dc_low.groupby("GROUP")["DIFFERENCE"].sum().reset_index()
 
-        def format_timedelta(timedelta_object):
+    batuse_ch_act_gr = batuse_ch_act_gr.rename(columns={"DIFFERENCE":"CHARGING_ACTIVE"})
+    batuse_ch_low_gr = batuse_ch_low_gr.rename(columns={"DIFFERENCE":"CHARGING_LOW_POWER"})
+    batuse_dc_act_gr = batuse_dc_act_gr.rename(columns={"DIFFERENCE":"BATTERY_ACTIVE"})
+    batuse_dc_low_gr = batuse_dc_low_gr.rename(columns={"DIFFERENCE":"BATTERY_LOW_POWER"})
 
-            days = timedelta_object.days
+    df = batuse_dc_act_gr.merge(batuse_dc_low_gr, on="GROUP", how="outer")\
+            .merge(batuse_ch_act_gr, on="GROUP", how="outer")\
+            .merge(batuse_ch_low_gr, on="GROUP", how="outer")
+    
+    final_df = datetime_df.merge(df, on=datetime_df.index, how="outer")
 
-            seconds = timedelta_object.seconds
+    final_df = final_df.drop(columns=["key_0","GROUP"])
+    
+    final_df = final_df.fillna("-")
 
-            hours, remainder = divmod(seconds, 3600)
+    return final_df
 
-            minutes, seconds = divmod(remainder, 60)
+def generate_html(final_df):
 
-            return f"{24 * days + hours:02d}:{minutes:02d}:{seconds:02d}"
+    table_header = """
+    <table border="1">
+        <thead>
+            <tr class="header-row">
+                <th rowspan="2">START_DATE</th>
+                <th rowspan="2">END_DATE</th>
+                <th colspan="2">ON_BATTERY</th>
+                <th colspan="2">WHILE_CHARGING</th>
+            </tr>
+            <tr>
+                <th>ACTIVE</th>
+                <th>LOW_POWER</th>
+                <th>ACTIVE</th>
+                <th>LOW_POWER</th>
+            </tr>
+        </thead>
+    """
 
-        temp_act = pd.DataFrame()
+    table_body = ""
 
-        if rev_df["STATE"][0] == "Active":
-            
-            temp_act["DATE"] = pd.Series(rev_df["DATE"].iloc[0])
+    for i in range(len(final_df)):
+        table_body += f"""
+                <tr>
+                    <td>{final_df["START_DATE"][i]}</td>
+                    <td>{final_df["END_TIME"][i]}</td>
+                    <td>{final_df["BATTERY_ACTIVE"][i]}</td>
+                    <td>{final_df["BATTERY_LOW_POWER"][i]}</td>
+                    <td>{final_df["CHARGING_ACTIVE"][i]}</td>
+                    <td>{final_df["CHARGING_LOW_POWER"][i]}</td>
+                </tr>
+        """
 
-            temp_act["TIMESTAMP"] = pd.Series(pd.to_datetime(sus_loc["COMBINED_DT"][0]) - pd.to_datetime(rev_df["COMBINED_DT"][0]))
+    table_footer = """ 
+        </tbody>
+    </table>
+    """
 
-            batact["DATE"] = act_loc["DATE"]
+    full_table = table_header + table_body + table_footer
 
-            batact["TIMESTAMP"] = pd.to_datetime(act_loc["COMBINED_DT"]) - pd.to_datetime(sus_loc["COMBINED_DT"])
+    with open("g.html", "w") as f:
+        f.write(full_table)
 
-            batact = pd.concat([temp_act, batact], ignore_index=True)
-
-        if rev_df["STATE"][0] == "Suspended":
-
-            batact["DATE"] = act_loc["DATE"]
-
-            batact["TIMESTAMP"] = pd.to_datetime(act_loc["COMBINED_DT"]) - pd.to_datetime(sus_loc["COMBINED_DT"])
-
-        curr_date = pd.to_datetime(df["DATE"].iloc[-1])
-
-        week_d = curr_date+pd.DateOffset(weeks=1)
-
-        st_l = []
-        en_l = []
-        ch_l = []
-
-        while True:
-            st_l.append(curr_date)
-
-            en_l.append(week_d)
-
-            ch_l.append(batact.loc[(batact["DATE"] >= curr_date) & (batact["DATE"] <= week_d)]["TIMESTAMP"].sum())
-
-            curr_date = curr_date+pd.DateOffset(weeks=1)
-
-            week_d = week_d+pd.DateOffset(weeks=1)
-
-            if (week_d >= batact["DATE"].iloc[-1]+pd.DateOffset(days=1)):
-                break
-
-        if curr_date < batact["DATE"].iloc[-1]:
-
-            week_d = batact["DATE"].iloc[-1]
-
-            st_l.append(curr_date)
-
-            en_l.append(week_d)
-
-            ch_l.append(batact.loc[(batact["DATE"] >= curr_date) & (batact["DATE"] <= week_d)]["TIMESTAMP"].sum())
-
-        fin_batact["START_DATE"] = pd.Series(st_l)
-
-        fin_batact["END_DATE"] = pd.Series(en_l)
-
-        fin_batact["TIME_USED"] = pd.Series(ch_l).apply(format_timedelta)
-
-        return fin_batact
-
-    except KeyError as e:
-
-        if e == "0":
-
-            print("No keys found")
 
 if __name__ == "__main__":
 
@@ -123,28 +116,25 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    activity = activity()
-
-    activity["START_DATE"] = pd.to_datetime(activity["START_DATE"]).dt.strftime('%m/%d/%Y')
-
-    activity["END_DATE"] = pd.to_datetime(activity["END_DATE"]).dt.strftime('%m/%d/%Y')
+    final_df = battery_activity()
 
     if args.html:
-
-        activity.to_html("e.html",index=False)
+        generate_html(final_df)
 
     elif args.csv:
-
-        activity.to_csv("index.csv",index=False)
+        final_df.to_csv("battery_activity.csv", index=False)
 
     elif args.xml:
-
-        activity.to_xml("index.xml",index=False)
+        final_df.to_xml("battery_activity.xml", index=False)
 
     elif args.json:
 
-        records = activity.to_dict(orient='records')
+        records = final_df.to_dict(orient='records')
         pretty_json = json.dumps(records, indent=4)
 
         with open('index.json', 'w') as f:
             f.write(pretty_json)
+
+
+
+
