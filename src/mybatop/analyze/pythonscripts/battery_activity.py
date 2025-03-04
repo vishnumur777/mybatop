@@ -29,10 +29,10 @@ def battery_activity():
     batuse_dc = batuse[batuse["STATUS"]!="Charging"]
 
     batuse_ch_act = batuse_ch[batuse_ch["STATE"]=="Active"]
-    batuse_ch_low = batuse_ch[batuse_ch["STATE"]=="Low Power"]
+    batuse_ch_low = batuse_ch[batuse_ch["STATE"]=="Low-Power"]
 
     batuse_dc_act = batuse_dc[batuse_dc["STATE"]=="Active"]
-    batuse_dc_low = batuse_dc[batuse_dc["STATE"]=="Low Power"]
+    batuse_dc_low = batuse_dc[batuse_dc["STATE"]=="Low-Power"]
 
     batuse_ch_act_gr = batuse_ch_act.groupby("GROUP")["DIFFERENCE"].sum().reset_index()
     batuse_ch_low_gr = batuse_ch_low.groupby("GROUP")["DIFFERENCE"].sum().reset_index()
