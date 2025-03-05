@@ -3,8 +3,8 @@ import argparse
 import plotly.express as px
 import json
 
-def cycle_count_df():
 
+def cycle_count_df():
     df = pd.read_csv("/opt/mybatop/final.csv")
 
     df["DATE"] = pd.to_datetime(df["DATE"], format="%m/%d/%y")
@@ -17,16 +17,16 @@ def cycle_count_df():
 
 
 def plot_cycle_count(df1):
-
     fig = px.line(df1, x="DATE", y="CYCLE_COUNT", title="Cycle Count Over Time")
 
-    fig.update_layout(paper_bgcolor= 'rgba(0,0,0,0)',font_color="white",font_family="Times New Roman")
+    fig.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)", font_color="white", font_family="Times New Roman"
+    )
 
     fig.write_html("g.html")
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--graph", action="store_true")
@@ -35,9 +35,7 @@ if __name__ == "__main__":
     parser.add_argument("--csv", action="store_true")
     parser.add_argument("--xml", action="store_true")
 
-
     args = parser.parse_args()
-
 
     df = cycle_count_df()
 
@@ -51,13 +49,13 @@ if __name__ == "__main__":
         df.to_csv("cycle_count.csv", index=False)
 
     elif args.xml:
-        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime('%m/%d/%Y')
+        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%m/%d/%Y")
         df.to_xml("cycle_count.xml", index=False)
 
     elif args.json:
-        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime('%m/%d/%Y')
-        records = df.to_dict(orient='records')
+        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%m/%d/%Y")
+        records = df.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 
-        with open('index.json', 'w') as f:
+        with open("index.json", "w") as f:
             f.write(pretty_json)

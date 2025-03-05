@@ -8,7 +8,7 @@ mask = df1["SERIAL_NUMBER"].isnull()
 
 cols = df1.columns.tolist()
 
-curr_idx = cols.index('CURRENT_NOW')
+curr_idx = cols.index("CURRENT_NOW")
 
 col1 = df1.columns[:curr_idx]
 col2 = df1.columns[curr_idx:]
