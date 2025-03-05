@@ -19,5 +19,5 @@ if [ $cycle_count -eq "0" ]; then
     cycle_count="Not Available"
 fi
 
-echo "HOSTNAME,SYSTEM NAME,BIOS DETAILS,OS NAME,REPORT TIME,MODEL NAME,BATTERY SERIAL NUMBER,TYPE,TECHNOLOGY,MANUFACTURER,CHARGE FULL DESIGN,VOLTAGE MINIMUM DESIGN,CYCLE_COUNT" >> details.csv
+echo "HOSTNAME,SYSTEM NAME,BIOS DETAILS,OS NAME,REPORT TIME,MODEL NAME,BATTERY SERIAL NUMBER,TYPE,TECHNOLOGY,MANUFACTURER,CHARGE FULL DESIGN,VOLTAGE MINIMUM DESIGN,CYCLE COUNT" >> details.csv
 echo $host_name,$sys_name,$bios_det,$os_name,$report_time,$model_name,$bat_serial_no,$type,$technology,$manufacturer,$ch_full_d,$volt_des,$cycle_count >> details.csv
