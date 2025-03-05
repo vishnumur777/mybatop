@@ -4,6 +4,9 @@ document.querySelectorAll('.recent-usage-status').forEach((element)=>{
     {
         element.style.color="#1DB954";
     }
+    else if(element.innerText=="Low-Power"){
+        element.style.color="#FF7C2B";
+    }
     else{
         element.style.color="#F24C3D";
     }

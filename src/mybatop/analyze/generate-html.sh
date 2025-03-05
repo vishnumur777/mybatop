@@ -7,7 +7,7 @@ function addDiv() {
   mv res $1
 }
 
-bash /opt/mybatop/src/mybatop/scripts/generate_csv.sh
+bash /opt/mybatop/scripts/generate_csv.sh
 
 cp /opt/mybatop/final.csv /opt/mybatop/analyze/data.csv
 
