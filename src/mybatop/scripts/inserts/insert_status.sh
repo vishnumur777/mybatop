@@ -5,7 +5,7 @@ read -r prev_status < /sys/class/power_supply/BAT0/status
 insert_status() {
     if [ "$state_read" != "Not charging" ] && [ "$state_read" != "Unknown" ]
     then
-	/opt/mybatop/src/scripts/inserts/insert_active.sh
+	/opt/mybatop/scripts/inserts/insert_active.sh
     fi
 }
 
