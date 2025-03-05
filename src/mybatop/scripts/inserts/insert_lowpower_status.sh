@@ -7,6 +7,7 @@ extract_state() {
 prev_state=$(extract_state)
 
 while true; do
+  current_state=$(extract_state)
   if [[ "$current_state" != "$prev_state" ]]; then
     if [[ "$current_state" == "closed" ]]; then
       /opt/mybatop/insert_lowpower.sh
