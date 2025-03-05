@@ -1,10 +1,10 @@
 [Unit]
 
-Description="Run my shell script"
+Description=Run mybatop during power on
 
 [Service]
 
-ExecStart=/opt/mybatop/insert.sh
+ExecStart=/opt/mybatop/scripts/inserts/insert_active.sh
 
 [Install]
 

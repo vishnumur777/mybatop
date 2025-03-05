@@ -3,7 +3,7 @@ Description=Log when laptop was changed to low-power mode
 
 [Service]
 Type=simple
-ExecStart=/opt/mybatop/insert_lowpower_status.sh
+ExecStart=/opt/mybatop/scripts/inserts/insert_lowpower_status.sh
 
 [Install]
 WantedBy=multi-user.target

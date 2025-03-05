@@ -6,7 +6,7 @@ Before=shutdown.target
 Type=oneshot
 RemainAfterExit=true
 ExecStart=/bin/true
-ExecStop=/opt/mybatop/insert2.sh
+ExecStop=/opt/mybatop/scripts/inserts/insert_suspended.sh
 
 [Install]
 WantedBy=multi-user.target
