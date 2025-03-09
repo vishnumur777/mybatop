@@ -44,14 +44,16 @@ if __name__ == "__main__":
     if args.graph:
         plot_battery_health(df)
     elif args.html:
-        df.to_html("index.html", index=False)
+        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
+        df.to_html("battery_health.html", index=False)
     elif args.csv:
+        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
         df.to_csv("battery_health.csv", index=False)
     elif args.xml:
-        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%m/%d/%Y")
+        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
         df.to_xml("battery_health.xml", index=False)
     elif args.json:
-        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%m/%d/%Y")
+        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
         records = df.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 

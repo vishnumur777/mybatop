@@ -7,8 +7,11 @@ def calculate_datetimedf(batuse):
     datetime_df = pd.DataFrame()
 
     datetime_df["START_DATE"] = batuse.groupby("GROUP").agg({"DATETIME": "first"})
-    datetime_df["END_TIME"] = batuse.groupby("GROUP").agg({"DATETIME": "last"})
+    datetime_df["END_DATE"] = batuse.groupby("GROUP").agg({"DATETIME": "last"})
     datetime_df.reset_index(drop=True, inplace=True)
+
+    datetime_df["START_DATE"] = datetime_df["START_DATE"].dt.strftime("%d-%m-%Y %H:%M:%S")
+    datetime_df["END_DATE"] = datetime_df["END_DATE"].dt.strftime("%d-%m-%Y %H:%M:%S")
 
     return datetime_df
 
@@ -92,7 +95,7 @@ def generate_html(final_df):
         table_body += f"""
                 <tr>
                     <td>{final_df["START_DATE"][i]}</td>
-                    <td>{final_df["END_TIME"][i]}</td>
+                    <td>{final_df["END_DATE"][i]}</td>
                     <td>{final_df["BATTERY_ACTIVE"][i]}</td>
                     <td>{final_df["BATTERY_LOW_POWER"][i]}</td>
                     <td>{final_df["CHARGING_ACTIVE"][i]}</td>

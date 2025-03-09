@@ -60,19 +60,19 @@ if __name__ == "__main__":
         generate_graph()
     elif args.html:
         df = dcharecter()
-        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%m/%d/%Y")
+        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
         df.to_html("Average_capacity.html")
     elif args.xml:
         df = dcharecter()
-        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%m/%d/%Y")
+        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
         df.to_html("Average_capacity.html")
     elif args.csv:
         df = dcharecter()
-        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%m/%d/%Y")
+        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
         df.to_html("Average_capacity.html")
     elif args.json:
         df = dcharecter()
-        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%m/%d/%Y")
+        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
         records = df.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 

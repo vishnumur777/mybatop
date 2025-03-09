@@ -69,7 +69,9 @@ def conv_html(output):
 
         status_class1 = "recent-status" if rows["STATUS"] is not None else ""
 
-        html_row = f"<tr><td>{rows.DATE}</td><td>{rows.TIME}</td><td class={status_class}>{rows.STATE}</td><td class={status_class1}>{rows.STATUS}</td><td>{rows.CAPACITY}</td></tr>"
+        formatted_date = rows.DATE.strftime("%d-%m-%Y")
+
+        html_row = f"<tr><td>{formatted_date}</td><td>{rows.TIME}</td><td class={status_class}>{rows.STATE}</td><td class={status_class1}>{rows.STATUS}</td><td>{rows.CAPACITY}</td></tr>"
 
         html_rows.append(html_row)
 
@@ -98,8 +100,8 @@ if __name__ == "__main__":
 
     activity = analyse()
 
-    activity["DATE"] = pd.to_datetime(activity["DATE"]).dt.strftime("%m/%d/%Y")
-
+    activity["DATE"] = pd.to_datetime(activity["DATE"]).dt.strftime("%Y/%m/%d")
+        
     if args.html:
         conv_html("a.html")
 

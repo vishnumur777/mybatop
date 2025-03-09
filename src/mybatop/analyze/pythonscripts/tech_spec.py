@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
     tech_spec = tech_specification()
 
-    tech_spec["DATE"] = pd.to_datetime(tech_spec["DATE"]).dt.strftime("%m/%d/%Y")
+    tech_spec["DATE"] = pd.to_datetime(tech_spec["DATE"]).dt.strftime("%d-%m-%Y")
 
     if args.html:
         tech_spec.to_html("b.html", index=False)

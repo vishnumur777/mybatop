@@ -69,9 +69,9 @@ if __name__ == "__main__":
 
     caphistory = capacity()
 
-    caphistory["START_DATE"] = pd.to_datetime(caphistory["START_DATE"])
+    caphistory["START_DATE"] = pd.to_datetime(caphistory["START_DATE"]).dt.strftime("%d-%m-%Y %H:%m:%S")
 
-    caphistory["END_DATE"] = pd.to_datetime(caphistory["END_DATE"])
+    caphistory["END_DATE"] = pd.to_datetime(caphistory["END_DATE"]).dt.strftime("%d-%m-%Y %H:%m:%S")
 
     if args.html:
         caphistory.to_html("d.html", index=False)

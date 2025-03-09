@@ -5,13 +5,15 @@ import json
 
 
 def cycle_count_df():
-    df = pd.read_csv("/opt/mybatop/final.csv")
+    df = pd.read_csv("data.csv")
 
     df["DATE"] = pd.to_datetime(df["DATE"], format="%m/%d/%y")
 
     df1 = df.groupby(df["DATE"])["CYCLE_COUNT"].mean().reset_index()
 
     df1["CYCLE_COUNT"] = df1["CYCLE_COUNT"].astype(int)
+
+    df["DATE"] = df["DATE"].dt.strftime("%d-%m-%Y")
 
     return df1
 
@@ -43,17 +45,15 @@ if __name__ == "__main__":
         plot_cycle_count(df)
 
     elif args.html:
-        df.to_html("index.html", index=False)
+        df.to_html("cycle_count.html", index=False)
 
     elif args.csv:
         df.to_csv("cycle_count.csv", index=False)
 
     elif args.xml:
-        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%m/%d/%Y")
         df.to_xml("cycle_count.xml", index=False)
 
     elif args.json:
-        df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%m/%d/%Y")
         records = df.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 
