@@ -30,11 +30,80 @@ class TestCycleCount(unittest.TestCase):
             filecmp.cmp("cycle_count.html", expected_output), "Files are not identical"
         )
 
+    def test_cycle_count_json(self):
+        
+        expected_output = "tests/test_files/outputs/json/cycle_counts.json"
+
+        result=subprocess.run(["python3", self.src_file, "--json"], capture_output=True, text=True)
+
+        self.assertEqual(
+            result.returncode,
+            0,
+            f"Script execution failed with error:\n{result.stderr}",
+        )
+
+        self.assertTrue(os.path.exists("cycle_counts.json"), "Output file cycle_counts.json was not created")
+
+        if not filecmp.cmp("cycle_counts.json", expected_output):
+            subprocess.run(["diff", expected_output, "cycle_counts.json"], check=True)
+
+        self.assertTrue(
+            filecmp.cmp("cycle_counts.json", expected_output), "Files are not identical"
+        )
+
+    def test_cycle_count_xml(self):
+        
+        expected_output = "tests/test_files/outputs/xml/cycle_count.xml"
+
+        result=subprocess.run(["python3", self.src_file, "--xml"], capture_output=True, text=True)
+
+        self.assertEqual(
+            result.returncode,
+            0,
+            f"Script execution failed with error:\n{result.stderr}",
+        )
+
+        self.assertTrue(os.path.exists("cycle_count.xml"), "Output file cycle_counts.xml was not created")
+
+        if not filecmp.cmp("cycle_count.xml", expected_output):
+            subprocess.run(["diff", expected_output, "cycle_count.xml"], check=True)
+
+        self.assertTrue(
+            filecmp.cmp("cycle_count.xml", expected_output), "Files are not identical"
+        )
+
+    def test_cycle_count_csv(self):
+        
+        expected_output = "tests/test_files/outputs/csv/cycle_count.csv"
+
+        result=subprocess.run(["python3", self.src_file, "--csv"], capture_output=True, text=True)
+
+        self.assertEqual(
+            result.returncode,
+            0,
+            f"Script execution failed with error:\n{result.stderr}",
+        )
+
+        self.assertTrue(os.path.exists("cycle_count.csv"), "Output file cycle_count.csv was not created")
+
+        if not filecmp.cmp("cycle_count.csv", expected_output):
+            subprocess.run(["diff", expected_output, "cycle_count.csv"], check=True)
+
+        self.assertTrue(
+            filecmp.cmp("cycle_count.csv", expected_output), "Files are not identical"
+        )
+
     def tearDown(self):
         if os.path.exists("data.csv"):
             os.remove("data.csv")
         if os.path.exists("cycle_count.html"):
             os.remove("cycle_count.html")
+        if os.path.exists("cycle_counts.json"):
+            os.remove("cycle_counts.json")
+        if os.path.exists("cycle_count.csv"):
+            os.remove("cycle_count.csv")
+        if os.path.exists("cycle_count.xml"):
+            os.remove("cycle_count.xml")
 
 
     

@@ -30,6 +30,7 @@ class TestUserDetails(unittest.TestCase):
         self.assertTrue(
             filecmp.cmp("a0.html", expected_output), "Files are not identical"
         )
+        
 
     def tearDown(self):
         if os.path.exists("details.csv"):
