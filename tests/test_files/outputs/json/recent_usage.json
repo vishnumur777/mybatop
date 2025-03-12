@@ -1,0 +1,100 @@
+[
+    {
+        "DATE": "2025/02/07",
+        "TIME": "09:59:42",
+        "STATE": "Active",
+        "STATUS": "Charging",
+        "CAPACITY": "34"
+    },
+    {
+        "DATE": "2025/02/07",
+        "TIME": "09:26:20",
+        "STATE": "Active",
+        "STATUS": "Discharging",
+        "CAPACITY": "50"
+    },
+    {
+        "DATE": "2025/02/07",
+        "TIME": "09:12:29",
+        "STATE": "Active",
+        "STATUS": "Charging",
+        "CAPACITY": "38"
+    },
+    {
+        "DATE": "2025/02/07",
+        "TIME": "09:11:52",
+        "STATE": "Suspended",
+        "STATUS": "Charging",
+        "CAPACITY": "37"
+    },
+    {
+        "DATE": "2025/02/07",
+        "TIME": "09:11:26",
+        "STATE": "Active",
+        "STATUS": "Charging",
+        "CAPACITY": "37"
+    },
+    {
+        "DATE": "2025/02/06",
+        "TIME": "22:23:27",
+        "STATE": "Active",
+        "STATUS": "Discharging",
+        "CAPACITY": "100"
+    },
+    {
+        "DATE": "2025/02/06",
+        "TIME": "20:09:58",
+        "STATE": "Active",
+        "STATUS": "Full",
+        "CAPACITY": "100"
+    },
+    {
+        "DATE": "2025/02/06",
+        "TIME": "17:51:59",
+        "STATE": "Active",
+        "STATUS": "Charging",
+        "CAPACITY": "25"
+    },
+    {
+        "DATE": "2025/02/06",
+        "TIME": "17:51:49",
+        "STATE": "Active",
+        "STATUS": "Discharging",
+        "CAPACITY": "25"
+    },
+    {
+        "DATE": "2025/02/06",
+        "TIME": "17:25:07",
+        "STATE": "Active",
+        "STATUS": "Charging",
+        "CAPACITY": "0"
+    },
+    {
+        "DATE": "2025/02/05",
+        "TIME": "19:11:34",
+        "STATE": "Suspended",
+        "STATUS": "Discharging",
+        "CAPACITY": "2"
+    },
+    {
+        "DATE": "2025/02/05",
+        "TIME": "14:56:42",
+        "STATE": "Active",
+        "STATUS": "Discharging",
+        "CAPACITY": "100"
+    },
+    {
+        "DATE": "2025/02/05",
+        "TIME": "13:22:37",
+        "STATE": "Active",
+        "STATUS": "Full",
+        "CAPACITY": "100"
+    },
+    {
+        "DATE": "2025/02/05",
+        "TIME": "12:52:05",
+        "STATE": "Active",
+        "STATUS": "Charging",
+        "CAPACITY": "87"
+    }
+]

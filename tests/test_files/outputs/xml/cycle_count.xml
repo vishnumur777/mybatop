@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<data>
+  <row>
+    <DATE>2025-01-24 00:00:00</DATE>
+    <CYCLE_COUNT>976</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-01-25 00:00:00</DATE>
+    <CYCLE_COUNT>922</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-01-26 00:00:00</DATE>
+    <CYCLE_COUNT>796</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-01-27 00:00:00</DATE>
+    <CYCLE_COUNT>625</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-01-28 00:00:00</DATE>
+    <CYCLE_COUNT>532</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-01-29 00:00:00</DATE>
+    <CYCLE_COUNT>462</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-01-30 00:00:00</DATE>
+    <CYCLE_COUNT>353</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-02-01 00:00:00</DATE>
+    <CYCLE_COUNT>290</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-02-02 00:00:00</DATE>
+    <CYCLE_COUNT>250</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-02-03 00:00:00</DATE>
+    <CYCLE_COUNT>181</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-02-04 00:00:00</DATE>
+    <CYCLE_COUNT>98</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-02-05 00:00:00</DATE>
+    <CYCLE_COUNT>60</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-02-06 00:00:00</DATE>
+    <CYCLE_COUNT>31</CYCLE_COUNT>
+  </row>
+  <row>
+    <DATE>2025-02-07 00:00:00</DATE>
+    <CYCLE_COUNT>10</CYCLE_COUNT>
+  </row>
+</data>

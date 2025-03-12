@@ -1,0 +1,15 @@
+DATE,TIME,STATE,STATUS,CAPACITY
+2025/02/07,09:59:42,Active,Charging,34
+2025/02/07,09:26:20,Active,Discharging,50
+2025/02/07,09:12:29,Active,Charging,38
+2025/02/07,09:11:52,Suspended,Charging,37
+2025/02/07,09:11:26,Active,Charging,37
+2025/02/06,22:23:27,Active,Discharging,100
+2025/02/06,20:09:58,Active,Full,100
+2025/02/06,17:51:59,Active,Charging,25
+2025/02/06,17:51:49,Active,Discharging,25
+2025/02/06,17:25:07,Active,Charging,0
+2025/02/05,19:11:34,Suspended,Discharging,2
+2025/02/05,14:56:42,Active,Discharging,100
+2025/02/05,13:22:37,Active,Full,100
+2025/02/05,12:52:05,Active,Charging,87
