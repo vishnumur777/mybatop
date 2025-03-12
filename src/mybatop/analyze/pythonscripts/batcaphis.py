@@ -77,7 +77,7 @@ if __name__ == "__main__":
         caphistory.to_html("d.html", index=False)
 
     elif args.csv:
-        caphistory.to_csv("index.csv", index=False)
+        caphistory.to_csv("batcaphis.csv", index=False)
 
     elif args.xml:
         caphistory.columns = [
@@ -87,11 +87,11 @@ if __name__ == "__main__":
             "CHARGE_FULL_DESIGN",
         ]
 
-        caphistory.to_xml("index.xml", index=False)
+        caphistory.to_xml("batcaphis.xml", index=False)
 
     elif args.json:
         records = caphistory.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 
-        with open("index.json", "w") as f:
+        with open("batcaphis.json", "w") as f:
             f.write(pretty_json)

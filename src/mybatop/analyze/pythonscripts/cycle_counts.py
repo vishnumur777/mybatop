@@ -54,8 +54,9 @@ if __name__ == "__main__":
         df.to_xml("cycle_count.xml", index=False)
 
     elif args.json:
+        df["DATE"] = df["DATE"].dt.strftime("%d-%m-%Y")
         records = df.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 
-        with open("index.json", "w") as f:
+        with open("cycle_counts.json", "w") as f:
             f.write(pretty_json)

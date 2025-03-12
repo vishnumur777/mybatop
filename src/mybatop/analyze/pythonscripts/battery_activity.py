@@ -67,6 +67,11 @@ def battery_activity():
 
     final_df = final_df.fillna("-")
 
+    final_df["BATTERY_ACTIVE"] = final_df["BATTERY_ACTIVE"].astype(str)
+    final_df["BATTERY_LOW_POWER"] = final_df["BATTERY_LOW_POWER"].astype(str)
+    final_df["CHARGING_ACTIVE"] = final_df["CHARGING_ACTIVE"].astype(str)
+    final_df["CHARGING_LOW_POWER"] = final_df["CHARGING_LOW_POWER"].astype(str)
+
     return final_df
 
 
@@ -142,5 +147,5 @@ if __name__ == "__main__":
         records = final_df.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 
-        with open("index.json", "w") as f:
+        with open("battery_activity.json", "w") as f:
             f.write(pretty_json)

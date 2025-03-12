@@ -106,14 +106,14 @@ if __name__ == "__main__":
         conv_html("a.html")
 
     elif args.csv:
-        activity.to_csv("index.csv", index=False)
+        activity.to_csv("recent_usage.csv", index=False)
 
     elif args.xml:
-        activity.to_xml("index.xml", index=False)
+        activity.to_xml("recent_usage.xml", index=False)
 
     elif args.json:
         records = activity.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 
-        with open("index.json", "w") as f:
+        with open("recent_usage.json", "w") as f:
             f.write(pretty_json)

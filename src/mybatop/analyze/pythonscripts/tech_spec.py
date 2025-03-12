@@ -76,7 +76,7 @@ if __name__ == "__main__":
         tech_spec.to_html("b.html", index=False)
 
     elif args.csv:
-        tech_spec.to_csv("index.csv", index=False)
+        tech_spec.to_csv("tech_spec.csv", index=False)
 
     elif args.xml:
         tech_spec.columns = [
@@ -88,11 +88,11 @@ if __name__ == "__main__":
             "CHARGE_NOW",
             "CAPACITY",
         ]
-        tech_spec.to_xml("index.xml", index=False)
+        tech_spec.to_xml("tech_spec.xml", index=False)
 
     elif args.json:
         records = tech_spec.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 
-        with open("index.json", "w") as f:
+        with open("tech_spec.json", "w") as f:
             f.write(pretty_json)
