@@ -19,7 +19,7 @@ elif [[ $1 == "report" ]]; then
 		rm -rf /opt/mybatop/analyze/pythonscripts/battery_report.json
 		echo "The battery-report.json is generated and it is saved to $present_dir"
 
-	elif [[ $2 == "--xml"]]; then
+	elif [[ $2 == "--xml" ]]; then
 		export present_dir=$(pwd)
 		bash /opt/mybatop/analyze/generate-xml.sh
 		cp /opt/mybatop/analyze/pythonscripts/battery_report.xml $present_dir/battery-report.xml
