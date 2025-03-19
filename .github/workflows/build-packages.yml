@@ -64,12 +64,12 @@ jobs:
       - name: Build Fedora/RedHat/OpenSUSE packages (.rpm)
         run: |
           mkdir -p rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SRPMS}
-          cp -r mybatop-${{ env.APP_VERSION }}.tar.gz rpmbuild/SOURCES/
+          cp mybatop-${{ env.APP_VERSION }}.tar.gz rpmbuild/SOURCES/
           specs=$(cat build/mybatop.spec)
           eval "echo \"$specs\"" > rpmbuild/SPECS/mybatop.spec
           
           cd rpmbuild/SPECS
-          rpmbuild -ba mybatop.spec
+          rpmbuild -ba "_topdir $(pwd)/.." mybatop.spec
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4.6.1
