@@ -30,7 +30,7 @@ jobs:
           cp ../build/Debian/prerm DEBIAN/prerm
 
           cp -r ../src/* opt/
-          cp -r ../src/filesystemd/* etc/systemd/system/
+          cp -r ../src/mybatop/filesystemd/* etc/systemd/system/
 
           ln -s /opt/mybatop/scripts/runscript/mybatop usr/bin/mybatop
           

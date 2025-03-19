@@ -47,3 +47,5 @@ systemctl enable --now mybatop-status.service
 /usr/bin/mybatop
 
 %changelog
+* Wed Mar 17 2025 Varun M <varunushamurali@gmail.com> - 2.0.0-1
+- Initial package
