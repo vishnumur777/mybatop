@@ -53,7 +53,7 @@ jobs:
       - name: Setting Up for building packages
         run: |
           cp -r src/mybatop/ mybatop-${{ env.APP_VERSION }}
-          tar -cvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
+          tar -czvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
 
       - name: Install dependencies
         run: |
@@ -63,13 +63,13 @@ jobs:
       - name: Build Fedora/RedHat/OpenSUSE packages (.rpm)
         run: |
           mkdir -p rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SRPMS}
+          pwd
           ls
           cp mybatop-${{ env.APP_VERSION }}.tar.gz rpmbuild/SOURCES/
           specs=$(cat build/mybatop.spec)
           eval "echo \"$specs\"" > rpmbuild/SPECS/mybatop.spec
           
-          cd rpmbuild/SPECS
-          rpmbuild -ba mybatop.spec
+          rpmbuild -ba rpmbuild/SPECS/mybatop.spec
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4.6.1
