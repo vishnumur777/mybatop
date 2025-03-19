@@ -52,7 +52,7 @@ jobs:
 
       - name: Setting Up for building packages
         run: |
-          cp -r src/ mybatop-${{ env.APP_VERSION }}
+          cp -r src/mybatop/ mybatop-${{ env.APP_VERSION }}
           tar -cvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
           rm -rf mybatop-${{ env.APP_VERSION }}
 
