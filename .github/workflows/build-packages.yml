@@ -43,7 +43,7 @@ jobs:
                   path: mybatop-${{APP_VERSION}}.deb
 
     rpm-package:
-        uses: ubuntu-latest
+        runs-on: ubuntu-latest
         env:
             APP_VERSION: "2.0.0"
         container: fedora-latest
