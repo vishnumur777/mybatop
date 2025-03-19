@@ -64,7 +64,7 @@ jobs:
       - name: Build Fedora/RedHat/OpenSUSE packages (.rpm)
         run: |
           mkdir -p rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SRPMS}
-          cp -r mybatop- rpmbuild/SOURCES/mybatop-${{ env.APP_VERSION }}
+          cp -r mybatop-${{ env.APP_VERSION }}.tar.gz rpmbuild/SOURCES/
           specs=$(cat build/mybatop.spec)
           eval "echo \"$specs\"" > rpmbuild/SPECS/mybatop.spec
           
