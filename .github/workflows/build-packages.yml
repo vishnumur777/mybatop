@@ -29,10 +29,12 @@ jobs:
                 cp build/Debian/postrm DEBIAN/postrm
                 cp build/Debian/prerm DEBIAN/prerm
 
-                cp -r src/* mybatop-${{APP_VERSION}}/opt/
-                cp -r src/filesystemd/* mybatop-1.0.0/etc/systemd/system/
-                cd ..
+                cp -r ../src/* mybatop-${{APP_VERSION}}/opt/
+                cp -r ../src/filesystemd/* mybatop-1.0.0/etc/systemd/system/
 
+                ln -s opt/mybatop/scripts/runscript/mybatop usr/bin/mybatop
+                
+                cd ..
                 dpkg-dev --build mybatop-${{APP_VERSION}}
 
 
@@ -40,7 +42,7 @@ jobs:
               uses: actions/upload-artifact@v4.6.1
               with:
                   name: deb-artifact
-                  path: mybatop-${{APP_VERSION}}.deb
+                  path: *.deb
 
     rpm-package:
         runs-on: ubuntu-latest
@@ -48,9 +50,15 @@ jobs:
             APP_VERSION: "2.0.0"
         container: fedora-latest
         steps:
-            - name: Build Fedora/RedHat/OpenSUSE packages (.rpm)
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Install dependencies
               run: |
                 sudo dnf install -y rpmdevtools rpm-build rpmlint
+
+            - name: Build Fedora/RedHat/OpenSUSE packages (.rpm)
+              run: |
                 mkdir -p rpmbuild/{SOURCES,SPECS,BUILDS,RPMS,SRPMS}
                 cp mybatop-${{APP_VERSION}} rpmbuild/SOURCES
                 specs=$(cat build/mybatop.spec)
@@ -60,7 +68,10 @@ jobs:
                 rpmbuild -ba mybatop.spec
 
             - name: Upload Artifacts
-              uses: actions/upload-artifacts@4.6.1
+              uses: actions/upload-artifact@v4.6.1
+              with:
+                  name: rpm-artifact
+                  path: rpmbuild/RPMS/*.rpm
 
     upload-artifacts:
     needs: [debian-package, rpm-package]
@@ -71,13 +82,14 @@ jobs:
       - name: Download deb file
         uses: actions/download-artifact@v4.2.0
         with:
-          name: deb-artifact
-          path: artifacts/*.deb
-      - name: Download rpm file
-        uses: actions/download-artifact@v4.2.0
-        with:
-          name: rpm-artifact
-          path: artifacts/*.rpm
+          path: artifacts
+          pattern: *artifact
+          merge-multiple: true
+      # - name: Download rpm file
+      #   uses: actions/download-artifact@v4.2.0
+      #   with:
+      #     name: rpm-artifact
+      #     path: artifacts/*.rpm
       - name: Upload to releases
         uses: ncipollo/release-action@v1.16.0
         with:
