@@ -1,4 +1,4 @@
-name: Build Packages for Various Distros
+name: Build Packages For Various Distros
 on:
   workflow_dispatch:
 jobs:
