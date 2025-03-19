@@ -54,7 +54,6 @@ jobs:
         run: |
           cp -r src/mybatop/ mybatop-${{ env.APP_VERSION }}
           tar -cvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
-          rm -rf mybatop-${{ env.APP_VERSION }}
 
       - name: Install dependencies
         run: |
@@ -64,6 +63,7 @@ jobs:
       - name: Build Fedora/RedHat/OpenSUSE packages (.rpm)
         run: |
           mkdir -p rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SRPMS}
+          ls
           cp mybatop-${{ env.APP_VERSION }}.tar.gz rpmbuild/SOURCES/
           specs=$(cat build/mybatop.spec)
           eval "echo \"$specs\"" > rpmbuild/SPECS/mybatop.spec
