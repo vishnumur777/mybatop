@@ -42,7 +42,7 @@ jobs:
               uses: actions/upload-artifact@v4.6.1
               with:
                   name: deb-artifact
-                  path: *.deb
+                  path: mybatop-${{APP_VERSION}}-all.deb
 
     rpm-package:
         runs-on: ubuntu-latest
