@@ -1,6 +1,6 @@
 name: Build Packages for various Distros
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 jobs:
     debian-package:
         runs-on: ubuntu-latest
