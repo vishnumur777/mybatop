@@ -1,0 +1,12 @@
+[Unit]
+Description=Run mybatop script during shutdown
+Before=shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=/opt/mybatop/scripts/inserts/insert_suspended.sh
+
+[Install]
+WantedBy=multi-user.target

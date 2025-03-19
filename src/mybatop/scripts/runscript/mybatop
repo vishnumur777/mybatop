@@ -1,0 +1,120 @@
+#!/bin/bash
+
+
+if [[ $1 == "--help" || $1 == "-help" || $1 == "-h" ]]; then
+	cat /opt/mybatop/mainscript/help.txt
+
+elif [[ $1 == "report" ]]; then
+
+	if [[ $2 == "--html" ]]; then
+		export present_dir=$(pwd)
+		bash /opt/mybatop/analyze/generate-html.sh
+		cp /opt/mybatop/analyze/merge.html $present_dir/battery-report.html
+		echo "The battery-report.html is generated and it is saved to $present_dir"
+
+	elif [[ $2 == "--json" ]]; then
+		export present_dir=$(pwd)
+		bash /opt/mybatop/analyze/generate-json.sh
+		cp /opt/mybatop/analyze/pythonscripts/battery_report.json $present_dir/battery-report.json
+		rm -rf /opt/mybatop/analyze/pythonscripts/battery_report.json
+		echo "The battery-report.json is generated and it is saved to $present_dir"
+
+	elif [[ $2 == "--xml" ]]; then
+		export present_dir=$(pwd)
+		bash /opt/mybatop/analyze/generate-xml.sh
+		cp /opt/mybatop/analyze/pythonscripts/battery_report.xml $present_dir/battery-report.xml
+		rm -rf /opt/mybatop/analyze/pythonscripts/battery_report.xml
+		echo "The battery-report.xml is generated and it is saved to $present_dir"
+
+
+	elif [[ $2 == "-C" || $2 == "-c" ]]; then
+
+		if [[ $3 == "recent-usage" ]]; then
+			
+			PROGRAM="/opt/mybatop/analyze/pythonscripts/analyzers.py"
+
+			if [[ $4 == "--html" ]]; then
+				python3 $PROGRAM --html
+			elif [[ $4 == "--csv" ]]; then
+				python3 $PROGRAM --csv
+			elif [[ $4 == "--json" ]]; then
+				python3 $PROGRAM --json
+			elif [[ $4 == "--xml" ]]; then
+				python3 $PROGRAM --xml
+			else
+				echo "$4 is a invalid option. Check 'mybatop --h' for help."
+			fi
+
+
+		elif [[ $3 == "tech-spec" || $3 == "tech-specification" ]]; then
+
+			PROGRAM="/opt/mybatop/analyze/pythonscripts/tech_spec.py"
+
+			if [[ $4 == "--html" ]]; then
+				python3 $PROGRAM --html
+			elif [[ $4 == "--csv" ]]; then
+				python3 $PROGRAM --csv
+			elif [[ $4 == "--json" ]]; then
+				python3 $PROGRAM --json
+			elif [[ $4 == "--xml" ]]; then
+				python3 $PROGRAM --xml
+			else
+				echo "$4 is a invalid option. Check 'mybatop --h' for help."
+			fi
+
+		elif [[ $3 == "battery-capacity-history" || $3 == "batcaphis" ]]; then
+			
+			PROGRAM="/opt/mybatop/analyze/pythonscripts/battery_capacity_history.py"
+
+			if [[ $4 == "--html" ]]; then
+				python3 $PROGRAM --html
+			elif [[ $4 == "--csv" ]]; then
+				python3 $PROGRAM --csv
+			elif [[ $4 == "--json" ]]; then
+				python3 $PROGRAM --json
+			elif [[ $4 == "--xml" ]]; then
+				python3 $PROGRAM --xml
+			else
+				echo "$4 is a invalid option. Check 'mybatop --h' for help."
+			fi
+
+		elif [[ $3 == "battery-usage-activity" || $3 == "batuseact" ]]; then
+
+			PROGRAM="/opt/mybatop/analyze/pythonscripts/battery_activity.py"
+
+			if [[ $4 == "--html" ]]; then
+				python3 $PROGRAM --html
+			elif [[ $4 == "--csv" ]]; then
+				python3 $PROGRAM --csv
+			elif [[ $4 == "--json" ]]; then
+				python3 $PROGRAM --json
+			elif [[ $4 == "--xml" ]]; then
+				python3 $PROGRAM --xml
+			else
+				echo "$4 is a invalid option. Check 'mybatop --h' for help."
+			fi
+		else
+			echo "$3 is a invalid option. Check 'mybatop --h' for help."
+		fi
+	else
+		echo "$2 is a invalid option. Check 'mybatop --h' for help."
+	fi
+
+elif [[ $1 == "data" ]]; then
+
+	if [[ $2 == "--xml" ]]; then
+		python3 /opt/mybatop/src/mybatop/generate_data/generate_xml.py
+		
+	elif [[ $2 == "--csv" ]]; then
+		python3 /opt/mybatop/src/mybatop/scripts/generate_csv.py
+		cp /opt/mybatop/final.csv $(pwd)/data.csv
+		echo "The data.csv is generated and it is saved to $(pwd)"
+
+	elif [[ $2 == "--json" ]]; then
+		python3 /opt/mybatop/src/mybatop/generate_data/generate_json.py
+	fi
+elif [[ $1 == "--version" || $1 == "-version" || $1 == "-v" ]]; then
+	echo -e "mybatop\n version:2.0.0"
+else
+	echo "Invalid option"
+fi

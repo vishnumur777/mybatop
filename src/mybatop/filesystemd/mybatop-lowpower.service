@@ -1,0 +1,9 @@
+[Unit]
+Description=Log when laptop was changed to low-power mode
+
+[Service]
+Type=simple
+ExecStart=/opt/mybatop/scripts/inserts/insert_lowpower_status.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,28 @@
+<script>
+document.querySelectorAll('.recent-usage-status').forEach((element)=>{
+    if(element.innerText=="Active")
+    {
+        element.style.color="#1DB954";
+    }
+    else if(element.innerText=="Low-Power"){
+        element.style.color="#FF7C2B";
+    }
+    else{
+        element.style.color="#F24C3D";
+    }
+});
+document.querySelectorAll('.recent-status').forEach((element)=>{
+    if(element.innerText=="Charging")
+    {
+        element.style.color="#1DB954";
+    }
+    else if(element.innerText=="Discharging"){
+        element.style.color="#F24C3D";
+    }
+    else if(element.innerText=="Full"){
+        element.style.color="#42FFFF";
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+name: Build Packages For Various Distros
+on:
+  workflow_dispatch:
+jobs:
+  debian-package:
+    runs-on: ubuntu-latest
+    env:
+      APP_VERSION: "2.0.0"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setting Up for building packages
+        run: |
+          sudo apt-get install -y dpkg-dev ninja-build devscripts meson
+          cp -r src/ mybatop-${{ env.APP_VERSION }}
+          tar -cvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
+          rm -rf mybatop-${{ env.APP_VERSION }}
+          
+      - name: Build Debian Package (.deb)
+        run: |
+          mkdir mybatop-${{ env.APP_VERSION }}
+          cd mybatop-${{ env.APP_VERSION }}
+          mkdir -p DEBIAN opt/ usr/bin/ etc/systemd/system/
+
+          control=$(cat ../build/Debian/control)
+          eval "echo \"$control\"" >> DEBIAN/control
+          cp ../build/Debian/postinst DEBIAN/postinst
+          cp ../build/Debian/postrm DEBIAN/postrm
+          cp ../build/Debian/prerm DEBIAN/prerm
+
+          cp -r ../src/* opt/
+          cp -r ../src/filesystemd/* etc/systemd/system/
+
+          ln -s /opt/mybatop/scripts/runscript/mybatop usr/bin/mybatop
+          
+          cd ..
+          dpkg-deb --build mybatop-${{ env.APP_VERSION }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: deb-artifact
+          path: mybatop-${{ env.APP_VERSION }}.deb
+
+  rpm-package:
+    runs-on: ubuntu-latest
+    env:
+      APP_VERSION: "2.0.0"
+    container: fedora:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          dnf install -y rpmdevtools rpm-build rpmlint
+
+      - name: Build Fedora/RedHat/OpenSUSE packages (.rpm)
+        run: |
+          mkdir -p rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SRPMS}
+          cp -r src/ rpmbuild/SOURCES/mybatop-${{ env.APP_VERSION }}
+          specs=$(cat build/mybatop.spec)
+          eval "echo \"$specs\"" > rpmbuild/SPECS/mybatop.spec
+          
+          cd rpmbuild/SPECS
+          rpmbuild -ba mybatop.spec
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: rpm-artifact
+          path: rpmbuild/RPMS/*/*.rpm
+
+  upload-artifacts:
+    needs: [debian-package, rpm-package]
+    runs-on: ubuntu-latest
+    env:
+      APP_VERSION: "2.0.0"
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4.2.0
+        with:
+          path: artifacts
+          pattern: "*-artifact"
+          merge-multiple: true
+          
+      - name: Upload to releases
+        uses: ncipollo/release-action@v1.16.0
+        with:
+          artifacts: "artifacts/*.deb,artifacts/*.rpm"
+          body: |
+            Testing build for .rpm and .deb packages
+          tag: ${{ env.APP_VERSION }}
+          token: ${{ secrets.TOKENS }}

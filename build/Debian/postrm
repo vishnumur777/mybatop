@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo rm -rf /opt/mybatop
+
+sudo rm -rf /etc/systemd/system/mybatop-*
+
+sudo rm -rf /usr/bin/mybatop

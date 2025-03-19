@@ -1,0 +1,74 @@
+[
+    {
+        "START_DATE": "07-02-2025 09:59:42",
+        "END_DATE": "06-02-2025 17:25:07",
+        "BATTERY_ACTIVE": "0 days 05:12:01",
+        "BATTERY_LOW_POWER": "-",
+        "CHARGING_ACTIVE": "1 days 09:35:41",
+        "CHARGING_LOW_POWER": "-"
+    },
+    {
+        "START_DATE": "05-02-2025 14:56:42",
+        "END_DATE": "03-02-2025 18:09:21",
+        "BATTERY_ACTIVE": "0 days 14:36:06",
+        "BATTERY_LOW_POWER": "-",
+        "CHARGING_ACTIVE": "1 days 05:23:18",
+        "CHARGING_LOW_POWER": "-"
+    },
+    {
+        "START_DATE": "02-02-2025 21:25:36",
+        "END_DATE": "30-01-2025 11:50:10",
+        "BATTERY_ACTIVE": "2 days 00:36:14",
+        "BATTERY_LOW_POWER": "-",
+        "CHARGING_ACTIVE": "1 days 08:59:27",
+        "CHARGING_LOW_POWER": "-"
+    },
+    {
+        "START_DATE": "30-01-2025 11:47:50",
+        "END_DATE": "30-01-2025 10:09:44",
+        "BATTERY_ACTIVE": "0 days 01:33:26",
+        "BATTERY_LOW_POWER": "-",
+        "CHARGING_ACTIVE": "0 days 00:09:41",
+        "CHARGING_LOW_POWER": "-"
+    },
+    {
+        "START_DATE": "30-01-2025 09:05:29",
+        "END_DATE": "30-01-2025 08:12:51",
+        "BATTERY_ACTIVE": "0 days 00:43:42",
+        "BATTERY_LOW_POWER": "-",
+        "CHARGING_ACTIVE": "0 days 09:49:31",
+        "CHARGING_LOW_POWER": "-"
+    },
+    {
+        "START_DATE": "29-01-2025 21:50:26",
+        "END_DATE": "26-01-2025 23:27:17",
+        "BATTERY_ACTIVE": "0 days 20:29:22",
+        "BATTERY_LOW_POWER": "-",
+        "CHARGING_ACTIVE": "0 days 13:50:09",
+        "CHARGING_LOW_POWER": "-"
+    },
+    {
+        "START_DATE": "26-01-2025 21:02:36",
+        "END_DATE": "26-01-2025 12:26:36",
+        "BATTERY_ACTIVE": "0 days 02:44:01",
+        "BATTERY_LOW_POWER": "-",
+        "CHARGING_ACTIVE": "0 days 00:03:00",
+        "CHARGING_LOW_POWER": "-"
+    },
+    {
+        "START_DATE": "26-01-2025 12:14:15",
+        "END_DATE": "24-01-2025 22:22:55",
+        "BATTERY_ACTIVE": "0 days 12:37:13",
+        "BATTERY_LOW_POWER": "-",
+        "CHARGING_ACTIVE": "0 days 11:37:43",
+        "CHARGING_LOW_POWER": "-"
+    },
+    {
+        "START_DATE": "24-01-2025 21:34:59",
+        "END_DATE": "24-01-2025 19:39:50",
+        "BATTERY_ACTIVE": "0 days 00:21:02",
+        "BATTERY_LOW_POWER": "-",
+        "CHARGING_ACTIVE": "0 days 01:34:07",
+        "CHARGING_LOW_POWER": "-"
+    }
+]
