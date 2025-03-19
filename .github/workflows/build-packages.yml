@@ -10,12 +10,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setting Up for building packages
+      - name: Install dependencies
         run: |
+          sudo apt-get update -y
           sudo apt-get install -y dpkg-dev ninja-build devscripts meson
-          cp -r src/ mybatop-${{ env.APP_VERSION }}
-          tar -cvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
-          rm -rf mybatop-${{ env.APP_VERSION }}
           
       - name: Build Debian Package (.deb)
         run: |
@@ -52,14 +50,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setting Up for building packages
+        run: |
+          cp -r src/ mybatop-${{ env.APP_VERSION }}
+          tar -cvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
+          rm -rf mybatop-${{ env.APP_VERSION }}
+
       - name: Install dependencies
         run: |
+          dnf upgrade -y
           dnf install -y rpmdevtools rpm-build rpmlint
 
       - name: Build Fedora/RedHat/OpenSUSE packages (.rpm)
         run: |
           mkdir -p rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SRPMS}
-          cp -r src/ rpmbuild/SOURCES/mybatop-${{ env.APP_VERSION }}
+          cp -r mybatop- rpmbuild/SOURCES/mybatop-${{ env.APP_VERSION }}
           specs=$(cat build/mybatop.spec)
           eval "echo \"$specs\"" > rpmbuild/SPECS/mybatop.spec
           
