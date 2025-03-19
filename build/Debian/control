@@ -1,0 +1,10 @@
+Package: mybatop
+Version: "${APP_VERSION}"
+Section: utils
+Priority: optional
+Architecture: all
+Depends: bash, systemd, dmidecode, python3, python3-pandas, python3-plotly
+Maintainer: Varun M <varunushamurali@gmail.com>
+Description: A battery monitoring tool - 
+ mybatop continuously monitors laptop battery status
+ and provides detailed analytics through HTML reports.
