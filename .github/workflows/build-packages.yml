@@ -79,17 +79,10 @@ jobs:
           name: rpm-artifact
           path: artifacts/*.rpm
       - name: Upload to releases
-      uses: ncipollo/release-action@v1.16.0
-      with:
-        artifacts: artifacts/*.deb, artifacts/*.rpm
-        body: |
-          Testing build for .rpm and .deb packages
-        tag: ${{APP_VERSION}}
-        token: ${{secrets.TOKENS}}
-
-
-                    
-
-            
-
-            
+        uses: ncipollo/release-action@v1.16.0
+        with:
+          artifacts: artifacts/*.deb, artifacts/*.rpm
+          body: |
+            Testing build for .rpm and .deb packages
+          tag: ${{APP_VERSION}}
+          token: ${{secrets.TOKENS}}
