@@ -77,7 +77,7 @@ jobs:
         uses: actions/upload-artifact@v4.6.1
         with:
           name: rpm-artifact
-          path: ~/rpmbuild/RPMS/*/*.rpm
+          path: ~/rpmbuild/RPMS/noarch/mybatop-${{ env.APP_VERSION }}*.rpm
 
   upload-artifacts:
     needs: [debian-package, rpm-package]
