@@ -88,11 +88,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set up non-root user and build environment
+        run: |
+
+          useradd -m -G wheel -s /bin/bash builder
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/builder
+          chown -R builder:builder .
     
       - name: Install dependencies
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel
+          pacman -S --noconfirm base-devel sudo
+          . build/Arch/PKGBUILD  # Source the PKGBUILD variables
+          sudo -u builder bash -c "pacman -Sy --noconfirm ${depends[@]} ${makedepends[@]}"
+
 
       - name: Build tarball
         run: |
@@ -109,8 +119,7 @@ jobs:
           
       - name: Build Arch Linux Package (.pkg.tar.zst)
         run: |
-          cd buildpackage/
-          makepkg -s --noconfirm
+          sudo -u builder bash -c "cd buildpackage/ && makepkg -s --noconfirm"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4.6.1
