@@ -117,6 +117,8 @@ jobs:
           pkgbuild=$(cat build/Arch/PKGBUILD)
           eval "echo \"$pkgbuild\"" > buildpackage/PKGBUILD
           cp build/Arch/mybatop.install buildpackage/mybatop.install
+          sudo chown -R builder:builder buildpackage/
+          sudo chmod +rwx buildpackage/
           
       - name: Build Arch Linux Package (.pkg.tar.zst)
         run: |
