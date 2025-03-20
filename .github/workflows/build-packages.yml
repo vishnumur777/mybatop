@@ -114,9 +114,8 @@ jobs:
         run: |
           mkdir buildpackage/
           cp mybatop-${{ env.APP_VERSION }}.tar.gz buildpackage/
-          pkgbuild=$(cat build/Arch/PKGBUILD)
-          eval "echo \"$pkgbuild\"" > buildpackage/PKGBUILD
           cp build/Arch/mybatop.install buildpackage/mybatop.install
+          sed "s/__APP_VERSION__/${{ env.APP_VERSION }}/g" build/Arch/PKGBUILD > buildpackage/PKGBUILD
           sudo chown -R builder:builder buildpackage/
           sudo chmod +rwx buildpackage/
           
