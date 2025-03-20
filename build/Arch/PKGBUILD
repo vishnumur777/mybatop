@@ -20,11 +20,11 @@ package() {
 
   cp -r * "$pkgdir/opt/"
 
-  cp -r $srcdir/mybatop/filesystemd/mybatop-* "$pkgdir/etc/systemd/system/"
+  cp -r $srcdir/filesystemd/mybatop-* "$pkgdir/etc/systemd/system/"
 
-  rm -rf $srcdir/mybatop/filesystemd/
+  rm -rf $srcdir/filesystemd/
 
-  ln -s $srcdir/mybatop/scripts/runscript/mybatop "$pkgdir/usr/bin/mybatop"
+  ln -s $srcdir/scripts/runscript/mybatop "$pkgdir/usr/bin/mybatop"
 
   chmod -R 755 "$pkgdir/opt/"
 }
