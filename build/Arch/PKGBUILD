@@ -3,8 +3,7 @@
 pkgname=mybatop
 pkgver="${APP_VERSION}"
 pkgrel=1
-pkgdesc="mybatop continuously monitors laptop battery status
- and provides detailed analytics through HTML reports."
+pkgdesc="mybatop continuously monitors laptop battery status and provides detailed analytics through HTML reports."
 arch=('any')
 url="https://github.com/vishnumur777/mybatop"
 license=('GPL-3.0')

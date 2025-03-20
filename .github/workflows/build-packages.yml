@@ -89,9 +89,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
     
-      - name: update system
+      - name: Install dependencies
         run: |
           pacman -Syu --noconfirm
+          pacman -S --noconfirm base-devel
 
       - name: Build tarball
         run: |
@@ -100,7 +101,7 @@ jobs:
 
       - name: Setup for Building packages
         run: |
-          mkdir buildpackage
+          mkdir buildpackage/
           cp mybatop-${{ env.APP_VERSION }}.tar.gz buildpackage/
           pkgbuild=$(cat build/Arch/PKGBUILD)
           eval "echo \"$pkgbuild\"" > buildpackage/PKGBUILD
