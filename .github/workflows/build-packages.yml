@@ -79,8 +79,43 @@ jobs:
           name: rpm-artifact
           path: ~/rpmbuild/RPMS/noarch/mybatop-${{ env.APP_VERSION }}*.rpm
 
+  arch-package:
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    env:
+      APP_VERSION: "2.0.0"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+    
+      - name: update system
+        run: |
+          pacman -Syu --noconfirm
+
+      - name: Build tarball
+        run: |
+          cp -r src/mybatop/ mybatop-${{ env.APP_VERSION }}
+          tar -czvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
+
+      - name: Setup for Building packages
+        run: |
+          mkdir buildpackage
+          cp mybatop-${{ env.APP_VERSION }}.tar.gz buildpackage/
+          pkgbuild=$(cat build/Arch/PKGBUILD)
+          eval "echo \"$pkgbuild\"" > buildpackage/PKGBUILD
+          cp build/Arch/mybatop.install buildpackage/
+          cd buildpackage/
+          makepkg -s --noconfirm
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: arch-artifact
+          path: buildpackage/mybatop-${{ env.APP_VERSION }}*.pkg.tar.zst
+
   upload-artifacts:
-    needs: [debian-package, rpm-package]
+    needs: [debian-package, rpm-package, arch-package]
     runs-on: ubuntu-latest
     env:
       APP_VERSION: "2.0.0"
