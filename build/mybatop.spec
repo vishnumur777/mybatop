@@ -1,5 +1,5 @@
 Name:           mybatop
-Version:        "${APP_VERSION}"
+Version:        2.0.0
 Release:        1%{?dist}
 Summary:        A battery monitoring tool
 
@@ -28,8 +28,9 @@ mkdir -p %{buildroot}/opt/mybatop
 mkdir -p %{buildroot}/etc/systemd/system
 mkdir -p %{buildroot}/usr/bin
 
-cp -r src/* %{buildroot}/opt/
-cp src/filesystemd/* %{buildroot}/etc/systemd/system/
+cp -r * %{buildroot}/opt/mybatop/
+rm -rf %{buildroot}/opt/mybatop/filesystemd/
+cp filesystemd/* %{buildroot}/etc/systemd/system/
 ln -s /opt/mybatop/scripts/runscript/mybatop %{buildroot}/usr/bin/mybatop
 
 
