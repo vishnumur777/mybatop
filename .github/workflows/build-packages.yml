@@ -81,9 +81,9 @@ jobs:
 
   arch-package:
     runs-on: ubuntu-latest
-    container: archlinux:latest
     env:
       APP_VERSION: "2.0.0"
+    container: archlinux:latest
 
     steps:
       - name: Checkout code
@@ -104,7 +104,10 @@ jobs:
           cp mybatop-${{ env.APP_VERSION }}.tar.gz buildpackage/
           pkgbuild=$(cat build/Arch/PKGBUILD)
           eval "echo \"$pkgbuild\"" > buildpackage/PKGBUILD
-          cp build/Arch/mybatop.install buildpackage/
+          cp build/Arch/mybatop.install buildpackage/mybatop.install
+          
+      - name: Build Arch Linux Package (.pkg.tar.zst)
+        run: |
           cd buildpackage/
           makepkg -s --noconfirm
 
