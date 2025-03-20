@@ -102,8 +102,7 @@ jobs:
     
       - name: Install dependencies for PKGBUILD
         run: |
-          . build/Arch/PKGBUILD  # Source the PKGBUILD variables
-          sudo -u builder bash -c "pacman -Sy --noconfirm ${depends[@]} ${makedepends[@]}"
+          sudo -u builder bash -c "pacman -S python3 python3-pandas python3-plotly dmidecode bash systemd"
 
       - name: Build tarball
         run: |
