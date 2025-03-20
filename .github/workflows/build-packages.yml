@@ -85,17 +85,27 @@ jobs:
     env:
       APP_VERSION: "2.0.0"
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Download artifacts
         uses: actions/download-artifact@v4.2.0
         with:
           path: artifacts
           pattern: "*-artifact"
           merge-multiple: true
+
+      - name: Build sources
+        run: |
+          cd src/
+          cp -r mybatop/ mybatop-${{ env.APP_VERSION }}
+          tar -czvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
+          zip -r mybatop-${{ env.APP_VERSION }}.zip mybatop-${{ env.APP_VERSION }}/
           
       - name: Upload to releases
         uses: ncipollo/release-action@v1.16.0
         with:
-          artifacts: "artifacts/*.deb,artifacts/*.rpm"
+          artifacts: "artifacts/*.deb,artifacts/*.rpm,mybatop-${{ env.APP_VERSION }}.tar.gz,mybatop-${{ env.APP_VERSION }}.zip"
           body: |
             Testing build for .rpm and .deb packages
           tag: ${{ env.APP_VERSION }}
