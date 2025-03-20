@@ -59,16 +59,18 @@ jobs:
         run: |
           dnf upgrade -y
           dnf install -y rpmdevtools rpm-build rpmlint
-
+      
       - name: Build Fedora/RedHat/OpenSUSE packages (.rpm)
         run: |
-          mkdir -p rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SRPMS}
+          mkdir -p ~/rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SRPMS}
           pwd
           ls
-          cp mybatop-${{ env.APP_VERSION }}.tar.gz rpmbuild/SOURCES/
+          mv mybatop-${{ env.APP_VERSION }}.tar.gz ~/rpmbuild/SOURCES/
+          ls -lh ~/rpmbuild/SOURCES/
           specs=$(cat build/mybatop.spec)
-          eval "echo \"$specs\"" > rpmbuild/SPECS/mybatop.spec
+          eval "echo \"$specs\"" > ~/rpmbuild/SPECS/mybatop.spec
           
+          cd ~
           rpmbuild -ba rpmbuild/SPECS/mybatop.spec
 
       - name: Upload Artifacts
