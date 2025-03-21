@@ -99,7 +99,16 @@ jobs:
           useradd -m -G wheel -s /bin/bash builder
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/builder
           chown -R builder:builder .
-    
+      
+          - name: Setup for Building packages
+          run: |
+            mkdir buildpackage/
+            cp mybatop-${{ env.APP_VERSION }}.tar.gz buildpackage/
+            cp build/Arch/mybatop.install buildpackage/mybatop.install
+            sed "s/__APP_VERSION__/${{ env.APP_VERSION }}/g" build/Arch/PKGBUILD > buildpackage/PKGBUILD
+            sudo chown -R builder:builder buildpackage/
+            sudo chmod +rwx buildpackage/
+            
       - name: Install dependencies for PKGBUILD
         run: |
           . build/Arch/PKGBUILD  # Source the PKGBUILD variables
@@ -110,15 +119,6 @@ jobs:
           cp -r src/mybatop/ mybatop-${{ env.APP_VERSION }}
           tar -czvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
 
-      - name: Setup for Building packages
-        run: |
-          mkdir buildpackage/
-          cp mybatop-${{ env.APP_VERSION }}.tar.gz buildpackage/
-          cp build/Arch/mybatop.install buildpackage/mybatop.install
-          sed "s/__APP_VERSION__/${{ env.APP_VERSION }}/g" build/Arch/PKGBUILD > buildpackage/PKGBUILD
-          sudo chown -R builder:builder buildpackage/
-          sudo chmod +rwx buildpackage/
-          
       - name: Build Arch Linux Package (.pkg.tar.zst)
         run: |
           sudo -u builder bash -c "cd buildpackage/ && makepkg -s --noconfirm"
