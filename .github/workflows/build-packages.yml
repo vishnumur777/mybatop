@@ -100,14 +100,14 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/builder
           chown -R builder:builder .
       
-          - name: Setup for Building packages
-          run: |
-            mkdir buildpackage/
-            cp mybatop-${{ env.APP_VERSION }}.tar.gz buildpackage/
-            cp build/Arch/mybatop.install buildpackage/mybatop.install
-            sed "s/__APP_VERSION__/${{ env.APP_VERSION }}/g" build/Arch/PKGBUILD > buildpackage/PKGBUILD
-            sudo chown -R builder:builder buildpackage/
-            sudo chmod +rwx buildpackage/
+      - name: Setup for Building packages
+        run: |
+          mkdir buildpackage/
+          cp mybatop-${{ env.APP_VERSION }}.tar.gz buildpackage/
+          cp build/Arch/mybatop.install buildpackage/mybatop.install
+          sed "s/__APP_VERSION__/${{ env.APP_VERSION }}/g" build/Arch/PKGBUILD > buildpackage/PKGBUILD
+          sudo chown -R builder:builder buildpackage/
+          sudo chmod +rwx buildpackage/
             
       - name: Install dependencies for PKGBUILD
         run: |
