@@ -17,14 +17,14 @@ package() {
   mkdir -p "$pkgdir/etc/systemd/system"
   mkdir -p "$pkgdir/usr/bin"
 
-  # Copy all source files to /opt/mybatop
-  cp -r src/mybatop/* "$pkgdir/opt/mybatop/"
+  # Copy source files from $srcdir to /opt/mybatop
+  cp -r "$srcdir/mybatop/"* "$pkgdir/opt/mybatop/"
 
-  # Install systemd service files (ensure filenames match mybatop-*)
-  cp src/mybatop/filesystemd/mybatop-* -t "$pkgdir/etc/systemd/system/"
+  # Install systemd service files (adjust path if needed)
+  cp "$srcdir/mybatop/filesystemd/"mybatop-* "$pkgdir/etc/systemd/system/"
 
-  # Create correct symlink to the installed script
-  ln -s /opt/mybatop/scripts/runscript/mybatop "$pkgdir/usr/bin/mybatop"
+  # Create symlink to the installed script
+  ln -s "/opt/mybatop/scripts/runscript/mybatop" "$pkgdir/usr/bin/mybatop"
 
   # Set permissions
   chmod -R 755 "$pkgdir/opt/mybatop"
