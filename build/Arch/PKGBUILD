@@ -19,7 +19,8 @@ package() {
 
   echo "Source directory: $srcdir"
   echo "Package directory: $pkgdir"
-
+  pwd
+  ls
   # Copy source files from $srcdir to /opt/mybatop
   cp -r "$srcdir/mybatop/"* "$pkgdir/opt/mybatop/"
 
