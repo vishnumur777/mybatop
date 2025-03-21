@@ -13,18 +13,19 @@ sha256sums=('SKIP')
 install=mybatop.install
 
 package() {
-
   mkdir -p "$pkgdir/opt/mybatop"
   mkdir -p "$pkgdir/etc/systemd/system"
   mkdir -p "$pkgdir/usr/bin"
 
-  cp -r * "$pkgdir/opt/"
+  # Copy all source files to /opt/mybatop
+  cp -r src/mybatop/* "$pkgdir/opt/mybatop/"
 
-  cp -r $srcdir/filesystemd/mybatop-* "$pkgdir/etc/systemd/system/"
+  # Install systemd service files (ensure filenames match mybatop-*)
+  cp src/mybatop/filesystemd/mybatop-* -t "$pkgdir/etc/systemd/system/"
 
-  rm -rf $srcdir/filesystemd/
+  # Create correct symlink to the installed script
+  ln -s /opt/mybatop/scripts/runscript/mybatop "$pkgdir/usr/bin/mybatop"
 
-  ln -s $srcdir/scripts/runscript/mybatop "$pkgdir/usr/bin/mybatop"
-
-  chmod -R 755 "$pkgdir/opt/"
+  # Set permissions
+  chmod -R 755 "$pkgdir/opt/mybatop"
 }
