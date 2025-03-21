@@ -1,7 +1,7 @@
 # Maintainer: Varun M <varunushamurali@gmail.com>
 
 pkgname=mybatop
-pkgver=1.0.0
+pkgver=__APP_VERSION__
 pkgrel=1
 pkgdesc="mybatop continuously monitors laptop battery status and provides detailed analytics through HTML reports."
 arch=('any')
