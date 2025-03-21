@@ -99,7 +99,12 @@ jobs:
           useradd -m -G wheel -s /bin/bash builder
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/builder
           chown -R builder:builder .
-      
+
+      - name: Build tarball
+        run: |
+          cp -r src/mybatop/ mybatop-${{ env.APP_VERSION }}
+          tar -czvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
+
       - name: Setup for Building packages
         run: |
           mkdir buildpackage/
@@ -113,11 +118,6 @@ jobs:
         run: |
           . build/Arch/PKGBUILD  # Source the PKGBUILD variables
           sudo -u builder bash -c "sudo pacman -S --noconfirm ${depends[@]} ${makedepends[@]}"
-
-      - name: Build tarball
-        run: |
-          cp -r src/mybatop/ mybatop-${{ env.APP_VERSION }}
-          tar -czvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
 
       - name: Build Arch Linux Package (.pkg.tar.zst)
         run: |
