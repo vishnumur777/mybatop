@@ -116,7 +116,7 @@ jobs:
             
       - name: Install dependencies for PKGBUILD
         run: |
-          . build/Arch/PKGBUILD  # Source the PKGBUILD variables
+          . buildpackage/PKGBUILD  # Source the PKGBUILD variables
           sudo -u builder bash -c "sudo pacman -S --noconfirm ${depends[@]} ${makedepends[@]}"
 
       - name: Build Arch Linux Package (.pkg.tar.zst)
