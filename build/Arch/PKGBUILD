@@ -22,7 +22,7 @@ package() {
   pwd
   ls
   # Copy source files from $srcdir to /opt/mybatop
-  cp -r "$srcdir/mybatop-__APP_VERSION__*" "$pkgdir/opt/mybatop/"
+  cp -r "$srcdir/mybatop-__APP_VERSION__/*" "$pkgdir/opt/mybatop/"
 
   # Install systemd service files (adjust path if needed)
   cp "$srcdir/mybatop-__APP_VERSION__/filesystemd/mybatop-*" "$pkgdir/etc/systemd/system/"
