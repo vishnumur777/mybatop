@@ -155,7 +155,7 @@ jobs:
       - name: Upload to releases
         uses: ncipollo/release-action@v1.16.0
         with:
-          artifacts: "artifacts/*.deb,artifacts/*.rpm,src/mybatop-${{ env.APP_VERSION }}.tar.gz,src/mybatop-${{ env.APP_VERSION }}.zip"
+          artifacts: "artifacts/*.deb,artifacts/*.rpm,artifacts/mybatop-${{ env.APP_VERSION }}*.pkg.tar.zst,src/mybatop-${{ env.APP_VERSION }}.tar.gz,src/mybatop-${{ env.APP_VERSION }}.zip"
           body: |
             Testing build for .rpm and .deb packages
           tag: ${{ env.APP_VERSION }}
