@@ -11,14 +11,14 @@ jobs:
     strategy:
       matrix:
         os: ["ubuntu:latest","fedora:latest","archlinux:latest"]
-    container: ${{matrix.os}}
-
+    container:
+        image: ${{matrix.os}}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
       - name: Setup UV
-        uses: astral-sh/setup-uv
+        uses: astral-sh/setup-uv@v5
         with:
           version: latest
           python-version: '3.12'
