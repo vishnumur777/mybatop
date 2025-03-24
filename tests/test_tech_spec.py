@@ -11,7 +11,7 @@ class TestTechSpec(unittest.TestCase):
         subprocess.run(["cp", "tests/test_files/data.csv", "."], check=True)
 
     def test_tech_spec_html(self):
-        expected_output = "tests/test_files/outputs/html/c.html"
+        expected_output = "tests/test_files/outputs/html/b.html"
 
         result = subprocess.run(
             ["python3", self.src_file, "--html"], capture_output=True, text=True

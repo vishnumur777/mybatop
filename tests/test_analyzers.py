@@ -11,7 +11,7 @@ class TestAnalyzer(unittest.TestCase):
         subprocess.run(["cp", "tests/test_files/data.csv", "."], check=True)
 
     def test_analyzer_html(self):
-        expected_output = "tests/test_files/outputs/html/b.html"
+        expected_output = "tests/test_files/outputs/html/a.html"
 
         result = subprocess.run(
             ["python3", self.src_file, "--html"], capture_output=True, text=True
