@@ -5,7 +5,7 @@ import json
 
 
 def battery_health_df():
-    df = pd.read_csv("/opt/mybatop/final.csv")
+    df = pd.read_csv("data.csv")
 
     df1 = df[["DATE"]].copy()
 
