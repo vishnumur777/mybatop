@@ -1,21 +1,141 @@
-<div class="recent-usage-table"><table border="1"><tr>
-<th>DATE</th>
-<th>TIME</th>
-<th>STATE</th>
-<th>STATUS</th>
-<th>CAPACITY</th>
-</tr>
-<tr><td>07-02-2025</td><td>09:59:42</td><td class=recent-usage-status>Active</td><td class=recent-status>Charging</td><td>34</td></tr>
-<tr><td>07-02-2025</td><td>09:26:20</td><td class=recent-usage-status>Active</td><td class=recent-status>Discharging</td><td>50</td></tr>
-<tr><td>07-02-2025</td><td>09:12:29</td><td class=recent-usage-status>Active</td><td class=recent-status>Charging</td><td>38</td></tr>
-<tr><td>07-02-2025</td><td>09:11:52</td><td class=recent-usage-status>Suspended</td><td class=recent-status>Charging</td><td>37</td></tr>
-<tr><td>07-02-2025</td><td>09:11:26</td><td class=recent-usage-status>Active</td><td class=recent-status>Charging</td><td>37</td></tr>
-<tr><td>06-02-2025</td><td>22:23:27</td><td class=recent-usage-status>Active</td><td class=recent-status>Discharging</td><td>100</td></tr>
-<tr><td>06-02-2025</td><td>20:09:58</td><td class=recent-usage-status>Active</td><td class=recent-status>Full</td><td>100</td></tr>
-<tr><td>06-02-2025</td><td>17:51:59</td><td class=recent-usage-status>Active</td><td class=recent-status>Charging</td><td>25</td></tr>
-<tr><td>06-02-2025</td><td>17:51:49</td><td class=recent-usage-status>Active</td><td class=recent-status>Discharging</td><td>25</td></tr>
-<tr><td>06-02-2025</td><td>17:25:07</td><td class=recent-usage-status>Active</td><td class=recent-status>Charging</td><td>0</td></tr>
-<tr><td>05-02-2025</td><td>19:11:34</td><td class=recent-usage-status>Suspended</td><td class=recent-status>Discharging</td><td>2</td></tr>
-<tr><td>05-02-2025</td><td>14:56:42</td><td class=recent-usage-status>Active</td><td class=recent-status>Discharging</td><td>100</td></tr>
-<tr><td>05-02-2025</td><td>13:22:37</td><td class=recent-usage-status>Active</td><td class=recent-status>Full</td><td>100</td></tr>
-<tr><td>05-02-2025</td><td>12:52:05</td><td class=recent-usage-status>Active</td><td class=recent-status>Charging</td><td>87</td></tr></table></div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>DATE</th>
+      <th>TIME</th>
+      <th>VOLTAGE_NOW (in mWh)</th>
+      <th>CURRENT_NOW (in mA)</th>
+      <th>CHARGE_FULL (in mWh)</th>
+      <th>CHARGE_NOW (in mWh)</th>
+      <th>CAPACITY (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>07-02-2025</td>
+      <td>09:59:42</td>
+      <td>11872</td>
+      <td>789</td>
+      <td>1396</td>
+      <td>487</td>
+      <td>34</td>
+    </tr>
+    <tr>
+      <td>07-02-2025</td>
+      <td>09:26:20</td>
+      <td>11544</td>
+      <td>944</td>
+      <td>1396</td>
+      <td>709</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>07-02-2025</td>
+      <td>09:12:29</td>
+      <td>12010</td>
+      <td>767</td>
+      <td>1396</td>
+      <td>533</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <td>07-02-2025</td>
+      <td>09:11:52</td>
+      <td>11994</td>
+      <td>787</td>
+      <td>1396</td>
+      <td>527</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <td>07-02-2025</td>
+      <td>09:11:26</td>
+      <td>11726</td>
+      <td>178</td>
+      <td>1396</td>
+      <td>521</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <td>06-02-2025</td>
+      <td>22:23:27</td>
+      <td>12374</td>
+      <td>1</td>
+      <td>1396</td>
+      <td>1396</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>06-02-2025</td>
+      <td>20:09:58</td>
+      <td>12428</td>
+      <td>1</td>
+      <td>1396</td>
+      <td>1396</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>06-02-2025</td>
+      <td>17:51:59</td>
+      <td>11639</td>
+      <td>279</td>
+      <td>1396</td>
+      <td>358</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <td>06-02-2025</td>
+      <td>17:51:49</td>
+      <td>11340</td>
+      <td>735</td>
+      <td>1396</td>
+      <td>359</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <td>06-02-2025</td>
+      <td>17:25:07</td>
+      <td>11552</td>
+      <td>787</td>
+      <td>1396</td>
+      <td>12</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>05-02-2025</td>
+      <td>19:11:34</td>
+      <td>10880</td>
+      <td>439</td>
+      <td>884</td>
+      <td>23</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>05-02-2025</td>
+      <td>14:56:42</td>
+      <td>12239</td>
+      <td>373</td>
+      <td>884</td>
+      <td>884</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>05-02-2025</td>
+      <td>13:22:37</td>
+      <td>12515</td>
+      <td>137</td>
+      <td>884</td>
+      <td>884</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>05-02-2025</td>
+      <td>12:52:05</td>
+      <td>12537</td>
+      <td>447</td>
+      <td>884</td>
+      <td>772</td>
+      <td>87</td>
+    </tr>
+  </tbody>
+</table>
