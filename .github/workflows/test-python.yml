@@ -41,10 +41,10 @@ jobs:
           cd tests/test_files/
           cp outputs/${{matrix.low_power}}/*.csv .
           cd outputs/
-          cp ${{matrix.low_power}}/html html
-          cp ${{matrix.low_power}}/json json
-          cp ${{matrix.low_power}}/xml xml
-          cp ${{matrix.low_power}}/csv csv
+          cp -r ${{matrix.low_power}}/html html
+          cp -r ${{matrix.low_power}}/json json
+          cp -r ${{matrix.low_power}}/xml xml
+          cp -r ${{matrix.low_power}}/csv csv
           rm -rf low-power no-low-power
 
       - name: Test userdetails.py
