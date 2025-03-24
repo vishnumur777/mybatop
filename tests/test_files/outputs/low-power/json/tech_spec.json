@@ -1,0 +1,497 @@
+[
+    {
+        "DATE": "13-03-2025",
+        "TIME": "09:34:08",
+        "VOLTAGE_NOW (in mWh)": 12252,
+        "CURRENT_NOW (in mA)": 937,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 967,
+        "CAPACITY (%)": "54"
+    },
+    {
+        "DATE": "13-03-2025",
+        "TIME": "08:48:41",
+        "VOLTAGE_NOW (in mWh)": 11486,
+        "CURRENT_NOW (in mA)": 1,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 265,
+        "CAPACITY (%)": "15"
+    },
+    {
+        "DATE": "13-03-2025",
+        "TIME": "08:46:59",
+        "VOLTAGE_NOW (in mWh)": 11555,
+        "CURRENT_NOW (in mA)": 202,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 252,
+        "CAPACITY (%)": "14"
+    },
+    {
+        "DATE": "13-03-2025",
+        "TIME": "08:46:50",
+        "VOLTAGE_NOW (in mWh)": 11264,
+        "CURRENT_NOW (in mA)": 460,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 253,
+        "CAPACITY (%)": "14"
+    },
+    {
+        "DATE": "13-03-2025",
+        "TIME": "08:18:16",
+        "VOLTAGE_NOW (in mWh)": 11767,
+        "CURRENT_NOW (in mA)": 935,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 114,
+        "CAPACITY (%)": "6"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "21:52:51",
+        "VOLTAGE_NOW (in mWh)": 10858,
+        "CURRENT_NOW (in mA)": 632,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 84,
+        "CAPACITY (%)": "4"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "21:48:11",
+        "VOLTAGE_NOW (in mWh)": 10987,
+        "CURRENT_NOW (in mA)": 597,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 433,
+        "CAPACITY (%)": "24"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "20:26:02",
+        "VOLTAGE_NOW (in mWh)": 11164,
+        "CURRENT_NOW (in mA)": 479,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 883,
+        "CAPACITY (%)": "50"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "20:14:09",
+        "VOLTAGE_NOW (in mWh)": 11454,
+        "CURRENT_NOW (in mA)": 450,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1042,
+        "CAPACITY (%)": "59"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "20:12:57",
+        "VOLTAGE_NOW (in mWh)": 12062,
+        "CURRENT_NOW (in mA)": 937,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1042,
+        "CAPACITY (%)": "59"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "19:51:58",
+        "VOLTAGE_NOW (in mWh)": 11224,
+        "CURRENT_NOW (in mA)": 377,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 722,
+        "CAPACITY (%)": "40"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "19:42:10",
+        "VOLTAGE_NOW (in mWh)": 11225,
+        "CURRENT_NOW (in mA)": 452,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 764,
+        "CAPACITY (%)": "43"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "19:01:55",
+        "VOLTAGE_NOW (in mWh)": 11395,
+        "CURRENT_NOW (in mA)": 416,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 832,
+        "CAPACITY (%)": "47"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "19:01:37",
+        "VOLTAGE_NOW (in mWh)": 11594,
+        "CURRENT_NOW (in mA)": 295,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 828,
+        "CAPACITY (%)": "46"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "19:00:37",
+        "VOLTAGE_NOW (in mWh)": 11442,
+        "CURRENT_NOW (in mA)": 537,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 833,
+        "CAPACITY (%)": "47"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "18:56:57",
+        "VOLTAGE_NOW (in mWh)": 11870,
+        "CURRENT_NOW (in mA)": 938,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 777,
+        "CAPACITY (%)": "44"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "18:48:15",
+        "VOLTAGE_NOW (in mWh)": 10799,
+        "CURRENT_NOW (in mA)": 1038,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 649,
+        "CAPACITY (%)": "36"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "18:31:46",
+        "VOLTAGE_NOW (in mWh)": 10963,
+        "CURRENT_NOW (in mA)": 1496,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 896,
+        "CAPACITY (%)": "50"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "18:29:45",
+        "VOLTAGE_NOW (in mWh)": 11963,
+        "CURRENT_NOW (in mA)": 937,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 884,
+        "CAPACITY (%)": "50"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "18:16:26",
+        "VOLTAGE_NOW (in mWh)": 11880,
+        "CURRENT_NOW (in mA)": 936,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 678,
+        "CAPACITY (%)": "38"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "17:33:30",
+        "VOLTAGE_NOW (in mWh)": 11405,
+        "CURRENT_NOW (in mA)": 940,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 28,
+        "CAPACITY (%)": "1"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "16:44:53",
+        "VOLTAGE_NOW (in mWh)": 11248,
+        "CURRENT_NOW (in mA)": 302,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 49,
+        "CAPACITY (%)": "2"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "15:54:40",
+        "VOLTAGE_NOW (in mWh)": 11237,
+        "CURRENT_NOW (in mA)": 467,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 312,
+        "CAPACITY (%)": "17"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "15:17:14",
+        "VOLTAGE_NOW (in mWh)": 11686,
+        "CURRENT_NOW (in mA)": 289,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 748,
+        "CAPACITY (%)": "42"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "15:11:54",
+        "VOLTAGE_NOW (in mWh)": 11538,
+        "CURRENT_NOW (in mA)": 512,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 777,
+        "CAPACITY (%)": "44"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "14:24:46",
+        "VOLTAGE_NOW (in mWh)": 12247,
+        "CURRENT_NOW (in mA)": 492,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1119,
+        "CAPACITY (%)": "63"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "13:59:22",
+        "VOLTAGE_NOW (in mWh)": 11986,
+        "CURRENT_NOW (in mA)": 1,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 877,
+        "CAPACITY (%)": "49"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "13:59:10",
+        "VOLTAGE_NOW (in mWh)": 11781,
+        "CURRENT_NOW (in mA)": 450,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 878,
+        "CAPACITY (%)": "49"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "12:46:43",
+        "VOLTAGE_NOW (in mWh)": 12056,
+        "CURRENT_NOW (in mA)": 937,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 287,
+        "CAPACITY (%)": "16"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "12:46:34",
+        "VOLTAGE_NOW (in mWh)": 12055,
+        "CURRENT_NOW (in mA)": 936,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 285,
+        "CAPACITY (%)": "16"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "11:45:33",
+        "VOLTAGE_NOW (in mWh)": 11308,
+        "CURRENT_NOW (in mA)": 997,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 808,
+        "CAPACITY (%)": "45"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "11:42:38",
+        "VOLTAGE_NOW (in mWh)": 11433,
+        "CURRENT_NOW (in mA)": 518,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 825,
+        "CAPACITY (%)": "46"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "11:30:16",
+        "VOLTAGE_NOW (in mWh)": 12187,
+        "CURRENT_NOW (in mA)": 800,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 842,
+        "CAPACITY (%)": "47"
+    },
+    {
+        "DATE": "12-03-2025",
+        "TIME": "11:29:19",
+        "VOLTAGE_NOW (in mWh)": 12181,
+        "CURRENT_NOW (in mA)": 932,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 830,
+        "CAPACITY (%)": "47"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "18:58:37",
+        "VOLTAGE_NOW (in mWh)": 11981,
+        "CURRENT_NOW (in mA)": 360,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1204,
+        "CAPACITY (%)": "68"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "18:52:23",
+        "VOLTAGE_NOW (in mWh)": 11984,
+        "CURRENT_NOW (in mA)": 425,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1228,
+        "CAPACITY (%)": "69"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "18:19:32",
+        "VOLTAGE_NOW (in mWh)": 12060,
+        "CURRENT_NOW (in mA)": 1,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1150,
+        "CAPACITY (%)": "65"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "18:17:29",
+        "VOLTAGE_NOW (in mWh)": 11861,
+        "CURRENT_NOW (in mA)": 487,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1165,
+        "CAPACITY (%)": "66"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "17:43:59",
+        "VOLTAGE_NOW (in mWh)": 12422,
+        "CURRENT_NOW (in mA)": 934,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 990,
+        "CAPACITY (%)": "56"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "17:36:47",
+        "VOLTAGE_NOW (in mWh)": 12267,
+        "CURRENT_NOW (in mA)": 935,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 879,
+        "CAPACITY (%)": "49"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "17:31:28",
+        "VOLTAGE_NOW (in mWh)": 11532,
+        "CURRENT_NOW (in mA)": 386,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 813,
+        "CAPACITY (%)": "46"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "16:22:48",
+        "VOLTAGE_NOW (in mWh)": 12115,
+        "CURRENT_NOW (in mA)": 309,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1120,
+        "CAPACITY (%)": "63"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "16:22:48",
+        "VOLTAGE_NOW (in mWh)": 12115,
+        "CURRENT_NOW (in mA)": 309,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1120,
+        "CAPACITY (%)": "63"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "16:22:24",
+        "VOLTAGE_NOW (in mWh)": 12525,
+        "CURRENT_NOW (in mA)": 908,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1114,
+        "CAPACITY (%)": "63"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "16:21:36",
+        "VOLTAGE_NOW (in mWh)": 12511,
+        "CURRENT_NOW (in mA)": 933,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1102,
+        "CAPACITY (%)": "62"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "16:12:02",
+        "VOLTAGE_NOW (in mWh)": 11919,
+        "CURRENT_NOW (in mA)": 276,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1117,
+        "CAPACITY (%)": "63"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "15:54:32",
+        "VOLTAGE_NOW (in mWh)": 11890,
+        "CURRENT_NOW (in mA)": 487,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1197,
+        "CAPACITY (%)": "67"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "14:29:37",
+        "VOLTAGE_NOW (in mWh)": 12297,
+        "CURRENT_NOW (in mA)": 376,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1402,
+        "CAPACITY (%)": "79"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "13:56:54",
+        "VOLTAGE_NOW (in mWh)": 12522,
+        "CURRENT_NOW (in mA)": 856,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 1119,
+        "CAPACITY (%)": "63"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "13:29:39",
+        "VOLTAGE_NOW (in mWh)": 12040,
+        "CURRENT_NOW (in mA)": 924,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 701,
+        "CAPACITY (%)": "39"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "13:29:00",
+        "VOLTAGE_NOW (in mWh)": 11427,
+        "CURRENT_NOW (in mA)": 370,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 694,
+        "CAPACITY (%)": "39"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "11:37:26",
+        "VOLTAGE_NOW (in mWh)": 11541,
+        "CURRENT_NOW (in mA)": 331,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 765,
+        "CAPACITY (%)": "43"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "11:33:12",
+        "VOLTAGE_NOW (in mWh)": 11427,
+        "CURRENT_NOW (in mA)": 545,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 786,
+        "CAPACITY (%)": "44"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "09:30:27",
+        "VOLTAGE_NOW (in mWh)": 11858,
+        "CURRENT_NOW (in mA)": 933,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 54,
+        "CAPACITY (%)": "3"
+    },
+    {
+        "DATE": "11-03-2025",
+        "TIME": "03:57:55",
+        "VOLTAGE_NOW (in mWh)": 10973,
+        "CURRENT_NOW (in mA)": 888,
+        "CHARGE_FULL (in mWh)": 1765,
+        "CHARGE_NOW (in mWh)": 51,
+        "CAPACITY (%)": "2"
+    }
+]

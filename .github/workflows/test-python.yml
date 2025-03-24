@@ -12,6 +12,7 @@ jobs:
       matrix:
         os: ["ubuntu:latest","fedora:latest","archlinux:latest"]
         python_version: ["3.10","3.11","3.12","3.13"]
+        low_power: ["low-power","no-low-power"]
     container:
         image: ${{matrix.os}}
     steps:
@@ -34,6 +35,17 @@ jobs:
           ruff check *.py
           cd ../../generate_data/
           ruff check *.py
+
+      - name: Setup test bed
+        run: |
+          cd tests/test_files/
+          cp outputs/${{matrix.low_power}}/*.csv .
+          cd outputs/
+          cp ${{matrix.low_power}}/html html
+          cp ${{matrix.low_power}}/json json
+          cp ${{matrix.low_power}}/xml xml
+          cp ${{matrix.low_power}}/csv csv
+          rm -rf low-power no-low-power
 
       - name: Test userdetails.py
         run: |

@@ -1,0 +1,80 @@
+[
+    {
+        "START_DATE": "13-03-2025 09:03:08",
+        "END_DATE": "13-03-2025 08:03:41",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    },
+    {
+        "START_DATE": "13-03-2025 08:03:16",
+        "END_DATE": "12-03-2025 20:03:09",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    },
+    {
+        "START_DATE": "12-03-2025 19:03:58",
+        "END_DATE": "12-03-2025 19:03:37",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    },
+    {
+        "START_DATE": "12-03-2025 18:03:57",
+        "END_DATE": "12-03-2025 14:03:46",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    },
+    {
+        "START_DATE": "12-03-2025 12:03:43",
+        "END_DATE": "11-03-2025 18:03:32",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    },
+    {
+        "START_DATE": "11-03-2025 17:03:59",
+        "END_DATE": "11-03-2025 14:03:37",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    },
+    {
+        "START_DATE": "11-03-2025 13:03:39",
+        "END_DATE": "10-03-2025 15:03:45",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    },
+    {
+        "START_DATE": "10-03-2025 14:03:49",
+        "END_DATE": "09-03-2025 21:03:54",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    },
+    {
+        "START_DATE": "09-03-2025 20:03:40",
+        "END_DATE": "09-03-2025 14:03:08",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    },
+    {
+        "START_DATE": "09-03-2025 14:03:05",
+        "END_DATE": "08-03-2025 19:03:31",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    },
+    {
+        "START_DATE": "08-03-2025 18:03:24",
+        "END_DATE": "08-03-2025 12:03:42",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    },
+    {
+        "START_DATE": "08-03-2025 09:03:39",
+        "END_DATE": "05-03-2025 22:03:14",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    },
+    {
+        "START_DATE": "05-03-2025 22:03:37",
+        "END_DATE": "05-03-2025 18:03:06",
+        "CHARGE_FULL(mAh)": "1765",
+        "CHARGE_FULL_DESIGN(mAh)": "3684"
+    }
+]
