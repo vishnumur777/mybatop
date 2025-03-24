@@ -26,7 +26,7 @@ jobs:
 
       - name: Install python packages
         run: |
-          uv pip install pandas plotly ruff
+          uv pip install pandas plotly lxml ruff
 
       - name: Start Linting
         run: |
