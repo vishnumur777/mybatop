@@ -35,4 +35,37 @@ jobs:
           cd ../../generate_data/
           ruff check *.py
 
+      - name: Test userdetails.py
+        run: |
+          python3 -m unittest tests/test_userdetails.py
+
+      - name: Test analyzers.py
+        run: |
+          python3 -m unittest tests/test_analyzers.py
+
+      - name: Test tech_spec.py
+        run: |
+          python3 -m unittest tests/test_tech_spec.py
+
+      - name: Test batcaphis.py
+        run: |
+          python3 -m unittest tests/test_batcaphis.py
+
+      - name: Test dchar.py
+        run: |
+          python3 -m unittest tests/test_dchar.py
+
+      - name: Test cycle_count.py
+        run: |
+          python3 -m unittest tests/test_cycle_count.py
+
+      - name: Test battery_health.py
+        run: |
+          python3 -m unittest tests/test_battery_health.py
+
+      - name: Test battery_activity.py
+        run: |
+          python3 -m unittest tests/test_battery_activity.py
+ 
+
 
