@@ -1,0 +1,38 @@
+name: Lint bash scripts
+on:
+  push:
+    branches: dev
+  pull_request:
+    branches: dev
+
+jobs:
+  lint-bash:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: |
+          sudo apt-get install -y shellcheck
+
+      - name: Lint analyze
+        run: |
+          shellcheck src/mybatop/analyze/*.sh
+
+      - name: Lint scripts
+        run: |
+          shellcheck src/mybatop/scripts/*.sh 
+
+      - name: Lint contents
+        run: |
+          shellcheck src/mybatop/scripts/analyze/*.sh
+
+      - name: Lint inserts
+        run: |
+          shellcheck src/mybatop/scripts/inserts/*.run/
+
+      - name: Lint mybatop
+        run: |
+          shellcheck src/mybatop/scripts/runscripts/mybatop
