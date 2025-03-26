@@ -7,22 +7,25 @@ if [[ $1 == "--help" || $1 == "-help" || $1 == "-h" ]]; then
 elif [[ $1 == "report" ]]; then
 
 	if [[ $2 == "--html" ]]; then
-		export present_dir=$(pwd)
+		present_dir=$(pwd) 
+		export present_dir
 		bash /opt/mybatop/analyze/generate-html.sh
-		cp /opt/mybatop/analyze/merge.html $present_dir/battery-report.html
+		cp /opt/mybatop/analyze/merge.html "$present_dir"/battery-report.html
 		echo "The battery-report.html is generated and it is saved to $present_dir"
 
 	elif [[ $2 == "--json" ]]; then
-		export present_dir=$(pwd)
+		present_dir=$(pwd) 
+		export present_dir
 		bash /opt/mybatop/analyze/generate-json.sh
-		cp /opt/mybatop/analyze/pythonscripts/battery_report.json $present_dir/battery-report.json
+		cp /opt/mybatop/analyze/pythonscripts/battery_report.json "$present_dir"/battery-report.json
 		rm -rf /opt/mybatop/analyze/pythonscripts/battery_report.json
 		echo "The battery-report.json is generated and it is saved to $present_dir"
 
 	elif [[ $2 == "--xml" ]]; then
-		export present_dir=$(pwd)
+		present_dir=$(pwd) 
+		export present_dir
 		bash /opt/mybatop/analyze/generate-xml.sh
-		cp /opt/mybatop/analyze/pythonscripts/battery_report.xml $present_dir/battery-report.xml
+		cp /opt/mybatop/analyze/pythonscripts/battery_report.xml "$present_dir"/battery-report.xml
 		rm -rf /opt/mybatop/analyze/pythonscripts/battery_report.xml
 		echo "The battery-report.xml is generated and it is saved to $present_dir"
 
@@ -107,7 +110,7 @@ elif [[ $1 == "data" ]]; then
 		
 	elif [[ $2 == "--csv" ]]; then
 		python3 /opt/mybatop/src/mybatop/scripts/generate_csv.py
-		cp /opt/mybatop/final.csv $(pwd)/data.csv
+		cp /opt/mybatop/final.csv "$(pwd)/data.csv"
 		echo "The data.csv is generated and it is saved to $(pwd)"
 
 	elif [[ $2 == "--json" ]]; then

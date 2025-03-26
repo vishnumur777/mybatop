@@ -1,6 +1,6 @@
 #!/bin/bash
  
-cd /opt/mybatop
+cd /opt/mybatop || exit
 
 tr -s '[:blank:]' '-' < /sys/class/power_supply/BAT0/uevent | sed -e 's/POWER_SUPPLY_//' -e 's/.*=//' > y.txt
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /opt/mybatop/
+cd /opt/mybatop/ || exit
 
 ./scripts/header.sh
 
