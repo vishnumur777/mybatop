@@ -2,16 +2,16 @@
 
 function addDiv() {
   echo "<div><h3 class=""title>$2</h3>""</div><p>$3</p>" >ad.txt
-  cat ad.txt $1 >res
-  rm -rf $1 ad.txt
-  mv res $1
+  cat ad.txt "$1" >res
+  rm -rf "$1" ad.txt
+  mv res "$1"
 }
 
 bash /opt/mybatop/scripts/generate_csv.sh
 
 cp /opt/mybatop/final.csv /opt/mybatop/analyze/data.csv
 
-cd /opt/mybatop/analyze
+cd /opt/mybatop/analyze || exit
 
 ./fetchuserdetails.sh
 
@@ -33,7 +33,7 @@ else
 fi
 echo "</div>" >y2
 
-cat *.html >temp.html
+cat ./*.html >temp.html
 
 cat temp.html y2 >temp1.html
 

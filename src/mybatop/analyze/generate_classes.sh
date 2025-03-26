@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd pythonscripts/
+cd pythonscripts/ || exit
 
 python3 analyzers.py --html
 
@@ -14,5 +14,5 @@ python3 dchar.py --graph
 
 python3 userdetails.py
 
-mv *.html ..
+mv ./*.html ..
 
