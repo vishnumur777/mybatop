@@ -27,7 +27,7 @@ jobs:
 
       - name: Lint contents
         run: |
-          shellcheck src/mybatop/scripts/analyze/*.sh
+          shellcheck src/mybatop/scripts/contents/*.sh
 
       - name: Lint inserts
         run: |
