@@ -31,7 +31,7 @@ jobs:
 
       - name: Lint inserts
         run: |
-          shellcheck src/mybatop/scripts/inserts/*.run/
+          shellcheck src/mybatop/scripts/inserts/*.sh
 
       - name: Lint mybatop
         run: |
