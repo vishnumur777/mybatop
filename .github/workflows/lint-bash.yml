@@ -35,4 +35,4 @@ jobs:
 
       - name: Lint mybatop
         run: |
-          shellcheck src/mybatop/scripts/runscripts/mybatop
+          shellcheck src/mybatop/scripts/runscript/mybatop
