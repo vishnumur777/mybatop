@@ -1,9 +1,15 @@
 name: Testing *.py files
 on:
   push:
-    branches: dev
+    branches: 
+      - dev
+    path:
+      - 'src/mybatop/**/*.py'
   pull_request:
-    branches: dev
+    branches: 
+      - dev
+    path:
+      - 'src/mybatop/**/*.py'
 
 jobs:
   test-python:
