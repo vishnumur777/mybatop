@@ -3,12 +3,12 @@ on:
   push:
     branches: 
       - dev
-    path:
+    paths:
       - 'src/mybatop/**/*.sh'
   pull_request:
     branches: 
       - dev
-    path:
+    paths:
       - 'src/mybatop/**/*.sh'
 
 jobs:
