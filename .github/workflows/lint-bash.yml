@@ -20,30 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install shellcheck
-        run: |- name: Install shellcheck
         run: |
-          sudo apt-get install -y shellcheck
-
-      - name: Lint analyze
-        run: |
-          shellcheck src/mybatop/analyze/*.sh
-
-      - name: Lint scripts
-        run: |
-          shellcheck src/mybatop/scripts/*.sh 
-
-      - name: Lint contents
-        run: |
-          shellcheck src/mybatop/scripts/contents/*.sh
-
-      - name: Lint inserts
-        run: |
-          shellcheck src/mybatop/scripts/inserts/*.sh
-
-      - name: Lint mybatop
-        run: |
-          shellcheck src/mybatop/scripts/runscript/mybatop
-
           sudo apt-get install -y shellcheck
 
       - name: Lint analyze
