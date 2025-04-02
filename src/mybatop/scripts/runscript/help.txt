@@ -1,11 +1,49 @@
-mybatop
-Version: 1.0.0
+mybatop - Battery Monitoring and Reporting Tool
 
-[ USAGE ]
+Usage: mybatop [COMMAND] [OPTIONS] [ARGUMENTS]
 
-eg:-
-	mybatop --html
+Commands:
+  -h, --help            Show this help message
+  report [OPTIONS]      Generate battery reports
+  data [OPTIONS]        Export raw battery data
+  -v, --version         Show version information
 
---help: show the list of commands and parameters
---html: generate html content of battery monitor
---version: Prints the version of lsbatt software
+Report Options:
+  --html                Generate comprehensive HTML report
+  --json                Generate JSON format report
+  --xml                 Generate XML format report
+  -C, --class TYPE      Generate specific report class:
+    recent-usage        Recent battery usage statistics
+    tech-spec           Technical specifications report
+	average-capacity    Show historical capacity averages
+    batcaphis           Historical capacity data
+	cycle-count         Battery charge cycle analysis
+    battery-health      Comprehensive health assessment
+    batuseact           Usage activity timeline
+
+  Class Format Options (for --class reports):
+    --html              Output in HTML format
+    --csv               Output in CSV format
+    --json              Output in JSON format
+    --xml               Output in XML format
+
+Data Options:
+  --csv                 Export raw data in CSV format
+  --json                Export raw data in JSON format
+  --xml                 Export raw data in XML format
+
+Examples:
+  mybatop report --html
+  mybatop report -C recent-usage --csv
+  mybatop data --json
+  mybatop --version
+
+Output Information:
+  All generated reports are saved in your current working directory:
+  - HTML reports: battery-report.html
+  - JSON reports: battery-report.json
+  - XML reports: battery-report.xml
+  - CSV data exports: data.csv
+
+Note: Some command combinations may require additional parameters. 
+Use 'mybatop --help' for command-specific help.
