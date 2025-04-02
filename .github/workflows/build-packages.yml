@@ -5,7 +5,7 @@ jobs:
   debian-package:
     runs-on: ubuntu-latest
     env:
-      APP_VERSION: "2.0.0"
+      APP_VERSION: "1.0.0"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -44,7 +44,7 @@ jobs:
   rpm-package:
     runs-on: ubuntu-latest
     env:
-      APP_VERSION: "2.0.0"
+      APP_VERSION: "1.0.0"
     container: fedora:latest
     steps:
       - name: Checkout code
@@ -82,7 +82,7 @@ jobs:
   arch-package:
     runs-on: ubuntu-latest
     env:
-      APP_VERSION: "2.0.0"
+      APP_VERSION: "1.0.0"
     container: archlinux:latest
 
     steps:
@@ -133,7 +133,7 @@ jobs:
     needs: [debian-package, rpm-package, arch-package]
     runs-on: ubuntu-latest
     env:
-      APP_VERSION: "2.0.0"
+      APP_VERSION: "1.0.0"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

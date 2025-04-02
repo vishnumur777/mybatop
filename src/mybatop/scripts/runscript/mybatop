@@ -165,7 +165,7 @@ elif [[ $1 == "data" ]]; then
 		python3 /opt/mybatop/src/mybatop/generate_data/generate_json.py
 	fi
 elif [[ $1 == "--version" || $1 == "-version" || $1 == "-v" ]]; then
-	echo -e "mybatop\n version:2.0.0"
+	echo -e "mybatop\n version:1.0.0"
 else
 	echo "Invalid option"
 fi
