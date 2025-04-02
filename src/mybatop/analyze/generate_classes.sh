@@ -2,6 +2,8 @@
 
 cd pythonscripts/ || exit
 
+python3 clean_dataset.py
+
 python3 analyzers.py --html
 
 python3 tech_spec.py --html
