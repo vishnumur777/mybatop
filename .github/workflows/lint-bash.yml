@@ -5,6 +5,7 @@ on:
       - dev
     paths:
       - 'src/mybatop/**/*.sh'
+      - 'src/mybatop/scripts/runscript/mybatop'
   pull_request:
     branches: 
       - dev
