@@ -29,6 +29,8 @@ mkdir -p %{buildroot}/etc/systemd/system
 mkdir -p %{buildroot}/usr/bin
 
 cp -r * %{buildroot}/opt/mybatop/
+mkdir -p %{buildroot}/opt/mybatop/data
+touch %{buildroot}/opt/mybatop/data/temporaryfiler.n
 rm -rf %{buildroot}/opt/mybatop/filesystemd/
 cp filesystemd/* %{buildroot}/etc/systemd/system/
 ln -s /opt/mybatop/scripts/runscript/mybatop %{buildroot}/usr/bin/mybatop

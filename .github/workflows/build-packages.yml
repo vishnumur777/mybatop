@@ -18,6 +18,8 @@ jobs:
       - name: Build Debian Package (.deb)
         run: |
           mkdir mybatop-${{ env.APP_VERSION }}
+          mkdir -p src/mybatop/data
+          touch src/mybatop/data/temporaryfiler.n
           cd mybatop-${{ env.APP_VERSION }}
           mkdir -p DEBIAN opt/ usr/bin/ etc/systemd/system/
 
@@ -29,6 +31,7 @@ jobs:
 
           cp -r ../src/* opt/
           cp -r ../src/mybatop/filesystemd/* etc/systemd/system/
+          rm -rf opt/mybatop/filesystemd
 
           ln -s /opt/mybatop/scripts/runscript/mybatop usr/bin/mybatop
           
@@ -102,6 +105,8 @@ jobs:
 
       - name: Build tarball
         run: |
+          mkdir -p src/mybatop/data
+          touch src/mybatop/data/temporaryfiler.n
           cp -r src/mybatop/ mybatop-${{ env.APP_VERSION }}
           tar -czvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
 
