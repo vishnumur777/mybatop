@@ -10,6 +10,6 @@ mapfile -t content < y.txt
 
 u=("$datevalue" "Suspended" "${content[@]}")
 
-echo "${u[@]}" | tr -s '[:blank:]' ',' > maindata2.n
+echo "${u[@]}" | tr -s '[:blank:]' ',' > /opt/mybatop/data/maindata2.n
 
 rm -rf y.txt datefile

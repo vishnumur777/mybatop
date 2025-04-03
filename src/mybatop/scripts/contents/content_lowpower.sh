@@ -10,6 +10,6 @@ mapfile -t content < y.txt
 
 u=("$datevalue" "Low Power" "${content[@]}")
 
-echo "${u[@]}" | tr -s '[:blank:]' ',' > maindata.n
+echo "${u[@]}" | tr -s '[:blank:]' ',' > /opt/mybatop/data/maindata.n
 
 rm -rf y.txt datefile

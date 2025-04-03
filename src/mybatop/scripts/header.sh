@@ -2,14 +2,14 @@
 
 cd /opt/mybatop || exit
 
-sed -e "s/POWER_SUPPLY_//" -e "s/=.*//" < /sys/class/power_supply/BAT0/uevent > x.txt
+sed -e "s/POWER_SUPPLY_//" -e "s/=.*//" < /sys/class/power_supply/BAT0/uevent > /opt/mybatop/data/x.txt
 
-mapfile -t header < x.txt
+mapfile -t header < /opt/mybatop/data/x.txt
 
 t=()
 t+=("DATE" "TIME" "STATE" "${header[@]}")
 t[5]="SOURCE"
 
-echo "${t[@]}" | tr -s '[:blank:]' ',' > headerfile
+echo "${t[@]}" | tr -s '[:blank:]' ',' > /opt/mybatop/data/headerfile
 
-rm -rf x.txt
+rm -rf /opt/mybatop/data/x.txt
