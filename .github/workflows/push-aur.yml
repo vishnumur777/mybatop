@@ -16,10 +16,6 @@ jobs:
         run: |
           ls build/Arch/
 
-      - name: Generate .SRCINFO
-        run: |
-          makepkg --printsrcinfo > build/Arch/.SRCINFO
-
       - name: Publish to AUR package
         uses: KSXGitHub/github-actions-deploy-aur@v4.1.1
         with:
