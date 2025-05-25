@@ -10,7 +10,7 @@ license=('GPL-3.0')
 depends=('bash' 'systemd' 'dmidecode' 'python' 'python-pandas' 'python-plotly')
 source=("$pkgname-$pkgver.tar.gz")
 sha256sums=('SKIP')
-install=build/Arch/mybatop.install
+install=mybatop.install
 
 package() {
   mkdir -p "$pkgdir/opt/mybatop"
