@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Publish to AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@v4
+        uses: KSXGitHub/github-actions-deploy-aur@v4.1.1
         with:
           pkgname: mybatop
           pkgbuild: ./build/Arch/PKGBUILD
