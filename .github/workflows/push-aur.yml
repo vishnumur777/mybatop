@@ -26,7 +26,6 @@ jobs:
           pkgbuild: ./build/Arch/PKGBUILD
           assets: |
             build/Arch/mybatop.install
-            mybatop-${{ env.VERSION }}.tar.gz
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           commit_message: mybatop v-1.0.0
