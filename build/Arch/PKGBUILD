@@ -8,7 +8,7 @@ arch=('any')
 url="https://github.com/vishnumur777/mybatop"
 license=('GPL-3.0')
 depends=('bash' 'systemd' 'dmidecode' 'python' 'python-pandas' 'python-plotly')
-source=("$pkgname-$pkgver.tar.gz")
+source=("https://github.com/vishnumur777/mybatop/releases/download/__APP_VERSION__/mybatop-__APP_VERSION__.tar.gz")
 sha256sums=('SKIP')
 install=mybatop.install
 
