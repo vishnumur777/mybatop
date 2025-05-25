@@ -1,0 +1,23 @@
+name: Publish to AUR (Arch User Repository)
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  aur-publish:
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Publish to AUR package
+        uses: KSXGitHub/github-actions-deploy-aur@v4
+        with:
+          pkgname: mybatop
+          pkgbuild: ./build/Arch/PKGBUILD
+          commit_username: ${{ secrets.USERNAME }}
+          commit_email: ${{ secrets.EMAIL }}
+          commit_message: mybatop v-1.0.0
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh_keyscan_types: rsa,ecdsa, ed25519
