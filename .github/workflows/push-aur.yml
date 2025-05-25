@@ -7,6 +7,8 @@ on:
 
 jobs:
   aur-publish:
+    env:
+     VERSION: 1.0.0
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -15,7 +17,8 @@ jobs:
       - name: list directories and files
         run: |
           ls build/Arch/
-
+      - name: Update PKGBUILD Version
+        run: sed -i "s/__APP_VERSION__/$VERSION/g" build/Arch/PKGBUILD
       - name: Publish to AUR package
         uses: KSXGitHub/github-actions-deploy-aur@v4.1.1
         with:
@@ -23,6 +26,7 @@ jobs:
           pkgbuild: ./build/Arch/PKGBUILD
           assets: |
             build/Arch/mybatop.install
+            mybatop-${{ env.VERSION }}.tar.gz
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           commit_message: mybatop v-1.0.0
