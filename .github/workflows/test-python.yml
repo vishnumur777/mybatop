@@ -1,0 +1,89 @@
+name: Testing *.py files
+on:
+  push:
+    branches: 
+      - dev
+    paths:
+      - 'src/mybatop/**/*.py'
+  pull_request:
+    branches: 
+      - dev
+    paths:
+      - 'src/mybatop/**/*.py'
+
+jobs:
+  test-python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ["ubuntu:latest","fedora:latest","archlinux:latest"]
+        python_version: ["3.10","3.11","3.12","3.13"]
+        low_power: ["low-power","no-low-power"]
+    container:
+        image: ${{matrix.os}}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup UV
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: latest
+          python-version: ${{matrix.python_version}}
+
+      - name: Install python packages
+        run: |
+          uv pip install pandas plotly lxml ruff
+
+      - name: Start Linting
+        run: |
+          cd src/mybatop/analyze/pythonscripts/
+          ruff check *.py
+          cd ../../generate_data/
+          ruff check *.py
+
+      - name: Setup test bed
+        run: |
+          cd tests/test_files/
+          cp outputs/${{matrix.low_power}}/*.csv .
+          cd outputs/
+          cp -r ${{matrix.low_power}}/html html
+          cp -r ${{matrix.low_power}}/json json
+          cp -r ${{matrix.low_power}}/xml xml
+          cp -r ${{matrix.low_power}}/csv csv
+          rm -rf low-power no-low-power
+
+      - name: Test userdetails.py
+        run: |
+          python3 -m unittest tests/test_userdetails.py
+
+      - name: Test analyzers.py
+        run: |
+          python3 -m unittest tests/test_analyzers.py
+
+      - name: Test tech_spec.py
+        run: |
+          python3 -m unittest tests/test_tech_spec.py
+
+      - name: Test batcaphis.py
+        run: |
+          python3 -m unittest tests/test_batcaphis.py
+
+      - name: Test dchar.py
+        run: |
+          python3 -m unittest tests/test_dchar.py
+
+      - name: Test cycle_count.py
+        run: |
+          python3 -m unittest tests/test_cycle_count.py
+
+      - name: Test battery_health.py
+        run: |
+          python3 -m unittest tests/test_battery_health.py
+
+      - name: Test battery_activity.py
+        run: |
+          python3 -m unittest tests/test_battery_activity.py
+ 
+
+

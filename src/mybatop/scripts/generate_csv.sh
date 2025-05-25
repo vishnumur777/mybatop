@@ -1,8 +1,10 @@
 #!/bin/bash
 
-cd /opt/mybatop/
+cd /opt/mybatop/ || exit
 
 ./scripts/header.sh
+
+cd data/ || exit
 
 cat headerfile temporaryfiler.n > final.csv
 

@@ -1,14 +1,14 @@
 #!/bin/bash
 
 extract_state() {
-  cat /proc/acpi/button/lid/LID0/state | tr -s ' ' ',' | cut -d ',' -f 2
+  tr -s ' ' ',' < /proc/acpi/button/lid/LID0/state | cut -d ',' -f 2
 }
 
 insert_status() {
     stat=$(cat /sys/class/power_supply/BAT0/status)
     if [ "$stat" != "Not charging" ] && [ "$stat" != "Not-charging" ] && [ "$stat" != "Unknown" ]
     then
-	    echo $stat
+	    echo "$stat"
     fi
 }
 

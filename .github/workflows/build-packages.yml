@@ -5,21 +5,21 @@ jobs:
   debian-package:
     runs-on: ubuntu-latest
     env:
-      APP_VERSION: "2.0.0"
+      APP_VERSION: "1.0.0"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setting Up for building packages
+      - name: Install dependencies
         run: |
+          sudo apt-get update -y
           sudo apt-get install -y dpkg-dev ninja-build devscripts meson
-          cp -r src/ mybatop-${{ env.APP_VERSION }}
-          tar -cvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
-          rm -rf mybatop-${{ env.APP_VERSION }}
           
       - name: Build Debian Package (.deb)
         run: |
           mkdir mybatop-${{ env.APP_VERSION }}
+          mkdir -p src/mybatop/data
+          touch src/mybatop/data/temporaryfiler.n
           cd mybatop-${{ env.APP_VERSION }}
           mkdir -p DEBIAN opt/ usr/bin/ etc/systemd/system/
 
@@ -30,7 +30,8 @@ jobs:
           cp ../build/Debian/prerm DEBIAN/prerm
 
           cp -r ../src/* opt/
-          cp -r ../src/filesystemd/* etc/systemd/system/
+          cp -r ../src/mybatop/filesystemd/* etc/systemd/system/
+          rm -rf opt/mybatop/filesystemd
 
           ln -s /opt/mybatop/scripts/runscript/mybatop usr/bin/mybatop
           
@@ -46,49 +47,120 @@ jobs:
   rpm-package:
     runs-on: ubuntu-latest
     env:
-      APP_VERSION: "2.0.0"
+      APP_VERSION: "1.0.0"
     container: fedora:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setting Up for building packages
+        run: |
+          cp -r src/mybatop/ mybatop-${{ env.APP_VERSION }}
+          tar -czvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
+
+      - name: Install dependencies
+        run: |
+          dnf upgrade -y
+          dnf install -y rpmdevtools rpm-build rpmlint
+      
+      - name: Build Fedora/RedHat/OpenSUSE packages (.rpm)
+        run: |
+          mkdir -p ~/rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SRPMS}
+          pwd
+          ls
+          mv mybatop-${{ env.APP_VERSION }}.tar.gz ~/rpmbuild/SOURCES/
+          ls -lh ~/rpmbuild/SOURCES/
+          specs=$(cat build/mybatop.spec)
+          eval "echo \"$specs\"" > ~/rpmbuild/SPECS/mybatop.spec
+          
+          cd ~
+          rpmbuild -ba rpmbuild/SPECS/mybatop.spec
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: rpm-artifact
+          path: ~/rpmbuild/RPMS/noarch/mybatop-${{ env.APP_VERSION }}*.rpm
+
+  arch-package:
+    runs-on: ubuntu-latest
+    env:
+      APP_VERSION: "1.0.0"
+    container: archlinux:latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
-          dnf install -y rpmdevtools rpm-build rpmlint
-
-      - name: Build Fedora/RedHat/OpenSUSE packages (.rpm)
-        run: |
-          mkdir -p rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SRPMS}
-          cp -r src/ rpmbuild/SOURCES/mybatop-${{ env.APP_VERSION }}
-          specs=$(cat build/mybatop.spec)
-          eval "echo \"$specs\"" > rpmbuild/SPECS/mybatop.spec
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm base-devel sudo
           
-          cd rpmbuild/SPECS
-          rpmbuild -ba mybatop.spec
+      - name: Set up non-root user and build environment
+        run: |
+          useradd -m -G wheel -s /bin/bash builder
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/builder
+          chown -R builder:builder .
 
-      - name: Upload Artifacts
+      - name: Build tarball
+        run: |
+          mkdir -p src/mybatop/data
+          touch src/mybatop/data/temporaryfiler.n
+          cp -r src/mybatop/ mybatop-${{ env.APP_VERSION }}
+          tar -czvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
+
+      - name: Setup for Building packages
+        run: |
+          mkdir buildpackage/
+          cp mybatop-${{ env.APP_VERSION }}.tar.gz buildpackage/
+          cp build/Arch/mybatop.install buildpackage/mybatop.install
+          sed "s/__APP_VERSION__/${{ env.APP_VERSION }}/g" build/Arch/PKGBUILD > buildpackage/PKGBUILD
+          sudo chown -R builder:builder buildpackage/
+          sudo chmod +rwx buildpackage/
+            
+      - name: Install dependencies for PKGBUILD
+        run: |
+          . buildpackage/PKGBUILD  # Source the PKGBUILD variables
+          sudo -u builder bash -c "sudo pacman -S --noconfirm ${depends[@]} ${makedepends[@]}"
+
+      - name: Build Arch Linux Package (.pkg.tar.zst)
+        run: |
+          sudo -u builder bash -c "cd buildpackage/ && makepkg -s --noconfirm"
+
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4.6.1
         with:
-          name: rpm-artifact
-          path: rpmbuild/RPMS/*/*.rpm
+          name: arch-artifact
+          path: buildpackage/mybatop-${{ env.APP_VERSION }}*.pkg.tar.zst
 
   upload-artifacts:
-    needs: [debian-package, rpm-package]
+    needs: [debian-package, rpm-package, arch-package]
     runs-on: ubuntu-latest
     env:
-      APP_VERSION: "2.0.0"
+      APP_VERSION: "1.0.0"
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Download artifacts
         uses: actions/download-artifact@v4.2.0
         with:
           path: artifacts
           pattern: "*-artifact"
           merge-multiple: true
+
+      - name: Build sources
+        run: |
+          cd src/
+          cp -r mybatop/ mybatop-${{ env.APP_VERSION }}
+          tar -czvf mybatop-${{ env.APP_VERSION }}.tar.gz mybatop-${{ env.APP_VERSION }}/
+          zip -r mybatop-${{ env.APP_VERSION }}.zip mybatop-${{ env.APP_VERSION }}/
           
       - name: Upload to releases
         uses: ncipollo/release-action@v1.16.0
         with:
-          artifacts: "artifacts/*.deb,artifacts/*.rpm"
+          artifacts: "artifacts/*.deb,artifacts/*.rpm,artifacts/mybatop-${{ env.APP_VERSION }}*.pkg.tar.zst,src/mybatop-${{ env.APP_VERSION }}.tar.gz,src/mybatop-${{ env.APP_VERSION }}.zip"
           body: |
             Testing build for .rpm and .deb packages
           tag: ${{ env.APP_VERSION }}

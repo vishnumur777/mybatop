@@ -3,11 +3,11 @@
 read -r prev_status < /sys/class/power_supply/BAT0/status
 
 extract_state() {
-  cat /proc/acpi/button/lid/LID0/state | tr -s ' ' ',' | cut -d ',' -f 2
+  tr -s ' ' ',' < /proc/acpi/button/lid/LID0/state | cut -d ',' -f 2
 }
 
 insert_status() {
-    if [ "$state_read" != "Not charging" ] && [ "$state_read" != "Not-charging" ] && [ "$state_read" != "Unknown" ] && [ "$battery_state" == "closed" ]
+    if [ "$state_read" != "Not charging" ] && [ "$state_read" != "Not-charging" ] && [ "$state_read" != "Unknown" ] && [ "$battery_status" == "closed" ]
     then
 	/opt/mybatop/scripts/inserts/insert_active.sh
     fi
