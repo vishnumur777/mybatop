@@ -12,11 +12,22 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: list directories and files
+        run: |
+          ls build/Arch/
+
+      - name: Generate .SRCINFO
+        run: |
+          makepkg --printsrcinfo > build/Arch/.SRCINFO
+
       - name: Publish to AUR package
         uses: KSXGitHub/github-actions-deploy-aur@v4.1.1
         with:
           pkgname: mybatop
           pkgbuild: ./build/Arch/PKGBUILD
+          assets: |
+            build/Arch/mybatop.install
+            build/Arch/.SRCINFO
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           commit_message: mybatop v-1.0.0
