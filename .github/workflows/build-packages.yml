@@ -5,7 +5,7 @@ jobs:
   debian-package:
     runs-on: ubuntu-latest
     env:
-      APP_VERSION: "1.0.0"
+      APP_VERSION: "1.0.1"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -47,7 +47,7 @@ jobs:
   rpm-package:
     runs-on: ubuntu-latest
     env:
-      APP_VERSION: "1.0.0"
+      APP_VERSION: "1.0.1"
     container: fedora:latest
     steps:
       - name: Checkout code
@@ -85,7 +85,7 @@ jobs:
   arch-package:
     runs-on: ubuntu-latest
     env:
-      APP_VERSION: "1.0.0"
+      APP_VERSION: "1.0.1"
     container: archlinux:latest
 
     steps:
@@ -138,7 +138,7 @@ jobs:
     needs: [debian-package, rpm-package, arch-package]
     runs-on: ubuntu-latest
     env:
-      APP_VERSION: "1.0.0"
+      APP_VERSION: "1.0.1"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -162,6 +162,10 @@ jobs:
         with:
           artifacts: "artifacts/*.deb,artifacts/*.rpm,artifacts/mybatop-${{ env.APP_VERSION }}*.pkg.tar.zst,src/mybatop-${{ env.APP_VERSION }}.tar.gz,src/mybatop-${{ env.APP_VERSION }}.zip"
           body: |
-            Testing build for .rpm and .deb packages
+            ## MyBatop Release Notes
+            Version: ${{ env.APP_VERSION }}
+            
+            - added and formatted `--help` command output
+            - added '-h' alias for `--help`
           tag: ${{ env.APP_VERSION }}
           token: ${{ secrets.TOKENS }}
