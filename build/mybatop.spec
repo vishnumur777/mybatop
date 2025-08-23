@@ -37,7 +37,8 @@ ln -s /opt/mybatop/scripts/runscript/mybatop %{buildroot}/usr/bin/mybatop
 
 
 %post
-chmod -R +rwx /opt/mybatop
+chmod -R +rx /opt/mybatop
+chown -R $USER:$USER /opt/mybatop
 systemctl daemon-reload
 systemctl enable --now mybatop-shutdown.service
 systemctl enable --now mybatop-startup.service

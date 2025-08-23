@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cd /opt/mybatop/ || exit
-./opt/mybatop/scripts/contents/content_active.sh
-cat ./*.n > /opt/mybatop/data/tempo.n
-cp /opt/mybatop/data/tempo.n /opt/mybatop/data/temporaryfiler.n
-rm -rf /opt/mybatop/data/maindata.n
+cd /opt/mybatop/data/ || exit
+bash /opt/mybatop/scripts/contents/content_active.sh
+cat ./*.n > tempo.n
+cp tempo.n temporaryfiler.n
+rm -rf maindata.n tempo.n

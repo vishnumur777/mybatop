@@ -20,16 +20,16 @@ while true; do
   current_status=$(insert_status)
   if [[ "$current_state" != "$prev_state" ]]; then
     if [[ "$current_state" == "closed" ]]; then
-      /opt/mybatop/insert_lowpower.sh
+      /opt/mybatop/scripts/inserts/insert_lowpower.sh
     elif [[ "$current_state" == "open" ]]; then
-      /opt/mybatop/insert.sh
+      /opt/mybatop/scripts/inserts/insert_active.sh
     fi
     prev_state="$current_state"
   fi
 
   if [ "$current_status" != "$prev_status" ]; then
     if [ "$current_state" = "closed" ]; then
-      /opt/mybatop/insert_lowpower.sh
+      /opt/mybatop/scripts/inserts/insert_lowpower.sh
     fi
     prev_status="$current_status"
   fi

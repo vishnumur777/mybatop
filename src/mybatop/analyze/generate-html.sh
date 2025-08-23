@@ -1,17 +1,17 @@
 #!/bin/bash
 
 function addDiv() {
-  echo "<div><h3 class=""title>$2</h3>""</div><p>$3</p>" >ad.txt
+  echo "<div><h3 class=\"title\">$2</h3>""</div><p>$3</p>" >ad.txt
   cat ad.txt "$1" >res
   rm -rf "$1" ad.txt
   mv res "$1"
 }
 
-bash /opt/mybatop/generate-csv.sh
-
-cp /opt/mybatop/data/final.csv /opt/mybatop/analyze/pythonscripts/data.csv
+bash /opt/mybatop/generate_data/generate_csv.sh
 
 cd /opt/mybatop/analyze || exit
+
+cp /opt/mybatop/data/final.csv pythonscripts/data.csv
 
 bash fetchuserdetails.sh
 

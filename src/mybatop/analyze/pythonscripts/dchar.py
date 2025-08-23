@@ -65,7 +65,7 @@ if __name__ == "__main__":
     elif args.xml:
         df = dcharecter()
         df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
-        df.to_xml("Average_capacity.xml")
+        df.to_xml(".temp_xml_files/Average_capacity.xml")
     elif args.csv:
         df = dcharecter()
         df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
@@ -76,5 +76,5 @@ if __name__ == "__main__":
         records = df.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 
-        with open("average_capacity.json", "w") as f:
+        with open(".temp_json_files/average_capacity.json", "w") as f:
             f.write(pretty_json)

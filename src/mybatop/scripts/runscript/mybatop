@@ -30,12 +30,19 @@ elif [[ $1 == "report" ]]; then
 
   elif [[ $2 == "-C" || $2 == "--class" ]]; then
 
+    bash /opt/mybatop/generate_data/generate_csv.sh
+    cp /opt/mybatop/data/final.csv /opt/mybatop/analyze/pythonscripts/data.csv
+    user_dir=$(pwd)
+    cd /opt/mybatop/analyze/pythonscripts/ || exit
+
     if [[ $3 == "recent-usage" ]]; then
 
-      PROGRAM="/opt/mybatop/analyze/pythonscripts/analyzers.py"
+      PROGRAM="analyzers.py"
 
       if [[ $4 == "--html" ]]; then
         python3 $PROGRAM --html
+        cp a.html $user_dir/recent-usage.html
+        rm -rf a.html
       elif [[ $4 == "--csv" ]]; then
         python3 $PROGRAM --csv
       elif [[ $4 == "--json" ]]; then
@@ -147,19 +154,20 @@ elif [[ $1 == "report" ]]; then
   else
     echo "$2 is a invalid option. Check 'mybatop --h' for help."
   fi
+  rm -rf /opt/mybatop/analyze/pythonscripts/data.csv
 
 elif [[ $1 == "data" ]]; then
 
   if [[ $2 == "--xml" ]]; then
-    python3 /opt/mybatop/src/mybatop/generate_data/generate_xml.py
+    python3 /opt/mybatop/generate_data/generate_xml.py
 
   elif [[ $2 == "--csv" ]]; then
-    python3 /opt/mybatop/src/mybatop/scripts/generate_csv.py
+    python3 /opt/mybatop/generate_data/generate_csv.py
     cp /opt/mybatop/final.csv "$(pwd)/data.csv"
     echo "The data.csv is generated and it is saved to $(pwd)"
 
   elif [[ $2 == "--json" ]]; then
-    python3 /opt/mybatop/src/mybatop/generate_data/generate_json.py
+    python3 /opt/mybatop/generate_data/generate_json.py
   fi
 elif [[ $1 == "--version" || $1 == "-version" || $1 == "-v" ]]; then
   echo -e "mybatop\n version:1.0.0"

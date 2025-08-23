@@ -8,7 +8,7 @@ datevalue=$(date "+%D %T")
 
 mapfile -t content < y.txt
 
-u=("$datevalue" "Low Power" "${content[@]}")
+u=("$datevalue" "Low-Power" "${content[@]}")
 
 echo "${u[@]}" | tr -s '[:blank:]' ',' > /opt/mybatop/data/maindata.n
 

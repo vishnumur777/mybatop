@@ -2,7 +2,7 @@ import pandas as pd
 import json
 import os
 
-df = pd.read_csv('/opt/mybatop/final.csv')
+df = pd.read_csv('/opt/mybatop/data/final.csv')
 
 records = df.to_dict(orient='records')
 pretty_json = json.dumps(records, indent=4)

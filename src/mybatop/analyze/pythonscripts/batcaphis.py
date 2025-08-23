@@ -87,11 +87,11 @@ if __name__ == "__main__":
             "CHARGE_FULL_DESIGN",
         ]
 
-        caphistory.to_xml("batcaphis.xml", index=False)
+        caphistory.to_xml(".temp_xml_files/batcaphis.xml", index=False)
 
     elif args.json:
         records = caphistory.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 
-        with open("batcaphis.json", "w") as f:
+        with open(".temp_json_files/batcaphis.json", "w") as f:
             f.write(pretty_json)

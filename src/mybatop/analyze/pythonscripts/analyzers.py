@@ -109,11 +109,11 @@ if __name__ == "__main__":
         activity.to_csv("recent_usage.csv", index=False)
 
     elif args.xml:
-        activity.to_xml("recent_usage.xml", index=False)
+        activity.to_xml(".temp_xml_files/recent_usage.xml", index=False)
 
     elif args.json:
         records = activity.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 
-        with open("recent_usage.json", "w") as f:
+        with open(".temp_json_files/recent_usage.json", "w") as f:
             f.write(pretty_json)
