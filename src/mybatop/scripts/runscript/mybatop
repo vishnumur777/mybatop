@@ -41,22 +41,22 @@ elif [[ $1 == "report" ]]; then
 
       if [[ $4 == "--html" ]]; then
         python3 $PROGRAM --html
-        cp a.html $user_dir/recent-usage.html
+        cp a.html "$user_dir"/recent-usage.html
         rm -rf a.html
 
       elif [[ $4 == "--json" ]]; then
         python3 $PROGRAM --json
-        cp .temp_json_files/recent_usage.json $user_dir/recent-usage.json
+        cp .temp_json_files/recent_usage.json "$user_dir"/recent-usage.json
         rm -rf .temp_json_files/recent_usage.json
 
       elif [[ $4 == "--csv" ]]; then
         python3 $PROGRAM --csv
-        cp recent_usage.csv $user_dir/recent-usage.csv
+        cp recent_usage.csv "$user_dir"/recent-usage.csv
         rm -rf recent_usage.csv
 
       elif [[ $4 == "--xml" ]]; then
         python3 $PROGRAM --xml
-        cp .temp_xml_files/recent_usage.xml $user_dir/recent-usage.xml
+        cp .temp_xml_files/recent_usage.xml "$user_dir"/recent-usage.xml
         rm -rf .temp_xml_files/recent_usage.xml
 
       else
@@ -69,22 +69,22 @@ elif [[ $1 == "report" ]]; then
 
       if [[ $4 == "--html" ]]; then
         python3 $PROGRAM --html
-        cp b.html $user_dir/tech-spec.html
+        cp b.html "$user_dir"/tech-spec.html
         rm -rf b.html
 
       elif [[ $4 == "--json" ]]; then
         python3 $PROGRAM --json
-        cp .temp_json_files/tech_spec.json $user_dir/tech-spec.json
+        cp .temp_json_files/tech_spec.json "$user_dir"/tech-spec.json
         rm -rf .temp_json_files/tech_spec.json
 
       elif [[ $4 == "--csv" ]]; then
         python3 $PROGRAM --csv
-        cp tech_spec.csv $user_dir/tech-spec.csv
+        cp tech_spec.csv "$user_dir"/tech-spec.csv
         rm -rf tech_spec.csv
 
       elif [[ $4 == "--xml" ]]; then
         python3 $PROGRAM --xml
-        cp tech_spec.xml $user_dir/tech-spec.xml
+        cp tech_spec.xml "$user_dir"/tech-spec.xml
         rm -rf tech_spec.xml
 
       else
@@ -97,19 +97,19 @@ elif [[ $1 == "report" ]]; then
 
       if [[ $4 == "--html" ]]; then
         python3 $PROGRAM --html
-        cp Average_capacity.html $user_dir/average-capacity.html
+        cp Average_capacity.html "$user_dir"/average-capacity.html
         rm -rf Average_capacity.html
       elif [[ $4 == "--csv" ]]; then
         python3 $PROGRAM --csv
-        cp average-capacity.csv $user_dir/average-capacity.csv
+        cp average-capacity.csv "$user_dir"/average-capacity.csv
         rm -rf average-capacity.csv
       elif [[ $4 == "--json" ]]; then
         python3 $PROGRAM --json
-        cp .temp_json_files/average-capacity.json $user_dir/average-capacity.json
+        cp .temp_json_files/average-capacity.json "$user_dir"/average-capacity.json
         rm -rf .temp_json_files/average-capacity.json
       elif [[ $4 == "--xml" ]]; then
         python3 $PROGRAM --xml
-        cp average-capacity.xml $user_dir/average-capacity.xml
+        cp average-capacity.xml "$user_dir"/average-capacity.xml
         rm -rf average-capacity.xml
       else
         echo "$4 is a invalid option. Check 'mybatop --h' for help."
@@ -224,8 +224,8 @@ elif [[ $1 == "data" ]]; then
     python3 /opt/mybatop/generate_data/generate_xml.py
 
   elif [[ $2 == "--csv" ]]; then
-    python3 /opt/mybatop/generate_data/generate_csv.py
-    cp /opt/mybatop/final.csv "$(pwd)/data.csv"
+    python3 /opt/mybatop/generate_data/generate_csv.sh
+    cp /opt/mybatop/data/final.csv "$(pwd)/data.csv"
     echo "The data.csv is generated and it is saved to $(pwd)"
 
   elif [[ $2 == "--json" ]]; then
