@@ -33,7 +33,7 @@ class Test_Battery_Health(unittest.TestCase):
 
     def test_battery_health_json(self):
 
-        expected_output = "tests/test_files/outputs/json/battery_health.json"
+        expected_output = "tests/test_files/outputs/json/.temp_json_files/battery_health.json"
 
         result=subprocess.run(["python3", self.src_file, "--json"], capture_output=True, text=True)
 
@@ -43,18 +43,18 @@ class Test_Battery_Health(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}",
         )
 
-        self.assertTrue(os.path.exists("battery_health.json"), "Output file battery_health.json was not created")
+        self.assertTrue(os.path.exists(".temp_json_files/battery_health.json"), "Output file battery_health.json was not created")
 
-        if not filecmp.cmp("battery_health.json", expected_output):
-            subprocess.run(["diff", expected_output, "battery_health.json"], check=True)
+        if not filecmp.cmp(".temp_json_files/battery_health.json", expected_output):
+            subprocess.run(["diff", expected_output, ".temp_json_files/battery_health.json"], check=True)
 
         self.assertTrue(
-            filecmp.cmp("battery_health.json", expected_output), "Files are not identical"
+            filecmp.cmp(".temp_json_files/battery_health.json", expected_output), "Files are not identical"
         )
 
     def test_battery_health_xml(self):
 
-        expected_output = "tests/test_files/outputs/xml/battery_health.xml"
+        expected_output = "tests/test_files/outputs/xml/.temp_xml_files/battery_health.xml"
 
         result=subprocess.run(["python3", self.src_file, "--xml"], capture_output=True, text=True)
 
@@ -64,13 +64,13 @@ class Test_Battery_Health(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}",
         )
 
-        self.assertTrue(os.path.exists("battery_health.xml"), "Output file battery_health.xml was not created")
+        self.assertTrue(os.path.exists(".temp_xml_files/battery_health.xml"), "Output file battery_health.xml was not created")
 
-        if not filecmp.cmp("battery_health.xml", expected_output):
-            subprocess.run(["diff", expected_output, "battery_health.xml"], check=True)
+        if not filecmp.cmp(".temp_xml_files/battery_health.xml", expected_output):
+            subprocess.run(["diff", expected_output, ".temp_xml_files/battery_health.xml"], check=True)
 
         self.assertTrue(
-            filecmp.cmp("battery_health.xml", expected_output), "Files are not identical"
+            filecmp.cmp(".temp_xml_files/battery_health.xml", expected_output), "Files are not identical"
         )
 
     def test_battery_health_csv(self):
@@ -99,9 +99,9 @@ class Test_Battery_Health(unittest.TestCase):
             os.remove("data.csv")
         if os.path.exists("battery_health.html"):
             os.remove("battery_health.html")
-        if os.path.exists("battery_health.json"):
-            os.remove("battery_health.json")
-        if os.path.exists("battery_health.xml"):
-            os.remove("battery_health.xml")
+        if os.path.exists(".temp_json_files/battery_health.json"):
+            os.remove(".temp_json_files/battery_health.json")
+        if os.path.exists(".temp_xml_files/battery_health.xml"):
+            os.remove(".temp_xml_files/battery_health.xml")
         if os.path.exists("battery_health.csv"):
             os.remove("battery_health.csv")

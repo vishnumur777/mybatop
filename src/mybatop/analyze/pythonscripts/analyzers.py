@@ -19,6 +19,7 @@ def analyse():
         columns=[
             "TECHNOLOGY",
             "NAME",
+            "TYPE",
             "DEVTYPE",
             "SOURCE",
             "CYCLE_COUNT",
