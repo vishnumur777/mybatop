@@ -58,7 +58,7 @@ class TestAnalyzer(unittest.TestCase):
         )
 
     def test_analyzer_xml(self):
-        expected_output = "tests/test_files/outputs/xml/.temp_xml_files/recent_usage.xml"
+        expected_output = "tests/test_files/outputs/xml/recent_usage.xml"
 
         result = subprocess.run(
             ["python3", self.src_file, "--xml"], capture_output=True, text=True
