@@ -2,7 +2,7 @@
 
 mkdir -p /opt/mybatop/data
 
-cp src/mybatop/* /opt/mybatop/
+cp -r src/mybatop/* /opt/mybatop/
 
 chmod -R 777 /opt/mybatop
 
