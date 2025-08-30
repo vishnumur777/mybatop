@@ -1,8 +1,8 @@
 #!/bin/bash
 
-cp src/mybatop/* /opt/mybatop/
+mkdir -p /opt/mybatop/data
 
-mkdir /opt/mybatop/data
+cp src/mybatop/* /opt/mybatop/
 
 chmod -R 777 /opt/mybatop
 
