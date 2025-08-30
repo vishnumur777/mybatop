@@ -45,6 +45,7 @@ jobs:
       - name: Setup test bed
         run: |
           cd tests/test_files/
+          mkdir .temp_xml_files .temp_json_files
           cp outputs/${{matrix.low_power}}/*.csv .
           cd outputs/
           cp -r ${{matrix.low_power}}/html html
