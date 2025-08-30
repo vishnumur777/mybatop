@@ -10,7 +10,7 @@ python3 tech_spec.py --html
 
 python3 batcaphis.py --html
 
-python3 battery_health.py --html
+python3 battery_health.py --graph
 
 python3 battery_activity.py --html
 

@@ -19,13 +19,13 @@ def battery_health_df():
 
 
 def plot_battery_health(df1):
-    fig = px.line(df1, x="DATE", y="BATTERY_HEALTH", title="Battery Health Over Time")
+    fig = px.line(df1, x="DATE", y="BATTERY_HEALTH", markers=True, height=450)
 
     fig.update_layout(
         paper_bgcolor="rgba(0,0,0,0)", font_color="white", font_family="Times New Roman"
     )
 
-    fig.write_html("f.html")
+    fig.write_html("e.html")
 
 
 if __name__ == "__main__":
