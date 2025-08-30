@@ -10,6 +10,8 @@ class Test_Battery_Health(unittest.TestCase):
 
         subprocess.run(["cp","tests/test_files/data.csv", "."])
 
+        os.makedirs(".temp_xml_files", exist_ok=True)
+        os.makedirs(".temp_json_files", exist_ok=True)
     def test_battery_health_html(self):
 
         expected_output = "tests/test_files/outputs/html/battery_health.html"

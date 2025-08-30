@@ -10,6 +10,9 @@ class TestTechSpec(unittest.TestCase):
     def setUp(self):
         subprocess.run(["cp", "tests/test_files/data.csv", "."], check=True)
 
+        os.makedirs(".temp_xml_files", exist_ok=True)
+        os.makedirs(".temp_json_files", exist_ok=True)
+
     def test_tech_spec_html(self):
         expected_output = "tests/test_files/outputs/html/b.html"
 

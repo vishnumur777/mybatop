@@ -11,6 +11,9 @@ class TestBatteryActivity(unittest.TestCase):
 
         subprocess.run(["cp", "tests/test_files/batusageact.csv","."])
 
+        os.makedirs(".temp_xml_files", exist_ok=True)
+        os.makedirs(".temp_json_files", exist_ok=True)
+
     def test_battery_activity_html(self):
 
         expected_output = "tests/test_files/outputs/html/g.html"
