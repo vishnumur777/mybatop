@@ -33,7 +33,7 @@ class TestDchar(unittest.TestCase):
         )
 
     def test_dchar_json(self):
-        expected_output = "tests/test_files/outputs/json/.temp_json_files/average_capacity.json"
+        expected_output = "tests/test_files/outputs/json/average_capacity.json"
 
         result=subprocess.run(["python3", self.src_file, "--json"],capture_output=True, text=True)
 
@@ -53,7 +53,7 @@ class TestDchar(unittest.TestCase):
         )
     
     def test_dchar_xml(self):
-        expected_output = "tests/test_files/outputs/xml/.temp_xml_files/Average_capacity.xml"
+        expected_output = "tests/test_files/outputs/xml/Average_capacity.xml"
 
         result=subprocess.run(["python3", self.src_file, "--xml"],capture_output=True, text=True)
 

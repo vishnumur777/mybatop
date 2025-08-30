@@ -35,7 +35,7 @@ class TestBatteryActivity(unittest.TestCase):
 
     def test_battery_activity_json(self):
 
-        expected_output = "tests/test_files/outputs/json/.temp_json_files/battery_activity.json"
+        expected_output = "tests/test_files/outputs/json/battery_activity.json"
 
         result=subprocess.run(["python3",self.src_file, "--json"],capture_output=True, text=True)
 
@@ -54,7 +54,7 @@ class TestBatteryActivity(unittest.TestCase):
 
     def test_battery_activity_xml(self):
 
-        expected_output = "tests/test_files/outputs/xml/.temp_xml_files/battery_activity.xml"
+        expected_output = "tests/test_files/outputs/xml/battery_activity.xml"
 
         result=subprocess.run(["python3",self.src_file, "--xml"],capture_output=True, text=True)
 

@@ -36,7 +36,7 @@ class TestAnalyzer(unittest.TestCase):
         )
 
     def test_analyzer_json(self):
-        expected_output = "tests/test_files/outputs/json/.temp_json_files/recent_usage.json"
+        expected_output = "tests/test_files/outputs/json/recent_usage.json"
 
         result = subprocess.run(
             ["python3", self.src_file, "--json"], capture_output=True, text=True

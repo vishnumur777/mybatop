@@ -36,7 +36,7 @@ class TestTechSpec(unittest.TestCase):
             subprocess.run(["diff", expected_output, "b.html"], check=True)
 
     def test_tech_spec_json(self):
-        expected_output = "tests/test_files/outputs/json/.temp_json_files/tech_spec.json"
+        expected_output = "tests/test_files/outputs/json/tech_spec.json"
 
         result = subprocess.run(
             ["python3", self.src_file, "--json"], capture_output=True, text=True
@@ -58,7 +58,7 @@ class TestTechSpec(unittest.TestCase):
         )
 
     def test_tech_spec_xml(self):
-        expected_output = "tests/test_files/outputs/xml/.temp_xml_files/tech_spec.xml"
+        expected_output = "tests/test_files/outputs/xml/tech_spec.xml"
 
         result = subprocess.run(
             ["python3", self.src_file, "--xml"], capture_output=True, text=True

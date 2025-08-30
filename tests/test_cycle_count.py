@@ -35,7 +35,7 @@ class TestCycleCount(unittest.TestCase):
 
     def test_cycle_count_json(self):
         
-        expected_output = "tests/test_files/outputs/json/.temp_json_files/cycle_counts.json"
+        expected_output = "tests/test_files/outputs/json/cycle_counts.json"
 
         result=subprocess.run(["python3", self.src_file, "--json"], capture_output=True, text=True)
 
@@ -56,7 +56,7 @@ class TestCycleCount(unittest.TestCase):
 
     def test_cycle_count_xml(self):
         
-        expected_output = "tests/test_files/outputs/xml/.temp_xml_files/cycle_count.xml"
+        expected_output = "tests/test_files/outputs/xml/cycle_count.xml"
 
         result=subprocess.run(["python3", self.src_file, "--xml"], capture_output=True, text=True)
 

@@ -36,7 +36,7 @@ class TestBatcaphis(unittest.TestCase):
 
     def test_batcaphis_json(self):
 
-        expected_output = "tests/test_files/outputs/json/.temp_json_files/batcaphis.json"
+        expected_output = "tests/test_files/outputs/json/batcaphis.json"
 
         result=subprocess.run(["python3", self.src_file , "--json"], capture_output=True, text=True)
 
@@ -57,7 +57,7 @@ class TestBatcaphis(unittest.TestCase):
 
     def test_batcaphis_xml(self):
 
-        expected_output = "tests/test_files/outputs/xml/.temp_xml_files/batcaphis.xml"
+        expected_output = "tests/test_files/outputs/xml/batcaphis.xml"
 
         result=subprocess.run(["python3", self.src_file , "--xml"], capture_output=True, text=True)
 
