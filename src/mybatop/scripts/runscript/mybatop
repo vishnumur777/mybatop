@@ -145,7 +145,7 @@ elif [[ $1 == "report" ]]; then
 
       if [[ $4 == "--html" ]]; then
         python3 $PROGRAM --html
-        cp cycle_count.html "$user_dir"/cycle_count.html
+        cp cycle_count.html "$user_dir"/cycle-count.html
         rm -rf cycle_count.html
       elif [[ $4 == "--csv" ]]; then
         python3 $PROGRAM --csv
