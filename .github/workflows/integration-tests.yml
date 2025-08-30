@@ -1,3 +1,4 @@
+name: "Integration Testing"
 on:
   push:
     branches:
@@ -44,6 +45,8 @@ jobs:
           cat tests/test_files/outputs/low-power/data.csv | tail -n +2 > /opt/mybatop/temporaryfiler.n
           
       - name: start integration tests
+        run: |
+          echo "Starting integration tests"
 
       - name: mybatop -h
         run: |
@@ -71,6 +74,10 @@ jobs:
         run: |
           mybatop report --xml
           file battery-report.xml
+
+      - name: mybatop report with classes
+        run: |
+          echo "Testing report with classes"
 
       - name: mybatop report -C recent-usage --html
         run: |
@@ -213,6 +220,8 @@ jobs:
           file .temp_xml_files/battery-usage-activity.xml
 
       - name: Exporting raw data
+        run: |
+          echo "Exporting raw data"
 
       - name: mybatop data --csv
         run: |
