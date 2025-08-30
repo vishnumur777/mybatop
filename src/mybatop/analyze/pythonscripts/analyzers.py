@@ -19,7 +19,6 @@ def analyse():
         columns=[
             "TECHNOLOGY",
             "NAME",
-            "TYPE",
             "DEVTYPE",
             "SOURCE",
             "CYCLE_COUNT",
@@ -34,6 +33,7 @@ def analyse():
             "CHARGE_FULL",
             "CHARGE_NOW",
             "CAPACITY_LEVEL",
+            "TYPE",
         ]
     )
 
