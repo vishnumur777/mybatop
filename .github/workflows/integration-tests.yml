@@ -42,9 +42,6 @@ jobs:
 
       - name: setup test bed
         run: |
-          echo $USER
-          whoami
-          mkdir -p /sys/class/power_supply/BAT0/
           cat tests/test_files/outputs/low-power/data.csv | tail -n +2 > /opt/mybatop/temporaryfiler.n
           if [ "${{ matrix.os }}" = "ubuntu:latest" ]; then
             apt-get update && apt-get install -y dmidecode
@@ -53,6 +50,8 @@ jobs:
           else
             dnf install -y dmidecode
           fi
+          whoami
+          sudo mkdir -p /sys/class/power_supply/BAT0/
           cp tests/integration_testing/uevent /sys/class/power_supply/BAT0/uevent
           
       - name: start integration tests
