@@ -44,11 +44,11 @@ jobs:
         run: |
           cat tests/test_files/outputs/low-power/data.csv | tail -n +2 > /opt/mybatop/temporaryfiler.n
           if [ "${{ matrix.os }}" = "ubuntu:latest" ]; then
-            apt-get update && apt-get install -y dmidecode
+            apt-get update && apt-get install -y dmidecode sudo
           elif [ "${{ matrix.os }}" = "archlinux:latest" ]; then
-            pacman -Sy --noconfirm dmidecode
+            pacman -Sy --noconfirm dmidecode sudo
           else
-            dnf install -y dmidecode
+            dnf install -y dmidecode sudo
           fi
           whoami
           sudo mkdir -p /sys/class/power_supply/BAT0/
