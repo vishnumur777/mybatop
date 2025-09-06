@@ -43,9 +43,9 @@ jobs:
       - name: setup test bed
         run: |
           cat tests/test_files/outputs/low-power/data.csv | tail -n +2 > /opt/mybatop/temporaryfiler.n
-          if [ "${{ matrix.os }}" == "ubuntu:latest" ]; then
+          if [ "${{ matrix.os }}" = "ubuntu:latest" ]; then
             apt-get update && sudo apt-get install -y dmidecode
-          elif [ "${{ matrix.os }}" == "archlinux:latest" ]; then
+          elif [ "${{ matrix.os }}" = "archlinux:latest" ]; then
             pacman -Sy --noconfirm dmidecode
           else
             dnf install -y dmidecode
