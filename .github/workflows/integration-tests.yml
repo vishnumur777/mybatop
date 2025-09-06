@@ -51,8 +51,8 @@ jobs:
             dnf install -y dmidecode sudo
           fi
           whoami
-          sudo mkdir -p /sys/class/power_supply/BAT0/
           sudo mount -o remount,rw /sys
+          sudo mkdir -p /sys/class/power_supply/BAT0/
           cp tests/integration_testing/uevent /sys/class/power_supply/BAT0/uevent
           
       - name: start integration tests
