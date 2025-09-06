@@ -52,7 +52,7 @@ jobs:
           fi
           whoami
           sudo mkdir -p /tmp/mybatop_power_supply/BAT0
-          sudo cp tests/integration_testing/uevent /tmp/mybatop_power_supply/BAT0/uevent
+          sudo cp tests/integration_testing/inputs/uevent /tmp/mybatop_power_supply/BAT0/uevent
           sudo ln -s /tmp/mybatop_power_supply /sys/class/power_supply
 
       - name: start integration tests
