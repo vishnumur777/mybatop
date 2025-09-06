@@ -43,6 +43,15 @@ jobs:
       - name: setup test bed
         run: |
           cat tests/test_files/outputs/low-power/data.csv | tail -n +2 > /opt/mybatop/temporaryfiler.n
+          if [[ "${{ matrix.os }}" == "ubuntu:latest" ]]; then
+            sudo apt-get update && sudo apt-get install -y dmidecode
+          elif [[ "${{ matrix.os }}" == "archlinux:latest" ]]; then
+            sudo pacman -Sy --noconfirm dmidecode
+          else
+            sudo dnf install -y dmidecode
+          fi
+          mkdir -p /sys/class/power_supply/BAT0/
+          cp tests/integration_testing/uevent /sys/class/power_supply/BAT0/uevent
           
       - name: start integration tests
         run: |
