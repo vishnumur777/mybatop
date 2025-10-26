@@ -230,4 +230,6 @@ mybatop
 - `build` - folder for building packages for debian, fedora and archlinux.
 - `debug` - list of .ipynb files before adding to production.
 
-### Good luck! for contributing to mybatop.
+> ### Note: If you want to contribute to [documentation](https://mybatop.web.app/docs/). You may visit [mybatop-wiki](https://github.com/vishnumur777/mybatop-wiki) repository.
+
+### **Good luck! for contributing to mybatop.**
