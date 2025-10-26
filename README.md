@@ -10,8 +10,8 @@
     <img src="https://img.shields.io/github/license/vishnumur777/mybatop" alt="License">
     <img src="https://img.shields.io/github/forks/vishnumur777/mybatop" alt="GitHub forks">
     <img src="https://img.shields.io/github/stars/vishnumur777/mybatop" alt="GitHub Repo stars">
-    <img src="https://img.shields.io/github/issues/vishnumur777/mybatop" alt="GitHub Issues or Pull Requests">
-    <img src="https://img.shields.io/github/issues-pr/vishnumur777/mybatop" alt="GitHub Issues or Pull Requests">
+    <img src="https://img.shields.io/github/issues/vishnumur777/mybatop" alt="GitHub Issues">
+    <img src="https://img.shields.io/github/issues-pr/vishnumur777/mybatop" alt="GitHub Pull Requests">
 </p>
 
 <p align="center">
@@ -162,7 +162,7 @@ mybatop report -C recent-usage --html
 
 > **Note: same for getting reports in other classes in other formats (JSON, XML, CSV). Use `--json`, `--xml`, `--csv`.**
 
-
+Refer all other commands [here](https://mybatop.web.app/docs/gen-reports#generate-report-with-classes)
 ## Contributions
 
 - All contributors are welcome to contribute.
