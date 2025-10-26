@@ -4,5 +4,3 @@ sudo systemctl disable --now mybatop-lowpower.service
 sudo systemctl disable --now mybatop-status.service
 sudo systemctl disable --now mybatop-start.service
 sudo systemctl disable --now mybatop-stop.service
-
-

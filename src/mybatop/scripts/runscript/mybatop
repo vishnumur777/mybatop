@@ -30,114 +30,183 @@ elif [[ $1 == "report" ]]; then
 
   elif [[ $2 == "-C" || $2 == "--class" ]]; then
 
+    bash /opt/mybatop/generate_data/generate_csv.sh
+    cp /opt/mybatop/data/final.csv /opt/mybatop/analyze/pythonscripts/data.csv
+    user_dir=$(pwd)
+    cd /opt/mybatop/analyze/pythonscripts/ || exit
+
     if [[ $3 == "recent-usage" ]]; then
 
-      PROGRAM="/opt/mybatop/analyze/pythonscripts/analyzers.py"
+      PROGRAM="analyzers.py"
 
       if [[ $4 == "--html" ]]; then
         python3 $PROGRAM --html
-      elif [[ $4 == "--csv" ]]; then
-        python3 $PROGRAM --csv
+        cp a.html "$user_dir"/recent-usage.html
+        rm -rf a.html
+
       elif [[ $4 == "--json" ]]; then
         python3 $PROGRAM --json
+        cp .temp_json_files/recent_usage.json "$user_dir"/recent-usage.json
+        rm -rf .temp_json_files/recent_usage.json
+
+      elif [[ $4 == "--csv" ]]; then
+        python3 $PROGRAM --csv
+        cp recent_usage.csv "$user_dir"/recent-usage.csv
+        rm -rf recent_usage.csv
+
       elif [[ $4 == "--xml" ]]; then
         python3 $PROGRAM --xml
+        cp .temp_xml_files/recent_usage.xml "$user_dir"/recent-usage.xml
+        rm -rf .temp_xml_files/recent_usage.xml
+
       else
         echo "$4 is a invalid option. Check 'mybatop --h' for help."
       fi
 
     elif [[ $3 == "tech-spec" || $3 == "tech-specification" ]]; then
 
-      PROGRAM="/opt/mybatop/analyze/pythonscripts/tech_spec.py"
+      PROGRAM="tech_spec.py"
 
       if [[ $4 == "--html" ]]; then
         python3 $PROGRAM --html
-      elif [[ $4 == "--csv" ]]; then
-        python3 $PROGRAM --csv
+        cp b.html "$user_dir"/tech-spec.html
+        rm -rf b.html
+
       elif [[ $4 == "--json" ]]; then
         python3 $PROGRAM --json
+        cp .temp_json_files/tech_spec.json "$user_dir"/tech-spec.json
+        rm -rf .temp_json_files/tech_spec.json
+
+      elif [[ $4 == "--csv" ]]; then
+        python3 $PROGRAM --csv
+        cp tech_spec.csv "$user_dir"/tech-spec.csv
+        rm -rf tech_spec.csv
+
       elif [[ $4 == "--xml" ]]; then
         python3 $PROGRAM --xml
+        cp tech_spec.xml "$user_dir"/tech-spec.xml
+        rm -rf tech_spec.xml
+
       else
         echo "$4 is a invalid option. Check 'mybatop --h' for help."
       fi
 
     elif [[ $3 == "average-capacity" ]]; then
 
-      PROGRAM="/opt/mybatop/analyze/pythonscripts/dchar.py"
+      PROGRAM="dchar.py"
 
       if [[ $4 == "--html" ]]; then
         python3 $PROGRAM --html
+        cp Average_capacity.html "$user_dir"/average-capacity.html
+        rm -rf Average_capacity.html
       elif [[ $4 == "--csv" ]]; then
         python3 $PROGRAM --csv
+        cp average-capacity.csv "$user_dir"/average-capacity.csv
+        rm -rf average-capacity.csv
       elif [[ $4 == "--json" ]]; then
         python3 $PROGRAM --json
+        cp .temp_json_files/average-capacity.json "$user_dir"/average-capacity.json
+        rm -rf .temp_json_files/average-capacity.json
       elif [[ $4 == "--xml" ]]; then
         python3 $PROGRAM --xml
+        cp average-capacity.xml "$user_dir"/average-capacity.xml
+        rm -rf average-capacity.xml
       else
         echo "$4 is a invalid option. Check 'mybatop --h' for help."
       fi
 
     elif [[ $3 == "battery-capacity-history" || $3 == "batcaphis" ]]; then
 
-      PROGRAM="/opt/mybatop/analyze/pythonscripts/battery_capacity_history.py"
+      PROGRAM="batcaphis.py"
 
       if [[ $4 == "--html" ]]; then
         python3 $PROGRAM --html
+        cp d.html "$user_dir"/battery-capacity-history.html
+        rm -rf d.html
       elif [[ $4 == "--csv" ]]; then
         python3 $PROGRAM --csv
+        cp battery-capacity-history.csv "$user_dir"/battery-capacity-history.csv
+        rm -rf battery-capacity-history.csv
       elif [[ $4 == "--json" ]]; then
         python3 $PROGRAM --json
+        cp .temp_json_files/battery-capacity-history.json "$user_dir"/battery-capacity-history.json
+        rm -rf .temp_json_files/battery-capacity-history.json
       elif [[ $4 == "--xml" ]]; then
         python3 $PROGRAM --xml
+        cp battery-capacity-history.xml "$user_dir"/battery-capacity-history.xml
+        rm -rf battery-capacity-history.xml
       else
         echo "$4 is a invalid option. Check 'mybatop --h' for help."
       fi
 
     elif [[ $3 == "cycle-count" ]]; then
 
-      PROGRAM="/opt/mybatop/analyze/pythonscripts/cycle_counts.py"
+      PROGRAM="cycle_counts.py"
 
       if [[ $4 == "--html" ]]; then
         python3 $PROGRAM --html
+        cp cycle_count.html "$user_dir"/cycle-count.html
+        rm -rf cycle_count.html
       elif [[ $4 == "--csv" ]]; then
         python3 $PROGRAM --csv
+        cp cycle-count.csv "$user_dir"/cycle-count.csv
+        rm -rf cycle-count.csv
       elif [[ $4 == "--json" ]]; then
         python3 $PROGRAM --json
+        cp .temp_json_files/cycle-count.json "$user_dir"/cycle-count.json
+        rm -rf .temp_json_files/cycle-count.json
       elif [[ $4 == "--xml" ]]; then
         python3 $PROGRAM --xml
+        cp cycle-count.xml "$user_dir"/cycle-count.xml
+        rm -rf cycle-count.xml
       else
         echo "$4 is a invalid option. Check 'mybatop --h' for help."
       fi
 
     elif [[ $3 == "battery-health" ]]; then
 
-      PROGRAM="/opt/mybatop/analyze/pythonscripts/battery_health.py"
+      PROGRAM="battery_health.py"
 
       if [[ $4 == "--html" ]]; then
         python3 $PROGRAM --html
+        cp f.html "$user_dir"/battery-health.html
+        rm -rf f.html
       elif [[ $4 == "--csv" ]]; then
         python3 $PROGRAM --csv
+        cp battery-health.csv "$user_dir"/battery-health.csv
+        rm -rf battery-health.csv
       elif [[ $4 == "--json" ]]; then
         python3 $PROGRAM --json
+        cp .temp_json_files/battery-health.json "$user_dir"/battery-health.json
+        rm -rf .temp_json_files/battery-health.json
       elif [[ $4 == "--xml" ]]; then
         python3 $PROGRAM --xml
+        cp battery-health.xml "$user_dir"/battery-health.xml
+        rm -rf battery-health.xml
       else
         echo "$4 is a invalid option. Check 'mybatop --h' for help."
       fi
 
     elif [[ $3 == "battery-usage-activity" || $3 == "batuseact" ]]; then
 
-      PROGRAM="/opt/mybatop/analyze/pythonscripts/battery_activity.py"
+      PROGRAM="battery_activity.py"
 
       if [[ $4 == "--html" ]]; then
         python3 $PROGRAM --html
+        cp g.html "$user_dir"/battery-usage-activity.html
+        rm -rf g.html
       elif [[ $4 == "--csv" ]]; then
         python3 $PROGRAM --csv
+        cp battery-usage-activity.csv "$user_dir"/battery-usage-activity.csv
+        rm -rf battery-usage-activity.csv
       elif [[ $4 == "--json" ]]; then
         python3 $PROGRAM --json
+        cp .temp_json_files/battery-usage-activity.json "$user_dir"/battery-usage-activity.json
+        rm -rf .temp_json_files/battery-usage-activity.json
       elif [[ $4 == "--xml" ]]; then
         python3 $PROGRAM --xml
+        cp battery-usage-activity.xml "$user_dir"/battery-usage-activity.xml
+        rm -rf battery-usage-activity.xml
       else
         echo "$4 is a invalid option. Check 'mybatop --h' for help."
       fi
@@ -147,19 +216,20 @@ elif [[ $1 == "report" ]]; then
   else
     echo "$2 is a invalid option. Check 'mybatop --h' for help."
   fi
+  rm -rf /opt/mybatop/analyze/pythonscripts/data.csv
 
 elif [[ $1 == "data" ]]; then
 
   if [[ $2 == "--xml" ]]; then
-    python3 /opt/mybatop/src/mybatop/generate_data/generate_xml.py
+    python3 /opt/mybatop/generate_data/generate_xml.py
 
   elif [[ $2 == "--csv" ]]; then
-    python3 /opt/mybatop/src/mybatop/scripts/generate_csv.py
-    cp /opt/mybatop/final.csv "$(pwd)/data.csv"
+    python3 /opt/mybatop/generate_data/generate_csv.sh
+    cp /opt/mybatop/data/final.csv "$(pwd)/data.csv"
     echo "The data.csv is generated and it is saved to $(pwd)"
 
   elif [[ $2 == "--json" ]]; then
-    python3 /opt/mybatop/src/mybatop/generate_data/generate_json.py
+    python3 /opt/mybatop/generate_data/generate_json.py
   fi
 elif [[ $1 == "--version" || $1 == "-version" || $1 == "-v" ]]; then
   echo -e "mybatop\n version:1.0.0"

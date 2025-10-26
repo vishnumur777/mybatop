@@ -19,13 +19,13 @@ def battery_health_df():
 
 
 def plot_battery_health(df1):
-    fig = px.line(df1, x="DATE", y="BATTERY_HEALTH", title="Battery Health Over Time")
+    fig = px.line(df1, x="DATE", y="BATTERY_HEALTH", markers=True, height=450)
 
     fig.update_layout(
         paper_bgcolor="rgba(0,0,0,0)", font_color="white", font_family="Times New Roman"
     )
 
-    fig.write_html("f.html")
+    fig.write_html("e.html")
 
 
 if __name__ == "__main__":
@@ -45,17 +45,17 @@ if __name__ == "__main__":
         plot_battery_health(df)
     elif args.html:
         df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
-        df.to_html("battery_health.html", index=False)
+        df.to_html("e.html", index=False)
     elif args.csv:
         df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
         df.to_csv("battery_health.csv", index=False)
     elif args.xml:
         df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
-        df.to_xml("battery_health.xml", index=False)
+        df.to_xml(".temp_xml_files/battery_health.xml", index=False)
     elif args.json:
         df["DATE"] = pd.to_datetime(df["DATE"]).dt.strftime("%d-%m-%Y")
         records = df.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 
-        with open("battery_health.json", "w") as f:
+        with open(".temp_json_files/battery_health.json", "w") as f:
             f.write(pretty_json)

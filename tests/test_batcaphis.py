@@ -10,6 +10,9 @@ class TestBatcaphis(unittest.TestCase):
 
         subprocess.run(["cp", "tests/test_files/data.csv", "."])
 
+        os.makedirs(".temp_xml_files", exist_ok=True)
+        os.makedirs(".temp_json_files", exist_ok=True)
+
     def test_batcaphis_html(self):
 
         expected_output = "tests/test_files/outputs/html/d.html"
@@ -43,13 +46,13 @@ class TestBatcaphis(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}",
         )
 
-        self.assertTrue(os.path.exists("batcaphis.json"), "Output file batcaphis.json was not created")
+        self.assertTrue(os.path.exists(".temp_json_files/batcaphis.json"), "Output file .temp_json_files/batcaphis.json was not created")
 
-        if not filecmp.cmp("batcaphis.json", expected_output):
-            subprocess.run(["diff", expected_output, "batcaphis.json"], check=True)
+        if not filecmp.cmp(".temp_json_files/batcaphis.json", expected_output):
+            subprocess.run(["diff", expected_output, ".temp_json_files/batcaphis.json"], check=True)
 
         self.assertTrue(
-            filecmp.cmp("batcaphis.json", expected_output), "Files are not identical"
+            filecmp.cmp(".temp_json_files/batcaphis.json", expected_output), "Files are not identical"
         )
 
     def test_batcaphis_xml(self):
@@ -64,13 +67,13 @@ class TestBatcaphis(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}",
         )
 
-        self.assertTrue(os.path.exists("batcaphis.xml"), "Output file batcaphis.xml was not created")
+        self.assertTrue(os.path.exists(".temp_xml_files/batcaphis.xml"), "Output file .temp_xml_files/batcaphis.xml was not created")
 
-        if not filecmp.cmp("batcaphis.xml", expected_output):
-            subprocess.run(["diff", expected_output, "batcaphis.xml"], check=True)
+        if not filecmp.cmp(".temp_xml_files/batcaphis.xml", expected_output):
+            subprocess.run(["diff", expected_output, ".temp_xml_files/batcaphis.xml"], check=True)
 
         self.assertTrue(
-            filecmp.cmp("batcaphis.xml", expected_output), "Files are not identical"
+            filecmp.cmp(".temp_xml_files/batcaphis.xml", expected_output), "Files are not identical"
         )
 
     def test_batcaphis_csv(self):
@@ -94,17 +97,14 @@ class TestBatcaphis(unittest.TestCase):
             filecmp.cmp("batcaphis.csv", expected_output), "Files are not identical"
         )
 
-    
-
     def tearDown(self):
         if os.path.exists("data.csv"):
             os.remove("data.csv")
-            os.remove("batusageact.csv")
         if os.path.exists("d.html"):
             os.remove("d.html")
-        if os.path.exists("batcaphis.json"):
-            os.remove("batcaphis.json")
-        if os.path.exists("batcaphis.xml"):
-            os.remove("batcaphis.xml")
+        if os.path.exists(".temp_json_files/batcaphis.json"):
+            os.remove(".temp_json_files/batcaphis.json")
+        if os.path.exists(".temp_xml_files/batcaphis.xml"):
+            os.remove(".temp_xml_files/batcaphis.xml")
         if os.path.exists("batcaphis.csv"):
             os.remove("batcaphis.csv")

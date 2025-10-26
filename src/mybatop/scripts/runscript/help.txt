@@ -15,9 +15,9 @@ Report Options:
   -C, --class TYPE      Generate specific report class:
     recent-usage        Recent battery usage statistics
     tech-spec           Technical specifications report
-	average-capacity    Show historical capacity averages
+	  average-capacity    Show historical capacity averages
     batcaphis           Historical capacity data
-	cycle-count         Battery charge cycle analysis
+	  cycle-count         Battery charge cycle analysis
     battery-health      Comprehensive health assessment
     batuseact           Usage activity timeline
 

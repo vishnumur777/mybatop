@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-df = pd.read_csv("/opt/mybatop/final.csv")
+df = pd.read_csv("/opt/mybatop/data/final.csv")
 
 df.to_xml("data.xml", index=False)
 

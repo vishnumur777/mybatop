@@ -10,6 +10,9 @@ class TestAnalyzer(unittest.TestCase):
     def setUp(self):
         subprocess.run(["cp", "tests/test_files/data.csv", "."], check=True)
 
+        os.makedirs(".temp_xml_files", exist_ok=True)
+        os.makedirs(".temp_json_files", exist_ok=True)
+
     def test_analyzer_html(self):
         expected_output = "tests/test_files/outputs/html/a.html"
 
@@ -45,13 +48,13 @@ class TestAnalyzer(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}",
         )
 
-        self.assertTrue(os.path.exists("recent_usage.json"), "Output file recent_uage.json was not created")
+        self.assertTrue(os.path.exists(".temp_json_files/recent_usage.json"), "Output file recent_uage.json was not created")
 
-        if not filecmp.cmp("recent_usage.json", expected_output):
-            subprocess.run(["diff", "recent_usage.json", expected_output])
+        if not filecmp.cmp(".temp_json_files/recent_usage.json", expected_output):
+            subprocess.run(["diff", ".temp_json_files/recent_usage.json", expected_output])
         
         self.assertTrue(
-            filecmp.cmp("recent_usage.json", expected_output), "Files are not identical"
+            filecmp.cmp(".temp_json_files/recent_usage.json", expected_output), "Files are not identical"
         )
 
     def test_analyzer_xml(self):
@@ -67,13 +70,13 @@ class TestAnalyzer(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}",
         )
 
-        self.assertTrue(os.path.exists("recent_usage.xml"), "Output file recent_usage.xml was not created")
+        self.assertTrue(os.path.exists(".temp_xml_files/recent_usage.xml"), "Output file .temp_xml_files/recent_usage.xml was not created")
 
-        if not filecmp.cmp("recent_usage.xml", expected_output):
-            subprocess.run(["diff", "recent_usage.xml", expected_output])
+        if not filecmp.cmp(".temp_xml_files/recent_usage.xml", expected_output):
+            subprocess.run(["diff", ".temp_xml_files/recent_usage.xml", expected_output])
         
         self.assertTrue(
-            filecmp.cmp("recent_usage.xml", expected_output), "Files are not identical"
+            filecmp.cmp(".temp_xml_files/recent_usage.xml", expected_output), "Files are not identical"
         )
 
     def test_analyzer_csv(self):
@@ -103,9 +106,9 @@ class TestAnalyzer(unittest.TestCase):
             os.remove("data.csv")
         if os.path.exists("a.html"):
             os.remove("a.html")
-        if os.path.exists("recent_usage.json"):
-            os.remove("recent_usage.json")
-        if os.path.exists("recent_usage.xml"):
-            os.remove("recent_usage.xml")
+        if os.path.exists(".temp_json_files/recent_usage.json"):
+            os.remove(".temp_json_files/recent_usage.json")
+        if os.path.exists(".temp_xml_files/recent_usage.xml"):
+            os.remove(".temp_xml_files/recent_usage.xml")
         if os.path.exists("recent_usage.csv"):
             os.remove("recent_usage.csv")

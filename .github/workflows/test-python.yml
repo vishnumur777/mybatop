@@ -1,5 +1,6 @@
 name: Testing *.py files
 on:
+  workflow_dispatch:
   push:
     branches: 
       - dev

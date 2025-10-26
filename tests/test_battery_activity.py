@@ -11,6 +11,9 @@ class TestBatteryActivity(unittest.TestCase):
 
         subprocess.run(["cp", "tests/test_files/batusageact.csv","."])
 
+        os.makedirs(".temp_xml_files", exist_ok=True)
+        os.makedirs(".temp_json_files", exist_ok=True)
+
     def test_battery_activity_html(self):
 
         expected_output = "tests/test_files/outputs/html/g.html"
@@ -42,12 +45,12 @@ class TestBatteryActivity(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}"
         )
 
-        self.assertTrue(os.path.exists("battery_activity.json"),"File battery_activity.json does not exists")
+        self.assertTrue(os.path.exists(".temp_json_files/battery_activity.json"),"File battery_activity.json does not exists")
 
-        if not filecmp.cmp("battery_activity.json",expected_output):
-            subprocess.run(["diff", "battery_activity.json", expected_output])
+        if not filecmp.cmp(".temp_json_files/battery_activity.json",expected_output):
+            subprocess.run(["diff", expected_output, ".temp_json_files/battery_activity.json"], check=True)
 
-        self.assertTrue(filecmp.cmp("battery_activity.json",expected_output),"Files are not identical.")
+        self.assertTrue(filecmp.cmp(".temp_json_files/battery_activity.json",expected_output),"Files are not identical.")
 
     def test_battery_activity_xml(self):
 
@@ -61,12 +64,12 @@ class TestBatteryActivity(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}"
         )
 
-        self.assertTrue(os.path.exists("battery_activity.xml"),"File battery_activity.xml does not exists")
+        self.assertTrue(os.path.exists(".temp_xml_files/battery_activity.xml"),"File battery_activity.xml does not exists")
 
-        if not filecmp.cmp("battery_activity.xml",expected_output):
-            subprocess.run(["diff", "battery_activity.xml", expected_output])
+        if not filecmp.cmp(".temp_xml_files/battery_activity.xml",expected_output):
+            subprocess.run(["diff", expected_output, ".temp_xml_files/battery_activity.xml"], check=True)
 
-        self.assertTrue(filecmp.cmp("battery_activity.xml",expected_output),"Files are not identical.")
+        self.assertTrue(filecmp.cmp(".temp_xml_files/battery_activity.xml",expected_output),"Files are not identical.")
 
     def test_battery_activity_csv(self):
 
@@ -83,24 +86,20 @@ class TestBatteryActivity(unittest.TestCase):
         self.assertTrue(os.path.exists("battery_activity.csv"),"File battery_activity.csv does not exists")
 
         if not filecmp.cmp("battery_activity.csv",expected_output):
-            subprocess.run(["diff", "battery_activity.csv", expected_output])
+            subprocess.run(["diff", expected_output, "battery_activity.csv"], check=True)
 
         self.assertTrue(filecmp.cmp("battery_activity.csv",expected_output),"Files are not identical.")
 
-
-
-
     def tearDown(self):
-
         if os.path.exists("data.csv"):
             os.remove("data.csv")
+        if os.path.exists("batusageact.csv"):
             os.remove("batusageact.csv")
         if os.path.exists("g.html"):
             os.remove("g.html")
-        if os.path.exists("battery_activity.json"):
-            os.remove("battery_activity.json")
-        if os.path.exists("battery_activity.xml"):
-            os.remove("battery_activity.xml")
+        if os.path.exists(".temp_json_files/battery_activity.json"):
+            os.remove(".temp_json_files/battery_activity.json")
+        if os.path.exists(".temp_xml_files/battery_activity.xml"):
+            os.remove(".temp_xml_files/battery_activity.xml")
         if os.path.exists("battery_activity.csv"):
             os.remove("battery_activity.csv")
-        

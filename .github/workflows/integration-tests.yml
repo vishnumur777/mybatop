@@ -1,0 +1,250 @@
+name: "Integration Testing"
+on:
+  push:
+    branches:
+      - dev
+      - main
+  pull_request:
+    branches:
+      - dev
+      - main
+  workflow_dispatch:
+
+
+jobs:
+  integration-testing:
+    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+          os: ["ubuntu:latest","fedora:latest","archlinux:latest"]
+
+    container:
+        image: ${{matrix.os}}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup UV
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: latest
+          python-version: "3.13"
+
+      - name: Install python packages
+        run: |
+          run: |
+          uv pip install pandas plotly lxml ruff
+
+      - name: start installation
+        run: |
+          bash tests/integration_testing/installation.sh
+
+      - name: setup test bed
+        run: |
+          cat tests/test_files/outputs/low-power/data.csv | tail -n +2 > /opt/mybatop/temporaryfiler.n
+          if [ "${{ matrix.os }}" = "ubuntu:latest" ]; then
+            apt-get update && apt-get install -y dmidecode sudo
+          elif [ "${{ matrix.os }}" = "archlinux:latest" ]; then
+            pacman -Sy --noconfirm dmidecode sudo
+          else
+            dnf install -y dmidecode sudo
+          fi
+          whoami
+          sudo mkdir -p /tmp/mybatop_power_supply/BAT0
+          sudo cp tests/integration_testing/inputs/uevent /tmp/mybatop_power_supply/BAT0/uevent
+          sudo ln -s /tmp/mybatop_power_supply /sys/class/power_supply
+
+      - name: start integration tests
+        run: |
+          echo "Starting integration tests"
+
+      - name: mybatop -h
+        run: |
+          mybatop -h
+          mybatop --help
+          mybatop -help
+
+      - name: mybatop --version
+        run: |
+          mybatop --version
+          mybatop -V
+          mybatop -v
+
+      - name: mybatop report --html
+        run: |
+          mybatop report --html
+          file battery-report.html
+
+      - name: mybatop report --json
+        run: |
+          mybatop report --json
+          file battery-report.json
+
+      - name: mybatop report --xml
+        run: |
+          mybatop report --xml
+          file battery-report.xml
+
+      - name: mybatop report with classes
+        run: |
+          echo "Testing report with classes"
+
+      - name: mybatop report -C recent-usage --html
+        run: |
+          mybatop report -C recent-usage --html
+          file recent-usage.html
+
+      - name: mybatop report -C recent-usage --csv
+        run: |
+          mybatop report -C recent-usage --csv
+          file recent-usage.csv
+
+      - name: mybatop report -C recent-usage --json
+        run: |
+          mybatop report -C recent-usage --json
+          file .temp_json_files/recent-usage.json
+
+      - name: mybatop report -C recent-usage --xml
+        run: |
+          mybatop report -C recent-usage --xml
+          file .temp_xml_files/recent-usage.xml
+
+      - name: mybatop report -C tech-spec --html
+        run: |
+          mybatop report -C tech-spec --html
+          file tech-spec.html
+
+      - name: mybatop report -C tech-spec --csv
+        run: |
+          mybatop report -C tech-spec --csv
+          file tech-spec.csv
+
+      - name: mybatop report -C tech-spec --json
+        run: |
+          mybatop report -C tech-spec --json
+          file .temp_json_files/tech-spec.json
+
+      - name: mybatop report -C tech-spec --xml
+        run: |
+          mybatop report -C tech-spec --xml
+          file .temp_xml_files/tech-spec.xml
+
+      - name: mybatop report -C average-capacity --html
+        run: |
+          mybatop report -C average-capacity --html
+          file average-capacity.html
+
+      - name: mybatop report -C average-capacity --csv
+        run: |
+          mybatop report -C average-capacity --csv
+          file average-capacity.csv
+
+      - name: mybatop report -C average-capacity --json
+        run: |
+          mybatop report -C average-capacity --json
+          file .temp_json_files/average-capacity.json 
+
+      - name: mybatop report -C average-capacity --xml
+        run: |
+          mybatop report -C average-capacity --xml
+          file .temp_xml_files/average-capacity.xml 
+
+      - name: mybatop report -C batcaphis --html
+        run: |
+          mybatop report -C batcaphis --html
+          file battery-capacity-history.html
+
+      - name: mybatop report -C batcaphis --csv
+        run: |
+          mybatop report -C batcaphis --csv
+          file battery-capacity-history.csv
+
+      - name: mybatop report -C batcaphis --json
+        run: |
+          mybatop report -C batcaphis --json
+          file .temp_json_files/battery-capacity-history.json
+
+      - name: mybatop report -C batcaphis --xml
+        run: |
+          mybatop report -C batcaphis --xml
+          file .temp_xml_files/battery-capacity-history.xml
+
+      - name: mybatop report -C cycle-count --html
+        run: |
+          mybatop report -C cycle-count --html
+          file cycle-count.html
+
+      - name: mybatop report -C cycle-count --csv
+        run: |
+          mybatop report -C cycle-count --csv
+          file cycle-count.csv 
+
+      - name: mybatop report -C cycle-count --json
+        run: |
+          mybatop report -C cycle-count --json
+          file .temp_json_files/cycle-count.json
+
+      - name: mybatop report -C cycle-count --xml
+        run: |
+          mybatop report -C cycle-count --xml
+          file .temp_xml_files/cycle-count.xml
+
+      - name: mybatop report -C battery-health --html
+        run: |
+          mybatop report -C battery-health --html
+          file battery-health.html
+
+      - name: mybatop report -C battery-health --csv
+        run: |
+          mybatop report -C battery-health --csv
+          file battery-health.csv
+
+      - name: mybatop report -C battery-health --json
+        run: |
+          mybatop report -C battery-health --json
+          file .temp_json_files/battery-health.json
+
+      - name: mybatop report -C battery-health --xml
+        run: |
+          mybatop report -C battery-health --xml
+          file .temp_xml_files/battery-health.xml
+
+      - name: mybatop report -C battery-usage-activity --html
+        run: |
+          mybatop report -C battery-usage-activity --html
+          file battery-usage-activity.html  
+
+      - name: mybatop report -C battery-usage-activity --csv
+        run: |
+          mybatop report -C battery-usage-activity --csv
+          file battery-usage-activity.csv
+
+      - name: mybatop report -C battery-usage-activity --json
+        run: |
+          mybatop report -C battery-usage-activity --json 
+          file .temp_json_files/battery-usage-activity.json
+
+      - name: mybatop report -C battery-usage-activity --xml
+        run: |
+          mybatop report -C battery-usage-activity --xml
+          file .temp_xml_files/battery-usage-activity.xml
+
+      - name: Exporting raw data
+        run: |
+          echo "Exporting raw data"
+
+      - name: mybatop data --csv
+        run: |
+          mybatop data --csv
+          file data.csv
+
+      - name: mybatop data --json
+        run: |
+          mybatop data --json
+          file data.json
+
+      - name: mybatop data --xml
+        run: |
+          mybatop data --xml
+          file data.xml

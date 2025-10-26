@@ -10,6 +10,8 @@ class Test_Battery_Health(unittest.TestCase):
 
         subprocess.run(["cp","tests/test_files/data.csv", "."])
 
+        os.makedirs(".temp_xml_files", exist_ok=True)
+        os.makedirs(".temp_json_files", exist_ok=True)
     def test_battery_health_html(self):
 
         expected_output = "tests/test_files/outputs/html/battery_health.html"
@@ -22,13 +24,13 @@ class Test_Battery_Health(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}",
         )
 
-        self.assertTrue(os.path.exists("battery_health.html"), "Output file battery_health.html was not created")
+        self.assertTrue(os.path.exists("e.html"), "Output file battery_health.html was not created")
 
-        if not filecmp.cmp("battery_health.html", expected_output):
-            subprocess.run(["diff", expected_output, "battery_health.html"], check=True)
+        if not filecmp.cmp("e.html", expected_output):
+            subprocess.run(["diff", expected_output, "e.html"], check=True)
 
         self.assertTrue(
-            filecmp.cmp("battery_health.html", expected_output), "Files are not identical"
+            filecmp.cmp("e.html", expected_output), "Files are not identical"
         )
 
     def test_battery_health_json(self):
@@ -43,13 +45,13 @@ class Test_Battery_Health(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}",
         )
 
-        self.assertTrue(os.path.exists("battery_health.json"), "Output file battery_health.json was not created")
+        self.assertTrue(os.path.exists(".temp_json_files/battery_health.json"), "Output file battery_health.json was not created")
 
-        if not filecmp.cmp("battery_health.json", expected_output):
-            subprocess.run(["diff", expected_output, "battery_health.json"], check=True)
+        if not filecmp.cmp(".temp_json_files/battery_health.json", expected_output):
+            subprocess.run(["diff", expected_output, ".temp_json_files/battery_health.json"], check=True)
 
         self.assertTrue(
-            filecmp.cmp("battery_health.json", expected_output), "Files are not identical"
+            filecmp.cmp(".temp_json_files/battery_health.json", expected_output), "Files are not identical"
         )
 
     def test_battery_health_xml(self):
@@ -64,13 +66,13 @@ class Test_Battery_Health(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}",
         )
 
-        self.assertTrue(os.path.exists("battery_health.xml"), "Output file battery_health.xml was not created")
+        self.assertTrue(os.path.exists(".temp_xml_files/battery_health.xml"), "Output file battery_health.xml was not created")
 
-        if not filecmp.cmp("battery_health.xml", expected_output):
-            subprocess.run(["diff", expected_output, "battery_health.xml"], check=True)
+        if not filecmp.cmp(".temp_xml_files/battery_health.xml", expected_output):
+            subprocess.run(["diff", expected_output, ".temp_xml_files/battery_health.xml"], check=True)
 
         self.assertTrue(
-            filecmp.cmp("battery_health.xml", expected_output), "Files are not identical"
+            filecmp.cmp(".temp_xml_files/battery_health.xml", expected_output), "Files are not identical"
         )
 
     def test_battery_health_csv(self):
@@ -97,11 +99,11 @@ class Test_Battery_Health(unittest.TestCase):
     def tearDown(self):
         if os.path.exists("data.csv"):
             os.remove("data.csv")
-        if os.path.exists("battery_health.html"):
-            os.remove("battery_health.html")
-        if os.path.exists("battery_health.json"):
-            os.remove("battery_health.json")
-        if os.path.exists("battery_health.xml"):
-            os.remove("battery_health.xml")
+        if os.path.exists("e.html"):
+            os.remove("e.html")
+        if os.path.exists(".temp_json_files/battery_health.json"):
+            os.remove(".temp_json_files/battery_health.json")
+        if os.path.exists(".temp_xml_files/battery_health.xml"):
+            os.remove(".temp_xml_files/battery_health.xml")
         if os.path.exists("battery_health.csv"):
             os.remove("battery_health.csv")

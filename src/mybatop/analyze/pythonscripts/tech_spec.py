@@ -88,11 +88,11 @@ if __name__ == "__main__":
             "CHARGE_NOW",
             "CAPACITY",
         ]
-        tech_spec.to_xml("tech_spec.xml", index=False)
+        tech_spec.to_xml(".temp_xml_files/tech_spec.xml", index=False)
 
     elif args.json:
         records = tech_spec.to_dict(orient="records")
         pretty_json = json.dumps(records, indent=4)
 
-        with open("tech_spec.json", "w") as f:
+        with open(".temp_json_files/tech_spec.json", "w") as f:
             f.write(pretty_json)

@@ -10,6 +10,8 @@ class TestDchar(unittest.TestCase):
 
         subprocess.run(["cp", "tests/test_files/data.csv", "."], check=True)
 
+        os.makedirs(".temp_xml_files", exist_ok=True)
+        os.makedirs(".temp_json_files", exist_ok=True)
     def test_dchar_html(self):
         expected_output = "tests/test_files/outputs/html/Average_capacity.html"
 
@@ -41,13 +43,13 @@ class TestDchar(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}",
         )
 
-        self.assertTrue(os.path.exists("average_capacity.json"), "Output file average_capacity.json was not created")
+        self.assertTrue(os.path.exists(".temp_json_files/average_capacity.json"), "Output file average_capacity.json was not created")
 
-        if not filecmp.cmp("average_capacity.json", expected_output):
-            subprocess.run(["diff", expected_output, "average_capacity.json"], check=True)
+        if not filecmp.cmp(".temp_json_files/average_capacity.json", expected_output):
+            subprocess.run(["diff", expected_output, ".temp_json_files/average_capacity.json"], check=True)
 
         self.assertTrue(
-            filecmp.cmp("average_capacity.json", expected_output), "Files are not identical"
+            filecmp.cmp(".temp_json_files/average_capacity.json", expected_output), "Files are not identical"
         )
     
     def test_dchar_xml(self):
@@ -61,13 +63,13 @@ class TestDchar(unittest.TestCase):
             f"Script execution failed with error:\n{result.stderr}",
         )
 
-        self.assertTrue(os.path.exists("Average_capacity.xml"), "Output file Average_capacity.xml was not created")
+        self.assertTrue(os.path.exists(".temp_xml_files/Average_capacity.xml"), "Output file Average_capacity.xml was not created")
 
-        if not filecmp.cmp("Average_capacity.xml", expected_output):
-            subprocess.run(["diff", expected_output, "Average_capacity.xml"], check=True)
+        if not filecmp.cmp(".temp_xml_files/Average_capacity.xml", expected_output):
+            subprocess.run(["diff", expected_output, ".temp_xml_files/Average_capacity.xml"], check=True)
 
         self.assertTrue(
-            filecmp.cmp("Average_capacity.xml", expected_output), "Files are not identical"
+            filecmp.cmp(".temp_xml_files/Average_capacity.xml", expected_output), "Files are not identical"
         )
 
     def test_dchar_csv(self):
@@ -95,9 +97,9 @@ class TestDchar(unittest.TestCase):
             os.remove("data.csv")
         if os.path.exists("Average_capacity.html"):
             os.remove("Average_capacity.html")
-        if os.path.exists("average_capacity.json"):
-            os.remove("average_capacity.json")
-        if os.path.exists("Average_capacity.xml"):
-            os.remove("Average_capacity.xml")
+        if os.path.exists(".temp_json_files/average_capacity.json"):
+            os.remove(".temp_json_files/average_capacity.json")
+        if os.path.exists(".temp_xml_files/Average_capacity.xml"):
+            os.remove(".temp_xml_files/Average_capacity.xml")
         if os.path.exists("Average_capacity.csv"):
             os.remove("Average_capacity.csv")

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cd /opt/mybatop/src/scripts/contents/ || exit
-./opt/mybatop/scripts/contents/content_suspended.sh
-cat ./*.n > /opt/mybatop/data/tempo.n
-cp /opt/mybatop/data/tempo.n /opt/mybatop/data/temporaryfiler.n
-rm -rf maindata2.n
+cd /opt/mybatop/data/ || exit
+bash /opt/mybatop/scripts/contents/content_suspended.sh
+cat ./*.n >  tempo.n
+cp  tempo.n  temporaryfiler.n
+rm -rf maindata2.n tempo.n
