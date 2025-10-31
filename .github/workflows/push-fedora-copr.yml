@@ -1,0 +1,53 @@
+name: Publish to Fedora and OpenSUSE (Fedora COPR)
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  fedora-publish:
+    env:
+      VERSION: 1.0.1
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: List directories and files
+        run: |
+          ls build/
+
+      - name: Update mybatop.spec Version
+        run: |
+          sed -i "s/__APP_VERSION__/$VERSION/g" build/mybatop.spec
+
+      - name: Install  COPR CLI
+        run: |
+          dnf upgrade -y
+          dnf Install -y copr-cli
+
+      - name: Configure COPR
+        env:
+          COPR_CONFIG: ${{ secrets.COPR_CONFIG }}
+        run: |
+          mkdir -p ~/.config/
+          echo "$COPR_CONFIG" > ~/.config/copr
+          chmod 600 ~/.config/copr
+
+      - name: Create Source Tarball
+        run: |
+          tar -czf mybatop-${VERSION}.tar.gz src/mybatop/*
+
+      - name: build Fedora Package
+        run: |
+          copr-cli buildscm vishnumur777/mybatop \
+            --clone-url https://github.com/vishnumur777/mybatop.git \
+            --commit main \
+            --spec build/mybatop.spec \
+            --type git
+
+      
+

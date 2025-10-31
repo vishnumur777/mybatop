@@ -6,6 +6,7 @@
     <img src="https://github.com/vishnumur777/mybatop/actions/workflows/build-packages.yml/badge.svg" alt="Build Packages workflow">
     <img src="https://github.com/vishnumur777/mybatop/actions/workflows/lint-bash.yml/badge.svg" alt="Bash Linting workflow">
     <img src="https://github.com/vishnumur777/mybatop/actions/workflows/push-aur.yml/badge.svg" alt="AUR push">
+    <img src="https://github.com/vishnumur777/mybatop/actions/workflows/push-fedora-copr.yml/badge.svg" alt="Fedora COPR">
     <img src="https://github.com/vishnumur777/mybatop/actions/workflows/test-python.yml/badge.svg" alt="Python unit testing">
     <img src="https://img.shields.io/github/license/vishnumur777/mybatop" alt="License">
     <img src="https://img.shields.io/github/forks/vishnumur777/mybatop" alt="GitHub forks">
