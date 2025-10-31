@@ -27,7 +27,7 @@ jobs:
       - name: Install  COPR CLI
         run: |
           dnf upgrade -y
-          dnf5 Install -y copr-cli
+          dnf install -y copr-cli
 
       - name: Configure COPR
         env:
