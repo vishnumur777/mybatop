@@ -41,16 +41,17 @@ jobs:
 
       - name: Create Source Tarball
         run: |
-          tar -czf mybatop-${APP_VERSION}.tar.gz src/mybatop/*
+          cp -r src/mybatop/ mybatop-${{ env.APP_VERSION }}
+          tar -cvzf mybatop-${APP_VERSION}.tar.gz mybatop-${{ env.APP_VERSION }}/
 
       - name: Set up for build
         run: |
-          cd ~
           mkdir -p ~/rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SPRMS}
           pwd
           ls
           mv mybatop-${APP_VERSION}.tar.gz ~/rpmbuild/SOURCES
           cp build/mybatop.spec ~/rpmbuild/SPECS/mybatop.spec
+          ls -lh ~/rpmbuild/SOURCES/
 
       - name: Build for getting source files
         run: |
