@@ -22,7 +22,9 @@ jobs:
 
       - name: Update mybatop.spec Version
         run: |
-          sed -i "s/__APP_VERSION__/$VERSION/g" build/mybatop.spec
+          specs=$(cat build/mybatop.spec)
+          eval "echo \"$specs\"" > ~/rpmbuild/SPECS/mybatop.spec
+
 
       - name: Install  COPR CLI
         run: |
