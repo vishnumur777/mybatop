@@ -1,5 +1,5 @@
 Name:           mybatop
-Version:        "__APP_VERSION__"
+Version:        "$APP_VERSION"
 Release:        1%{?dist}
 Summary:        A battery monitoring tool
 
