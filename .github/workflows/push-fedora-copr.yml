@@ -27,7 +27,7 @@ jobs:
       - name: Install  COPR CLI
         run: |
           dnf upgrade -y
-          dnf install -y copr-cli
+          dnf install -y copr-cli rpmdevtools rpmlint rpm-build
 
       - name: Configure COPR
         env:
@@ -41,13 +41,22 @@ jobs:
         run: |
           tar -czf mybatop-${VERSION}.tar.gz src/mybatop/*
 
+      - name: Set up for build
+        run: |
+          mkdir -p ~/rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SPRMS}
+          pwd
+          ls
+          mv mybatop-${VERSION}.tar.gz ~/rpmbuild/SOURCES
+          cp build/mybatop.spec ~/rpmbuild/SPECS/mybatop.spec
+
+      - name: Build for getting source files
+        run: |
+          cd ~
+          rpmbuild -ba rpmbuild/SPECS/mybatop.spec
+      
       - name: build Fedora Package
         run: |
-          copr-cli buildscm vishnumur777/mybatop \
-            --clone-url https://github.com/vishnumur777/mybatop.git \
-            --commit main \
-            --spec build/mybatop.spec \
-            --type git
+          copr-cli build ~/rpmbuild/SRPMS/mybatop-${VERSION}.src.rpm
 
       
 
