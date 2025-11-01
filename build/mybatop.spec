@@ -1,5 +1,5 @@
 Name:           mybatop
-Version:        "__APP_VERSION__"
+Version:        "$APP_VERSION"
 Release:        1%{?dist}
 Summary:        A battery monitoring tool
 
@@ -38,7 +38,18 @@ ln -s /opt/mybatop/scripts/runscript/mybatop %{buildroot}/usr/bin/mybatop
 
 %post
 chmod -R +rx /opt/mybatop
-chown -R $USER:$USER /opt/mybatop
+if [ -n "$SUDO_USER" ] && [ "$SUDO_USER" != "root" ]; then
+    chown -R $SUDO_USER:$SUDO_USER /opt/mybatop
+elif [ -n "$PKEXEC_UID" ]; then
+    ACTUAL_USER=$(getent passwd "$PKEXEC_UID" | cut -d: -f1)
+    chown -R $ACTUAL_USER:$ACTUAL_USER /opt/mybatop
+else
+    # Fallback: find first non-root user with UID >= 1000
+    ACTUAL_USER=$(getent passwd | awk -F: '$3 >= 1000 && $3 < 65534 {print $1; exit}')
+    if [ -n "$ACTUAL_USER" ]; then
+        chown -R $ACTUAL_USER:$ACTUAL_USER /opt/mybatop
+    fi
+fi
 systemctl daemon-reload
 systemctl enable --now mybatop-shutdown.service
 systemctl enable --now mybatop-startup.service

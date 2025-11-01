@@ -4,12 +4,11 @@ on:
   push:
     branches:
       - main
-      - dev
 
 jobs:
   fedora-publish:
     env:
-      VERSION: 1.0.1
+      APP_VERSION: 1.0.1
     runs-on: ubuntu-latest
     container: fedora:latest
     steps:
@@ -22,12 +21,14 @@ jobs:
 
       - name: Update mybatop.spec Version
         run: |
-          sed -i "s/__APP_VERSION__/$VERSION/g" build/mybatop.spec
+          specs=$(cat build/mybatop.spec)
+          eval "echo \"$specs\"" > build/mybatop.spec
+
 
       - name: Install  COPR CLI
         run: |
           dnf upgrade -y
-          dnf install -y copr-cli
+          dnf install -y copr-cli rpmdevtools rpmlint rpm-build
 
       - name: Configure COPR
         env:
@@ -39,15 +40,27 @@ jobs:
 
       - name: Create Source Tarball
         run: |
-          tar -czf mybatop-${VERSION}.tar.gz src/mybatop/*
+          cp -r src/mybatop/ mybatop-${{ env.APP_VERSION }}
+          tar -cvzf mybatop-${APP_VERSION}.tar.gz mybatop-${{ env.APP_VERSION }}/
 
+      - name: Set up for build
+        run: |
+          mkdir -p ~/rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SPRMS}
+          pwd
+          ls
+          mv mybatop-${APP_VERSION}.tar.gz ~/rpmbuild/SOURCES
+          cp build/mybatop.spec ~/rpmbuild/SPECS/mybatop.spec
+          ls -lh ~/rpmbuild/SOURCES/
+
+      - name: Build for getting source files
+        run: |
+          cd ~
+          rpmbuild -ba rpmbuild/SPECS/mybatop.spec
+      
       - name: build Fedora Package
         run: |
-          copr-cli buildscm vishnumur777/mybatop \
-            --clone-url https://github.com/vishnumur777/mybatop.git \
-            --commit main \
-            --spec build/mybatop.spec \
-            --type git
+          ls -alh ~/rpmbuild/SRPMS/
+          copr-cli build vishnumur777/mybatop ~/rpmbuild/SRPMS/mybatop-${APP_VERSION}-*.src.rpm
 
       
 
