@@ -23,7 +23,7 @@ jobs:
       - name: Update mybatop.spec Version
         run: |
           specs=$(cat build/mybatop.spec)
-          eval "echo \"$specs\"" > ~/rpmbuild/SPECS/mybatop.spec
+          eval "echo \"$specs\"" > build/mybatop.spec
 
 
       - name: Install  COPR CLI
