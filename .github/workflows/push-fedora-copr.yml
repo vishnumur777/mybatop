@@ -60,7 +60,7 @@ jobs:
       
       - name: build Fedora Package
         run: |
-          copr-cli build ~/rpmbuild/SRPMS/mybatop-${APP_VERSION}.src.rpm
+          copr-cli build vishnumur777/mybatop ~/rpmbuild/SRPMS/mybatop-${APP_VERSION}.src.rpm
 
       
 
