@@ -45,6 +45,7 @@ jobs:
 
       - name: Set up for build
         run: |
+          cd ~
           mkdir -p ~/rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SPRMS}
           pwd
           ls
