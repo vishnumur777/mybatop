@@ -9,7 +9,7 @@ on:
 jobs:
   fedora-publish:
     env:
-      VERSION: 1.0.1
+      APP_VERSION: 1.0.1
     runs-on: ubuntu-latest
     container: fedora:latest
     steps:
@@ -41,14 +41,14 @@ jobs:
 
       - name: Create Source Tarball
         run: |
-          tar -czf mybatop-${VERSION}.tar.gz src/mybatop/*
+          tar -czf mybatop-${APP_VERSION}.tar.gz src/mybatop/*
 
       - name: Set up for build
         run: |
           mkdir -p ~/rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SPRMS}
           pwd
           ls
-          mv mybatop-${VERSION}.tar.gz ~/rpmbuild/SOURCES
+          mv mybatop-${APP_VERSION}.tar.gz ~/rpmbuild/SOURCES
           cp build/mybatop.spec ~/rpmbuild/SPECS/mybatop.spec
 
       - name: Build for getting source files
@@ -58,7 +58,7 @@ jobs:
       
       - name: build Fedora Package
         run: |
-          copr-cli build ~/rpmbuild/SRPMS/mybatop-${VERSION}.src.rpm
+          copr-cli build ~/rpmbuild/SRPMS/mybatop-${APP_VERSION}.src.rpm
 
       
 
