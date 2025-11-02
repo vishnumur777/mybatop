@@ -3,7 +3,7 @@
 host_name=$(hostname -f)
 sys_name=$(sudo dmidecode -s system-product-name)
 bios_det="$(sudo dmidecode -s bios-vendor) $(sudo dmidecode -s bios-version) $(sudo dmidecode -s bios-release-date)"
-os_name=$(cat /etc/os-release | awk -F '=' 'NR==1 {print $2}' | sed -e 's/"//g')
+os_name=$(awk -F '=' 'NR==1 {gsub(/"/,"",$2);print $2}' /etc/os-release)
 report_time=$(date +%D)" "$(date +%T)
 
 model_name=$(cat /sys/class/power_supply/BAT0/model_name)
