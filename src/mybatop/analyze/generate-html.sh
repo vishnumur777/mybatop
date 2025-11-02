@@ -17,6 +17,8 @@ bash fetchuserdetails.sh
 
 rm -rf merge.html
 
+bash html-header.sh
+
 bash generate_classes.sh
 
 cycle_count=$(cat /sys/class/power_supply/BAT0/cycle_count)
@@ -49,6 +51,6 @@ cat ./*.html >temp.html
 
 cat temp.html y2 >temp1.html
 
-cat head.txt temp1.html tail.txt >merge.html
+cat webheader.txt head.txt temp1.html tail.txt >merge.html
 
-rm -rf temp.html data.csv details.csv temp1.html y2 recent_3_days.csv a0.html a.html b.html c.html d.html e.html f.html g.html
+rm -rf temp.html webheader.txt data.csv details.csv temp1.html y2 recent_3_days.csv a0.html a.html b.html c.html d.html e.html f.html g.html
