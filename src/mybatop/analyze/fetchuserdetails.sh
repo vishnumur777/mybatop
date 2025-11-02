@@ -3,7 +3,7 @@
 host_name=$(hostname -f)
 sys_name=$(sudo dmidecode -s system-product-name)
 bios_det="$(sudo dmidecode -s bios-vendor) $(sudo dmidecode -s bios-version) $(sudo dmidecode -s bios-release-date)"
-os_name=$(lsb_release -i | cut -f 2-)
+os_name=$(awk -F '=' 'NR==1 {gsub(/"/,"",$2);print $2}' /etc/os-release)
 report_time=$(date +%D)" "$(date +%T)
 
 model_name=$(cat /sys/class/power_supply/BAT0/model_name)
@@ -11,13 +11,13 @@ bat_serial_no=$(cat /sys/class/power_supply/BAT0/serial_number)
 type=$(cat /sys/class/power_supply/BAT0/type)
 technology=$(cat /sys/class/power_supply/BAT0/technology)
 manufacturer=$(cat /sys/class/power_supply/BAT0/manufacturer)
-ch_full_d=$(( $(cat /sys/class/power_supply/BAT0/charge_full_design) / 1000 ))
-volt_des=$(( $(cat /sys/class/power_supply/BAT0/voltage_min_design) / 1000 ))
-cycle_count=$(( $(cat /sys/class/power_supply/BAT0/cycle_count) ))
+ch_full_d=$(($(cat /sys/class/power_supply/BAT0/charge_full_design) / 1000))
+volt_des=$(($(cat /sys/class/power_supply/BAT0/voltage_min_design) / 1000))
+cycle_count=$(($(cat /sys/class/power_supply/BAT0/cycle_count)))
 
 if [ $cycle_count -eq "0" ]; then
-    cycle_count="Not Available"
+  cycle_count="Not Available"
 fi
 
-echo "HOSTNAME,SYSTEM NAME,BIOS DETAILS,OS NAME,REPORT TIME,MODEL NAME,BATTERY SERIAL NUMBER,TYPE,TECHNOLOGY,MANUFACTURER,CHARGE FULL DESIGN,VOLTAGE MINIMUM DESIGN,CYCLE COUNT" >> pythonscripts/details.csv
-echo "$host_name,$sys_name,$bios_det,$os_name,$report_time,$model_name,$bat_serial_no,$type,$technology,$manufacturer,$ch_full_d,$volt_des,$cycle_count" >> pythonscripts/details.csv
+echo "HOSTNAME,SYSTEM NAME,BIOS DETAILS,OS NAME,REPORT TIME,MODEL NAME,BATTERY SERIAL NUMBER,TYPE,TECHNOLOGY,MANUFACTURER,CHARGE FULL DESIGN,VOLTAGE MINIMUM DESIGN,CYCLE COUNT" >pythonscripts/details.csv
+echo "$host_name,$sys_name,$bios_det,$os_name,$report_time,$model_name,$bat_serial_no,$type,$technology,$manufacturer,$ch_full_d,$volt_des,$cycle_count" >>pythonscripts/details.csv

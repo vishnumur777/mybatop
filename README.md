@@ -175,6 +175,8 @@ Refer all other commands [here](https://mybatop.web.app/docs/gen-reports#generat
   <img src="https://contrib.rocks/image?repo=vishnumur777/mybatop" />
 </a>
 
+### HTML UI Contribution done by **Sharanvelan T** - @sharanvelan
+
 ## License
 
 This project is licensed under the terms of [GPL-3.0 License](LICENSE)
