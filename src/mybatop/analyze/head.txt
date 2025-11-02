@@ -15,6 +15,34 @@
         font-family: sans-serif;
     }
 
+    .report-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 25px;
+    }
+
+    .report-header h1 {
+      margin: 0;
+      font-size: 20px;
+      color: #e6eef3;
+    }
+
+    .report-header p {
+      margin: 0;
+      color: #9aa3a9;
+      font-size: 25px;
+    }
+
+    .report-meta {
+      align-self: flex-end;
+      color: #9aa3a9;
+      font-size: 16px;
+      margin-right: 50px;
+      margin-bottom: 10px;
+    }
+
     .title{
         color: white;
         background-color: #2A62D1;
